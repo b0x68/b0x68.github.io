@@ -12,21 +12,21 @@ hideComments = false
 color = "" #color from the theme settings
 +++
 
-My name is Brian and this is my personal blog. The content will mostly be tech related -- Linux, web development, How To articles, etc. I can also guarantee there will be completely random and unrelated content as well. By day I am a linux infrastructure administrator; by night, I'm a serial hobbyist.
+My name is Brian and this is my personal blog. The content will mostly be tech related -- Linux, web development, How To articles, etc. I can also guarantee there will be completely random and unrelated content. By day I am a linux infrastructure administrator; by night, I'm a serial hobbyist.
 
-I don't claim to be an expert on anything, but I figure I'll share my experiences in hope they help others in some way.
+I don't claim to be an expert on anything, but I'll share my experiences in hope they help others.
 
 * Some notable strengths:
   * Enterprise/RPM based Linux -- RHEL, Springdale, CentOS, Rocky
   * Software:
-    * Puppet
+    * Languages: bash, Python, Go(lang), Puppet
     * Git
     * CAS
-    * OpenDJ, LDAP
+    * OpenDJ, LDAP, Duo
     * Apache, Passenger, Web frameworks
-    * HPC cluster administration -- SLURM, NVidia, Run.ai
+    * HPC cluster administration -- SLURM, NVidia, Jobstats
     * NFS, CIFS
-    * Docker, Kubernetes, Apptainer(Singularity)
+    * Docker, Apptainer(Singularity)
   * Interests
     * Wood working, wood turning
     * Motorsports -- Sprint Cars, NASCAR, F1, Indy, Rally
