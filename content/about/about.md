@@ -7,7 +7,7 @@ tags = ["hugo", "blog", "go", "programming", "web development","linux","rhel"]
 keywords = ["hugo", "blog", "go", "programming", "web development"]
 description = "" 
 showFullContent = true
-readingTime = false
+readingTime = true
 hideComments = false
 color = "" #color from the theme settings
 +++
