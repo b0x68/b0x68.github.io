@@ -12,11 +12,11 @@ hideComments = false
 color = "" #color from the theme settings
 +++
 
-# Red Hat Certified Systems Administrator (RHCSA) Exam Objectives Tutorial
+**Red Hat Certified Systems Administrator (RHCSA) Exam Objectives Tutorial**
 
-## 1. Access the Command Line
+**Access the Command Line**
 
-### Objective 1: Log in to a Linux system and run simple commands using the shell
+## Objective 1: Log in to a Linux system and run simple commands using the shell
 
 In this tutorial, we will learn how to log in to a Linux system and execute simple commands using the shell.
 
