@@ -93,7 +93,7 @@ Now, open an incognito web browser window and navigate the [http://localhost:131
 
 You should see bare bones Terminal themed website. Like below
 
-![text](http://localhost:1313/pic.png)
+![screenshot](pic.png)
 
 
 
