@@ -2,7 +2,7 @@
 title = "Access Remote Systems Using SSH"
 date = "2024-02-01T09:31:19-05:00"
 author = "root"
-cover = "secure-tunnel"
+cover = "secure-tunnel.png"
 tags = ["SSH", "System Administration", "Secure Shell", "Authentication"]
 keywords = ["SSH connection", "Secure Shell", "Remote access", "System administration"]
 description = "In this tutorial, we will explore how to access remote systems using SSH (Secure Shell), a powerful tool commonly used in system administration tasks. SSH allows you to securely connect to a remote system over an encrypted connection, providing a secure means of accessing and managing remote machines."
