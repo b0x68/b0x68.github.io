@@ -11,7 +11,7 @@ paginate = 5
 [params]
   # dir name of your main content (default is `content/posts`).
   # the list of set content will show up on your index page (baseurl).
-  contentTypeName = "posts"
+  contentTypeName = "about"
 
   # ["orange", "blue", "red", "green", "pink"]
   themeColor = "green"
@@ -75,7 +75,7 @@ paginate = 5
 
     [languages.en.params.logo]
       logoText = "b0x68"
-      logoHomeLink = "/"
+      logoHomeLink = "/about"
 
     [languages.en.menu]
       [[languages.en.menu.main]]
@@ -83,9 +83,9 @@ paginate = 5
         name = "About"
         url = "/about"
       [[languages.en.menu.main]]
-        identifier = "posts"
-        name = "Posts"
-        url = "/posts"
+        identifier = "techcontent"
+        name = "Technical Content"
+        url = "/techcontent"
 
   [markup.goldmark]
     [markup.goldmark.extensions]
