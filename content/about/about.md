@@ -1,7 +1,7 @@
 +++
-title = "About This Blog"
+title = "About This Website"
 date = "2022-12-16"
-author = "Admin"
+author = "root"
 cover = "eric.gif"
 tags = ["hugo", "blog", "go", "programming", "web development","linux","rhel"]
 keywords = ["hugo", "blog", "go", "programming", "web development"]
@@ -12,7 +12,7 @@ hideComments = false
 color = "" #color from the theme settings
 +++
 
-My name is Brian and this is my personal blog. The content will mostly be tech related -- Linux, web development, How To articles, etc. I can also guarantee there will be completely random and unrelated content. By day I am a linux infrastructure administrator; by night, I'm a serial hobbyist.
+My name is Brian and this is my personal website. The content will mostly be tech related -- Linux, web development, how-to articles like in [Technical Content](https://b0x68.github.io/techcontent), etc. I can also guarantee there will be completely random and unrelated content. By day I am a linux infrastructure administrator; by night, I'm a serial hobbyist.
 
 I don't claim to be an expert on anything, but I'll share my experiences in hope they help others.
 
@@ -31,4 +31,3 @@ I don't claim to be an expert on anything, but I'll share my experiences in hope
     * Wood working, wood turning
     * Motorsports -- Sprint Cars, NASCAR, F1, Indy, Rally
     * _`programming`_
-    * 
