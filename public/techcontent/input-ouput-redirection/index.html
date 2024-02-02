@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Input Ouput Redirection :: b0x68</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="&gt; One dog goes one way and the other goes the other." />
+<meta name="keywords" content="Input-output redirection, Prerequisites, Getting Started, Redirecting Standard Output, Appending to a file, Piping Commands, Redirecting Standard Error" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="http://b0x68.github.io/techcontent/input-ouput-redirection/" />
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="http://b0x68.github.io/styles.css">
+
+
+
+
+
+
+
+  <link rel="shortcut icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+  <link rel="apple-touch-icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Input Ouput Redirection">
+<meta property="og:description" content="&gt; One dog goes one way and the other goes the other." />
+<meta property="og:url" content="http://b0x68.github.io/techcontent/input-ouput-redirection/" />
+<meta property="og:site_name" content="b0x68" />
+
+  
+  
+  <meta property="og:image" content="http://b0x68.github.io/input-output-redirection.jpg">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2024-01-31 21:46:37 -0500 EST" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body class="green">
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/about">
+  <div class="logo">
+    b0x68
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/techcontent">Technical Content</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/about" >About</a></li>
+        
+      
+        
+          <li><a href="/techcontent" >Technical Content</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="http://b0x68.github.io/techcontent/input-ouput-redirection/">Input Ouput Redirection</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2024-01-31</time><span class="post-author">root</span><span class="post-reading-time">2 min read (400 words)</span></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="http://b0x68.github.io/tags/rhcsa/">RHCSA</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/red-hat/">Red Hat</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/linux/">Linux</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/system-administration/">System Administration</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/input-output-redirection/">Input-output redirection</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/command-line/">Command Line</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/shell-scripting/">Shell Scripting</a>&nbsp;
+      
+    </span>
+  
+  
+  <img src="http://b0x68.github.io/input-output-redirection.jpg"
+    class="post-cover"
+    alt="Input Ouput Redirection"
+    title="Cover Image" />
+
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="red-hat-certified-systems-administrator-exam-objective-use-input-output-redirection">Red Hat Certified Systems Administrator Exam Objective: Use Input-Output Redirection<a href="#red-hat-certified-systems-administrator-exam-objective-use-input-output-redirection" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>In this tutorial, we&rsquo;ll delve into the essential concept of input-output redirection, a fundamental skill for any Red Hat Certified Systems Administrator. Input-output redirection allows you to manipulate the flow of data between commands, files, and devices in the Linux shell. Understanding how to use redirection efficiently can greatly enhance your productivity and effectiveness in managing systems.</p>
+<h2 id="prerequisites">Prerequisites<a href="#prerequisites" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Before diving into input-output redirection, ensure you have a basic understanding of the Linux command line interface and familiarity with the Red Hat Linux environment.</p>
+<h2 id="getting-started">Getting Started<a href="#getting-started" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Let&rsquo;s start by exploring the different symbols and operators used for input-output redirection:</p>
+<ul>
+<li><code>&gt;</code>: Redirects standard output to a file, creating the file if it does not exist or overwriting its contents if it does.</li>
+<li><code>&gt;&gt;</code>: Appends standard output to a file, creating the file if it does not exist.</li>
+<li><code>|</code>: Redirects standard output of one command to the standard input of another command, allowing for command chaining or piping.</li>
+<li><code>2&gt;</code>: Redirects standard error to a file.</li>
+</ul>
+<p>Now, let&rsquo;s see how we can use these redirection operators in various scenarios.</p>
+<h2 id="redirecting-standard-output">Redirecting Standard Output<a href="#redirecting-standard-output" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>To redirect the output of a command to a file, use the <code>&gt;</code> operator. For example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ls &gt; directory_contents.txt
+</span></span></code></pre></div><p>This command lists the contents of the current directory and redirects the output to a file named <code>directory_contents.txt</code>.</p>
+<p>To append output to an existing file, use the <code>&gt;&gt;</code> operator:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ echo <span style="color:#e6db74">&#34;Additional content&#34;</span> &gt;&gt; directory_contents.txt
+</span></span></code></pre></div><p>This command appends the text &ldquo;Additional content&rdquo; to the file <code>directory_contents.txt</code>.</p>
+<h2 id="piping-commands">Piping Commands<a href="#piping-commands" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Piping commands allow you to send the output of one command as input to another command. For example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ls | grep <span style="color:#e6db74">&#34;pattern&#34;</span>
+</span></span></code></pre></div><p>This command lists the contents of the current directory and uses <code>grep</code> to filter the output based on the specified pattern.</p>
+<h2 id="redirecting-standard-error">Redirecting Standard Error<a href="#redirecting-standard-error" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>To redirect standard error to a file, use the <code>2&gt;</code> operator. For example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ command_not_found 2&gt; error.log
+</span></span></code></pre></div><p>This command redirects any error messages generated by the command <code>command_not_found</code> to a file named <code>error.log</code>.</p>
+<h2 id="conclusion">Conclusion<a href="#conclusion" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>In this tutorial, we&rsquo;ve covered the basics of input-output redirection in Linux, an essential skill for system administrators. By mastering these concepts and operators, you&rsquo;ll be better equipped to manage and manipulate data flow within the Linux shell, contributing to improved efficiency and productivity in your system administration tasks. Practice using these redirection techniques in various scenarios to solidify your understanding and expertise.</p>
+
+      </div></div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2024 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>shell on b0x68</title>
+    <link>http://b0x68.github.io/tags/shell/</link>
+    <description>Recent content in shell on b0x68</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 31 Jan 2024 13:18:25 -0500</lastBuildDate><atom:link href="http://b0x68.github.io/tags/shell/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Access Shell Prompt</title>
+      <link>http://b0x68.github.io/techcontent/how-to-access-shell-prompt/</link>
+      <pubDate>Wed, 31 Jan 2024 13:18:25 -0500</pubDate>
+      
+      <guid>http://b0x68.github.io/techcontent/how-to-access-shell-prompt/</guid>
+      <description>Red Hat Certified Systems Administrator (RHCSA) Exam Objectives Tutorial
+Access the Command Line Objective 1: Log in to a Linux system and run simple commands using the shell
+In this tutorial, we will learn how to log in to a Linux system and execute simple commands using the shell.
+Logging in to a Linux system:
+Open a terminal window. Use the ssh command to connect to the desired Linux system: ssh username@hostname Enter the password when prompted.</description>
+      <content>&lt;p&gt;&lt;strong&gt;Red Hat Certified Systems Administrator (RHCSA) Exam Objectives Tutorial&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;access-the-command-line&#34;&gt;&lt;strong&gt;Access the Command Line&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;Objective 1: Log in to a Linux system and run simple commands using the shell&lt;/p&gt;
+&lt;p&gt;In this tutorial, we will learn how to log in to a Linux system and execute simple commands using the shell.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Logging in to a Linux system&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Open a terminal window.&lt;/li&gt;
+&lt;li&gt;Use the &lt;code&gt;ssh&lt;/code&gt; command to connect to the desired Linux system:
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ssh username@hostname
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;Enter the password when prompted.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Executing Simple Commands&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Once logged in, you can run various commands. Here are a few examples:
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ls&lt;/code&gt;: List files and directories in the current location.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pwd&lt;/code&gt;: Print the current working directory.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;whoami&lt;/code&gt;: Display the username of the current user.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;date&lt;/code&gt;: Show the current date and time.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Example:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ ls
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Desktop  Documents  Downloads  Music  Pictures  Videos
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    </item>
+    
+  </channel>
+</rss>

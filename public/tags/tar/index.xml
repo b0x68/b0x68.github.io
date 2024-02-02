@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tar on b0x68</title>
+    <link>http://b0x68.github.io/tags/tar/</link>
+    <description>Recent content in tar on b0x68</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 01 Feb 2024 18:09:39 -0500</lastBuildDate><atom:link href="http://b0x68.github.io/tags/tar/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Archiving Tools</title>
+      <link>http://b0x68.github.io/techcontent/archiving-tools/</link>
+      <pubDate>Thu, 01 Feb 2024 18:09:39 -0500</pubDate>
+      
+      <guid>http://b0x68.github.io/techcontent/archiving-tools/</guid>
+      <description>Red Hat Certified Systems Administrator Exam 200 Objective: Archive, compress, unpack, and uncompress files In this tutorial, we will explore the essential skills required for the Red Hat Certified Systems Administrator (RHCSA) Exam 200 Objective related to archiving, compressing, unpacking, and uncompressing files using the versatile tools tar, gzip, and bzip2. These commands are fundamental for managing files efficiently in a Linux environment.
+Table of Contents Introduction Using tar to Archive Files Compressing with gzip bzip2 for Compression Unpacking and Uncompressing Conclusion Introduction Managing files on a Linux system involves handling archives and compressed files efficiently.</description>
+      <content>&lt;h1 id=&#34;red-hat-certified-systems-administrator-exam-200-objective-archive-compress-unpack-and-uncompress-files&#34;&gt;Red Hat Certified Systems Administrator Exam 200 Objective: Archive, compress, unpack, and uncompress files&lt;/h1&gt;
+&lt;p&gt;In this tutorial, we will explore the essential skills required for the Red Hat Certified Systems Administrator (RHCSA) Exam 200 Objective related to archiving, compressing, unpacking, and uncompressing files using the versatile tools &lt;code&gt;tar&lt;/code&gt;, &lt;code&gt;gzip&lt;/code&gt;, and &lt;code&gt;bzip2&lt;/code&gt;. These commands are fundamental for managing files efficiently in a Linux environment.&lt;/p&gt;
+&lt;h2 id=&#34;table-of-contents&#34;&gt;Table of Contents&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#introduction&#34;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#using-tar-to-archive-files&#34;&gt;Using tar to Archive Files&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#compressing-with-gzip&#34;&gt;Compressing with gzip&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#bzip2-for-compression&#34;&gt;bzip2 for Compression&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#unpacking-and-uncompressing&#34;&gt;Unpacking and Uncompressing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#conclusion&#34;&gt;Conclusion&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Managing files on a Linux system involves handling archives and compressed files efficiently. This RHCSA objective focuses on using &lt;code&gt;tar&lt;/code&gt;, &lt;code&gt;gzip&lt;/code&gt;, and &lt;code&gt;bzip2&lt;/code&gt; to achieve this. Let&amp;rsquo;s dive into each command and understand how they can be employed effectively.&lt;/p&gt;
+&lt;h2 id=&#34;using-tar-to-archive-files&#34;&gt;Using tar to Archive Files&lt;/h2&gt;
+&lt;p&gt;The &lt;code&gt;tar&lt;/code&gt; command is a powerful tool for archiving files and directories. To create an archive, use the following syntax:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;tar -cvf archive_name.tar files_or_directories
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-c&lt;/code&gt;: Create a new archive.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-v&lt;/code&gt;: Verbose mode, show the progress.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-f&lt;/code&gt;: Specify the archive file name.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For example, to archive a directory named &lt;code&gt;my_folder&lt;/code&gt;, you would run:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;tar -cvf my_folder.tar my_folder
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;compressing-with-gzip&#34;&gt;Compressing with gzip&lt;/h2&gt;
+&lt;p&gt;After creating an archive, you might want to compress it to save space. &lt;code&gt;gzip&lt;/code&gt; is a common compression tool. To compress a file using gzip, use:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;gzip file_name
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This command will create a compressed file with a &lt;code&gt;.gz&lt;/code&gt; extension. To compress our previously created tar archive:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;gzip my_folder.tar
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This will result in a compressed file named &lt;code&gt;my_folder.tar.gz&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;bzip2-for-compression&#34;&gt;bzip2 for Compression&lt;/h2&gt;
+&lt;p&gt;Another compression option is &lt;code&gt;bzip2&lt;/code&gt;. This tool provides higher compression ratios but might be slower. To compress a file using bzip2, use:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;bzip2 file_name
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Similar to gzip, this will create a compressed file with a &lt;code&gt;.bz2&lt;/code&gt; extension. To compress our tar archive with bzip2:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;bzip2 my_folder.tar
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This will generate a compressed file named &lt;code&gt;my_folder.tar.bz2&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;unpacking-and-uncompressing&#34;&gt;Unpacking and Uncompressing&lt;/h2&gt;
+&lt;p&gt;To extract files from an archive created with &lt;code&gt;tar&lt;/code&gt;, use the following syntax:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;tar -xvf archive_name.tar
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-x&lt;/code&gt;: Extract files.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-v&lt;/code&gt;: Verbose mode, show the progress.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-f&lt;/code&gt;: Specify the archive file name.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For example, to extract the contents of our tar archive:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;tar -xvf my_folder.tar
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To decompress files compressed with gzip or bzip2, use the respective commands:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;gzip -d file_name.gz
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;or&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;bzip2 -d file_name.bz2
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Mastering the &lt;code&gt;tar&lt;/code&gt;, &lt;code&gt;gzip&lt;/code&gt;, and &lt;code&gt;bzip2&lt;/code&gt; commands is crucial for efficient file management on a Linux system. These skills are not only beneficial for the RHCSA Exam but also for day-to-day sysadmin tasks. Practice these commands in various scenarios to build confidence in using them effectively. Good luck with your exam preparation!&lt;/p&gt;
+</content>
+    </item>
+    
+  </channel>
+</rss>

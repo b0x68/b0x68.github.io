@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>go on b0x68</title>
+    <link>http://b0x68.github.io/tags/go/</link>
+    <description>Recent content in go on b0x68</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 16 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://b0x68.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About This Website</title>
+      <link>http://b0x68.github.io/about/about/</link>
+      <pubDate>Fri, 16 Dec 2022 00:00:00 +0000</pubDate>
+      
+      <guid>http://b0x68.github.io/about/about/</guid>
+      <description>My name is Brian and this is my personal website. The content will mostly be tech related &amp;ndash; Linux, web development, how-to articles like in Technical Content, etc. I can also guarantee there will be completely random and unrelated content. By day I am a linux infrastructure administrator; by night, I&amp;rsquo;m a serial hobbyist.
+I don&amp;rsquo;t claim to be an expert on anything, but I&amp;rsquo;ll share my experiences in hope they help others.</description>
+      <content>&lt;p&gt;My name is Brian and this is my personal website. The content will mostly be tech related &amp;ndash; Linux, web development, how-to articles like in &lt;a href=&#34;https://b0x68.github.io/techcontent&#34;&gt;Technical Content&lt;/a&gt;, etc. I can also guarantee there will be completely random and unrelated content. By day I am a linux infrastructure administrator; by night, I&amp;rsquo;m a serial hobbyist.&lt;/p&gt;
+&lt;p&gt;I don&amp;rsquo;t claim to be an expert on anything, but I&amp;rsquo;ll share my experiences in hope they help others.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Some notable strengths:
+&lt;ul&gt;
+&lt;li&gt;Enterprise/RPM based Linux &amp;ndash; RHEL, Springdale, CentOS, Rocky&lt;/li&gt;
+&lt;li&gt;Software:
+&lt;ul&gt;
+&lt;li&gt;Languages: bash, Python, Go(lang), Puppet&lt;/li&gt;
+&lt;li&gt;Git&lt;/li&gt;
+&lt;li&gt;CAS&lt;/li&gt;
+&lt;li&gt;OpenDJ, LDAP, Duo&lt;/li&gt;
+&lt;li&gt;Apache, Passenger, Web frameworks&lt;/li&gt;
+&lt;li&gt;HPC cluster administration &amp;ndash; SLURM, NVidia, Jobstats&lt;/li&gt;
+&lt;li&gt;NFS, CIFS&lt;/li&gt;
+&lt;li&gt;Docker, Apptainer(Singularity)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Interests
+&lt;ul&gt;
+&lt;li&gt;Wood working, wood turning&lt;/li&gt;
+&lt;li&gt;Motorsports &amp;ndash; Sprint Cars, NASCAR, F1, Indy, Rally&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;code&gt;programming&lt;/code&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>Beginner: Start a Blog with HUGO</title>
+      <link>http://b0x68.github.io/techcontent/how-to-hugo-blog/</link>
+      <pubDate>Fri, 16 Dec 2022 00:00:00 +0000</pubDate>
+      
+      <guid>http://b0x68.github.io/techcontent/how-to-hugo-blog/</guid>
+      <description>I&amp;rsquo;m brand new to HUGO and this is my version of &amp;lsquo;how to with HUGO as a beginner&amp;rsquo;. My first post will be a walk through of how I went about spinning up this site.
+What is HUGO? TLDR: Hugo is a fast and modern static site generator written in Go, and designed to make website creation fun again.
+If you really want to learn about HUGO, you should head on over to their official site.</description>
+      <content>&lt;p&gt;I&amp;rsquo;m brand new to HUGO and this is my version of &amp;lsquo;how to with HUGO as a beginner&amp;rsquo;. My first post will be a walk through of how I went about spinning up this site.&lt;/p&gt;
+&lt;h1 id=&#34;_what_-is-hugo&#34;&gt;&lt;em&gt;What&lt;/em&gt; is HUGO?&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;TLDR: &lt;em&gt;Hugo is a fast and modern static site generator written in Go, and designed to make website creation fun again&lt;/em&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;If you really want to learn about HUGO, you should &lt;a href=&#34;https://gohugo.io/about/what-is-hugo/&#34;&gt;head on over to their official site.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I can confirm; HUGO makes &lt;em&gt;learning&lt;/em&gt; website creation bearable. Admittedly, I&amp;rsquo;m not very interested in the low-level intricacies of front end languages, so using HUGO, where there are many fully-fledged themes freely available and the integration of &lt;a href=&#34;https://www.markdownguide.org/getting-started/&#34;&gt;markdown&lt;/a&gt;, makes this type of project &lt;em&gt;fun&lt;/em&gt; and easy :) Understandably, your definition of fun may vary!&lt;/p&gt;
+&lt;p&gt;I acknowledge some custom HTML, CSS, and/or Javascript work will need to be done if you&amp;rsquo;re not completely satisfied with your theme&amp;rsquo;s look and feel. A future post, perhaps.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;my-environment&#34;&gt;My Environment&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;MacOS Ventura 13.0&lt;/li&gt;
+&lt;li&gt;Go(lang) version go1.19.4 darwin/amd64&lt;/li&gt;
+&lt;li&gt;Hugo v0.108.0+extended darwin/amd64&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Keep in mind, there are many options for what your environment can be, e.g., Docker, Vagrant, a VM, Cloud based, etc. These are outside the scope of this article, but you can easily web search this information and choose your desired setup.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Software
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://gohugo.io/installation/&#34;&gt;Hugo&lt;/a&gt; - &lt;strong&gt;&lt;code&gt;required&lt;/code&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/git-guides/install-git&#34;&gt;Git&lt;/a&gt; - &lt;strong&gt;&lt;code&gt;required&lt;/code&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Text Editor (&lt;a href=&#34;https://www.vim.org/download.php&#34;&gt;vim&lt;/a&gt;, &lt;a href=&#34;https://code.visualstudio.com/download&#34;&gt;VSCode&lt;/a&gt;, etc.) - &lt;strong&gt;&lt;code&gt;required&lt;/code&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://go.dev/doc/install&#34;&gt;Go&lt;/a&gt; - &lt;em&gt;&lt;code&gt;recommended&lt;/code&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;lets-begin&#34;&gt;Let&amp;rsquo;s Begin&lt;/h1&gt;
+&lt;p&gt;Okay, so first, I make a dev environment in my &lt;code&gt;~/projects/&lt;/code&gt; directory.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;mkdir ~/projects/hugo
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;hugo new site blog-dev
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cd blog-dev
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# git init for later when we push to github&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git init
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git submodule add https://github.com/panr/hugo-theme-terminal themes/terminal
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# edit line &amp;#34;theme = &amp;#39;terminal&amp;#39;&amp;#34; in editor \&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# of your choice. Mine is vim&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;vim config.toml
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# now let&amp;#39;s test to make sure it&amp;#39;s working&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;hugo server --port &lt;span style=&#34;color:#ae81ff&#34;&gt;1313&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-terminal&#34; data-lang=&#34;terminal&#34;&gt;# sample output of local webserver on successful startup
+
+Start building sites …
+hugo v0.108.0+extended darwin/amd64 BuildDate=unknown
+
+                   | EN
+-------------------+-----
+  Pages            | 38
+  Paginator pages  |  0
+  Non-page files   |  0
+  Static files     | 11
+  Processed images |  0
+  Aliases          | 15
+  Sitemaps         |  1
+  Cleaned          |  0
+
+Built in 58 ms
+Watching for changes in ~/projects/hugo/hrklib/{archetypes,assets,content,data,layouts,static,themes}
+Watching for config changes in ~/projects/hugo/hrklib/config.toml, ~/projects/hugo/hrklib/themes/terminal/config.toml
+Environment: &amp;#34;development&amp;#34;
+Serving pages from memory
+Running in Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Press Ctrl+C to stop
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Now, open an incognito web browser window and navigate the &lt;a href=&#34;http://localhost:1313/&#34;&gt;http://localhost:1313/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;You should see bare bones Terminal themed website. Like below&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;pic.png&#34; alt=&#34;screenshot&#34;&gt;&lt;/p&gt;
+</content>
+    </item>
+    
+  </channel>
+</rss>
