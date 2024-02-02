@@ -80,8 +80,8 @@ hugo v0.108.0+extended darwin/amd64 BuildDate=unknown
   Cleaned          |  0
 
 Built in 58 ms
-Watching for changes in /Users/bh19/projects/hugo/hrklib/{archetypes,assets,content,data,layouts,static,themes}
-Watching for config changes in /Users/bh19/projects/hugo/hrklib/config.toml, /Users/bh19/projects/hugo/hrklib/themes/terminal/config.toml
+Watching for changes in ~/projects/hugo/hrklib/{archetypes,assets,content,data,layouts,static,themes}
+Watching for config changes in ~/projects/hugo/hrklib/config.toml, ~/projects/hugo/hrklib/themes/terminal/config.toml
 Environment: "development"
 Serving pages from memory
 Running in Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender
