@@ -6,7 +6,9 @@ theme = 'terminal'
 paginate = 5
 
 
-googleAnalytics = "G-7HW1L3K44T"
+[services]
+  [services.googleAnalytics]
+    ID = "G-7HW1L3K44T"
 
 
 [outputs]
