@@ -5,6 +5,13 @@ languageCode = "en-us"
 theme = 'terminal'
 paginate = 5
 
+
+
+[services]
+  [services.googleAnalytics]
+    ID = 'G-7HW1L3K44T'
+
+
 [outputs]
   home = [ "HTML", "JSON", "RSS"]
 
