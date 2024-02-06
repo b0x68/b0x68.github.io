@@ -5,8 +5,9 @@ languageCode = "en-us"
 theme = 'terminal'
 paginate = 5
 
-
-googleAnalytics = 'G-7HW1L3K44T'
+[services]
+  [services.googleAnalytics]
+    ID = 'G-7HW1L3K44T'
 
 [outputs]
   home = [ "HTML", "JSON", "RSS"]
@@ -111,12 +112,12 @@ googleAnalytics = 'G-7HW1L3K44T'
       hardWraps = true
       unsafe = true
       xhtml = false
-
-[module]
+      
+#[module]
   # In case you would like to make changes to the theme and keep it locally in you repository,
   # uncomment the line below (and correct the local path if necessary).
   # --
-  replacements = "github.com/panr/hugo-theme-terminal -> terminal"
+#  replacements = "github.com/panr/hugo-theme-terminal -> terminal"
 #[[module.imports]]
 #  path = 'github.com/panr/hugo-theme-terminal'
 
