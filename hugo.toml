@@ -117,6 +117,6 @@ googleAnalytics = 'G-7HW1L3K44T'
   # uncomment the line below (and correct the local path if necessary).
   # --
   replacements = "github.com/panr/hugo-theme-terminal -> terminal"
-[[module.imports]]
-  path = 'github.com/panr/hugo-theme-terminal'
+#[[module.imports]]
+#  path = 'github.com/panr/hugo-theme-terminal'
 
