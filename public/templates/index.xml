@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Templates on b0x68</title>
+    <link>http://b0x68.github.io/templates/</link>
+    <description>Recent content in Templates on b0x68</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 03 Dec 2023 09:51:07 -0500</lastBuildDate><atom:link href="http://b0x68.github.io/templates/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Accessing an Enterprise Linux Shell Prompt and Using the `ps` Command</title>
+      <link>http://b0x68.github.io/templates/template-post/</link>
+      <pubDate>Sun, 03 Dec 2023 09:51:07 -0500</pubDate>
+      
+      <guid>http://b0x68.github.io/templates/template-post/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+  </channel>
+</rss>
