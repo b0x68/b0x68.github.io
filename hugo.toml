@@ -7,7 +7,8 @@ paginate = 5
 
 [services]
   [services.googleAnalytics]
-    ID = 'G-7HW1L3K44T'
+     ID = 'G-YKQ014248H'
+#    ID = 'G-7HW1L3K44T'
 
 [outputs]
   home = [ "HTML", "JSON", "RSS"]
