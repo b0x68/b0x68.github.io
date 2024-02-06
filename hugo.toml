@@ -6,7 +6,13 @@ theme = 'terminal'
 paginate = 5
 
 
+<<<<<<< HEAD
 googleAnalytics = 'G-7HW1L3K44T'
+=======
+[services]
+  [services.googleAnalytics]
+    ID = 'G-7HW1L3K44T'
+>>>>>>> refs/remotes/origin/main
 
 
 [outputs]
