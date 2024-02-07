@@ -114,11 +114,11 @@ paginate = 5
       unsafe = true
       xhtml = false
       
-#[module]
+[module]
   # In case you would like to make changes to the theme and keep it locally in you repository,
   # uncomment the line below (and correct the local path if necessary).
   # --
-#  replacements = "github.com/panr/hugo-theme-terminal -> terminal"
-#[[module.imports]]
-#  path = 'github.com/panr/hugo-theme-terminal'
+  replacements = "github.com/panr/hugo-theme-terminal -> terminal"
+[[module.imports]]
+  path = 'github.com/panr/hugo-theme-terminal'
 
