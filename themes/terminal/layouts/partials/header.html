@@ -1,4 +1,5 @@
 <header class="header">
+    {{ template "_internal/google_analytics.html" . }}
   <div class="header__inner">
     <div class="header__logo">
       {{ partial "logo.html" . }}
@@ -13,13 +14,4 @@
   {{ if len $.Site.Menus }}
     {{ partial "menu.html" . }}
   {{ end }}
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-YKQ014248H');
-</script>
 </header>
