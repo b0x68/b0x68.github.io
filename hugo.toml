@@ -82,12 +82,12 @@ paginate = 5
       logoText = "b0x68"
       logoHomeLink = "/about"
 
-    [languages.en.menu]
-      [[languages.en.menu.main]]
+    [menus]
+      [menus.main]
         identifier = "about"
         name = "About"
         url = "/about"
-      [[languages.en.menu.main]]
+      [menus.main]
         identifier = "techcontent"
         name = "Technical Content"
         url = "/techcontent"
