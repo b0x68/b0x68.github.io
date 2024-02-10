@@ -83,11 +83,11 @@ paginate = 5
       logoHomeLink = "/about"
 
     [menus]
-      [menus.main]
+      [[menus.main]]
         identifier = "about"
         name = "About"
         url = "/about"
-      [menus.main]
+      [[menus.main]]
         identifier = "techcontent"
         name = "Technical Content"
         url = "/techcontent"
