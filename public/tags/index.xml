@@ -6,7 +6,57 @@
     <description>Recent content in Tags on b0x68</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 02 Feb 2024 23:39:19 -0500</lastBuildDate><atom:link href="http://b0x68.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 10 Feb 2024 13:36:18 -0500</lastBuildDate><atom:link href="http://b0x68.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>File Management</title>
+      <link>http://b0x68.github.io/tags/file-management/</link>
+      <pubDate>Sat, 10 Feb 2024 13:36:18 -0500</pubDate>
+      
+      <guid>http://b0x68.github.io/tags/file-management/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+    <item>
+      <title>Hugo Tutorial</title>
+      <link>http://b0x68.github.io/tags/hugo-tutorial/</link>
+      <pubDate>Sat, 10 Feb 2024 13:36:18 -0500</pubDate>
+      
+      <guid>http://b0x68.github.io/tags/hugo-tutorial/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>http://b0x68.github.io/tags/linux/</link>
+      <pubDate>Sat, 10 Feb 2024 13:36:18 -0500</pubDate>
+      
+      <guid>http://b0x68.github.io/tags/linux/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+    <item>
+      <title>Red Hat</title>
+      <link>http://b0x68.github.io/tags/red-hat/</link>
+      <pubDate>Sat, 10 Feb 2024 13:36:18 -0500</pubDate>
+      
+      <guid>http://b0x68.github.io/tags/red-hat/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+    <item>
+      <title>System Administration</title>
+      <link>http://b0x68.github.io/tags/system-administration/</link>
+      <pubDate>Sat, 10 Feb 2024 13:36:18 -0500</pubDate>
+      
+      <guid>http://b0x68.github.io/tags/system-administration/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
     <item>
       <title>Command-line Text Editors</title>
       <link>http://b0x68.github.io/tags/command-line-text-editors/</link>
@@ -43,16 +93,6 @@
       <pubDate>Fri, 02 Feb 2024 23:39:19 -0500</pubDate>
       
       <guid>http://b0x68.github.io/tags/rhcsa/</guid>
-      <description></description>
-      <content></content>
-    </item>
-    
-    <item>
-      <title>System Administration</title>
-      <link>http://b0x68.github.io/tags/system-administration/</link>
-      <pubDate>Fri, 02 Feb 2024 23:39:19 -0500</pubDate>
-      
-      <guid>http://b0x68.github.io/tags/system-administration/</guid>
       <description></description>
       <content></content>
     </item>
@@ -243,26 +283,6 @@
       <pubDate>Wed, 31 Jan 2024 21:46:37 -0500</pubDate>
       
       <guid>http://b0x68.github.io/tags/input-output-redirection/</guid>
-      <description></description>
-      <content></content>
-    </item>
-    
-    <item>
-      <title>linux</title>
-      <link>http://b0x68.github.io/tags/linux/</link>
-      <pubDate>Wed, 31 Jan 2024 21:46:37 -0500</pubDate>
-      
-      <guid>http://b0x68.github.io/tags/linux/</guid>
-      <description></description>
-      <content></content>
-    </item>
-    
-    <item>
-      <title>red hat</title>
-      <link>http://b0x68.github.io/tags/red-hat/</link>
-      <pubDate>Wed, 31 Jan 2024 21:46:37 -0500</pubDate>
-      
-      <guid>http://b0x68.github.io/tags/red-hat/</guid>
       <description></description>
       <content></content>
     </item>

@@ -92,6 +92,8 @@ paginate = 5
         name = "Technical Content"
         url = "/techcontent"
 
+sectionPagesMenu = 'main'
+
   [markup.goldmark]
     [markup.goldmark.extensions]
       definitionList = true
