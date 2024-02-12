@@ -27,7 +27,6 @@ I don't claim to be an expert on anything, but I'll share my experiences in hope
     * HPC cluster administration -- SLURM, NVidia, Jobstats
     * NFS, CIFS
     * Docker, Apptainer(Singularity)
-  * Interests
-    * Wood working, wood turning
-    * Motorsports -- Sprint Cars, NASCAR, F1, Indy, Rally
-    * _`programming`_
+* Interests
+  * Woodturning
+  * Motorsports -- Sprint Cars, NASCAR, F1, Indy, Rally
