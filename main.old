@@ -8,15 +8,19 @@ import (
 	"strings"
 )
 
-const chatGPTAPIURL = "https://api.openai.com/v1/completions"
-const outputDir = "tutorials"
+const (
+	chatGPTAPIURL = "https://api.openai.com/v1/completions"
+	outputFile    = "tutorials.md"
+)
 
 func main() {
-	// Create the output directory if it doesn't exist
-	if err := os.MkdirAll(outputDir, os.ModePerm); err != nil {
-		fmt.Println("Error creating output directory:", err)
+	// Open the output file for writing
+	file, err := os.Create(outputFile)
+	if err != nil {
+		fmt.Println("Error creating file:", err)
 		return
 	}
+	defer file.Close()
 
 	// Read objectives from file
 	objectives, err := ioutil.ReadFile("RHCSA_Objectives.txt")
@@ -41,17 +45,16 @@ func main() {
 				continue
 			}
 
-			// Create a separate markdown file for each objective
-			filename := fmt.Sprintf("%s/%s.md", outputDir, strings.ReplaceAll(line, " ", "_"))
-			if err := ioutil.WriteFile(filename, []byte("## "+line+"\n\n"+tutorial+"\n\n"), os.ModePerm); err != nil {
+			// Write the generated tutorial to the file
+			_, err = file.WriteString("## " + line + "\n\n" + tutorial + "\n\n")
+			if err != nil {
 				fmt.Println("Error writing to file:", err)
 				continue
 			}
-			fmt.Println("Tutorial for", line, "written to", filename)
 		}
 	}
 
-	fmt.Println("Tutorials generated and written to", outputDir)
+	fmt.Println("Tutorials generated and written to", outputFile)
 }
 
 func generateTutorial(prompt string) (string, error) {
@@ -77,4 +80,3 @@ func generateTutorial(prompt string) (string, error) {
 
 	return string(body), nil
 }
-
