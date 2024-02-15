@@ -61,6 +61,8 @@ paginate = 5
   # set title for the table of contents
   # can be overridden in a page's front-matter
   # TocTitle = "Table of Contents" # default
+  
+  sectionPagesMenu = 'main'
 
 [languages]
   [languages.en]
@@ -91,8 +93,6 @@ paginate = 5
         identifier = "techcontent"
         name = "Technical Content"
         url = "/techcontent"
-
-sectionPagesMenu = 'main'
 
   [markup.goldmark]
     [markup.goldmark.extensions]
