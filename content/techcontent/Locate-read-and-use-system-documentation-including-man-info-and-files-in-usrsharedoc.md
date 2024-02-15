@@ -2,10 +2,10 @@
 title = "Locate, read, and use system documentation including man, info, and files in /usr/share/doc"
 date = "2024-02-15T14:54:05-05:00"
 author = "root"
-cover = ""
+cover = "library.png"
 tags = ["packages", "files", "command,", "systems.", "systems,", "commands.", "files.", "command"]
 keywords = ["packages", "files", "command,", "systems.", "systems,", "commands.", "files.", "command"]
-description = ""
+description = "Locating, reading, and using system documentation"
 showFullContent = false
 readingTime = true
 hideComments = false
