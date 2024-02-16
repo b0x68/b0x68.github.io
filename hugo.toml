@@ -87,11 +87,11 @@ paginate = 5
 
     [menus]
       [[menus.main]]
-        identifier = "about"
+        identifier = "ABOUT"
         name = "About"
         url = "/about"
       [[menus.main]]
-        identifier = "rhcsa"
+        identifier = "RHCSA"
         name = "RHCSA"
         url = "/rhcsa"
 
