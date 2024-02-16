@@ -1,10 +1,10 @@
 +++
 title = "Identify CPU/memory intensive processes and kill processes"
-date = "2024-02-16T10:31:24-05:00"
+date = "2024-02-16T11:46:29-05:00"
 author = "root"
 cover = ""
-tags = ["linux", "commands:", "network", "system,", "command,", "process,", "memory,", "administration."]
-keywords = ["network", "disk", "system.", "systems", "command:**", "commands:", "command", "system,"]
+tags = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
+keywords = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
 description = ""
 showFullContent = false
 readingTime = true
@@ -13,68 +13,52 @@ color = "" #color from the theme settings
 +++
 
 
-# Red Hat Certified Systems Administrator Exam 200 Objective: Identify CPU/memory intensive processes and kill processes
+# Tutorial: Identifying and Killing CPU/Memory Intensive Processes in Red Hat Certified Systems Administrator Exam
 
-In this tutorial, we will be discussing how to identify and kill CPU/memory intensive processes on a Red Hat system. As a Red Hat Certified Systems Administrator, it is important to have a thorough understanding of how to manage system resources effectively. This objective is key in ensuring your system is running smoothly and efficiently.
+The Red Hat Certified Systems Administrator (RHCSA) Exam is a performance-based exam that measures the ability of a systems administrator to manage and maintain Red Hat Enterprise Linux systems. One of the objectives of this exam is to identify and kill CPU/memory intensive processes. In this tutorial, we will cover the steps needed to successfully accomplish this objective.
 
-## Prerequisites
+## Understanding CPU/Memory Intensive Processes
 
-Before we begin, make sure you have a basic understanding of the Linux command line and have root privileges on your Red Hat system. It is also recommended to have some knowledge of process management and system administration.
+Before we begin, it is important to have a clear understanding of what CPU/Memory intensive processes are. These are processes that consume a large amount of CPU or memory resources on a system. These processes can cause performance issues and slow down the system if left unchecked. As a systems administrator, it is crucial to be able to identify and address these processes.
 
-## Step 1: Understanding the Basics
-Before we dig into identifying and killing processes, it is essential to have a basic understanding of system resources and processes on a Linux system.
+## Step-by-Step Guide
 
-**System Resources:** 
+### Step 1: Listing Running Processes
 
-A computer system has a finite amount of resources such as CPU, memory, disk space, and network bandwidth. These resources are shared among running processes and need to be managed effectively.
+The first step in identifying CPU/memory intensive processes is to list all the running processes on the system. This can be done by using the `ps` command:
 
-**Processes:**
+`ps aux`
 
-A process is an instance of a running program on a Linux system. Every command or application that is running on your system is a process. Each process has a unique process ID (PID) and consumes system resources. 
+This command will display a list of all the processes running on the system, along with their associated process ID (PID), CPU and memory usage, and other information.
 
-## Step 2: Identifying CPU/Memory Intensive Processes
+### Step 2: Sorting Processes by Resource Usage
 
-Now, let's learn how to identify processes that are using high CPU or memory resources on your Red Hat system. We will be using different tools to accomplish this task.
+Since our objective is to identify CPU/memory intensive processes, we need to sort the output of the `ps` command by resource usage. This can be done using the `sort` command and specifying the `-r` flag to sort in reverse order:
 
-**1. top Command:**
+`ps aux | sort -r`
 
-The 'top' command is a popular tool used for monitoring system processes. It displays a dynamic view of running processes and their resource usage. To access the top command, simply type 'top' into your terminal. You will see a list of processes sorted by the CPU utilization by default. 
+This will display the processes with the highest resource usage at the top of the list.
 
-To sort processes by memory usage, press 'M' from your keyboard. This will organize the processes from highest to lowest memory usage. You can also use the 'F' key to add or remove additional columns such as RAM, PID, CPU, etc.
+### Step 3: Identify the Processes Consuming High Resources
 
-**2. ps Command:**
+Look for processes that have a high value under the %CPU and %MEM columns. These are likely to be the processes causing performance issues on the system.
 
-The 'ps' command can also be used to view processes and their attributes. It provides a snapshot view of currently running processes. To view all processes, type 'ps -ef' in your terminal. 
+### Step 4: Killing Processes
 
-To list processes in descending order of CPU or memory usage, use the 'ps -ef --sort=-pcpu' or 'ps -ef --sort=-pmem' command respectively.
+Once you have identified the processes consuming high resources, you can kill them using the `kill` command. The `kill` command sends a signal to the process to terminate. The signal used to terminate a process is 15 (SIGTERM) by default. This will allow the process to perform any necessary cleanup tasks before exiting.
 
-**3. htop Command:**
+To kill a process, you need to know its PID. This can be found in the output of the `ps` command from earlier. To kill a process with PID 1234, you would use the following command:
 
-The 'htop' command is an interactive version of the 'top' command. It provides a detailed view of running processes with color-coded display. To install and use htop on your Red Hat system, run the following commands:
+`kill 1234`
 
-```
-# yum install htop 
-# htop
-```
+If the process does not terminate after using the `kill` command, you can use the `-9` flag to send a SIGKILL signal, which terminates the process immediately. However, this should only be used as a last resort as it does not allow the process to perform any cleanup tasks.
 
-## Step 3: Killing Processes
+`kill -9 1234`
 
-Once we have identified CPU/memory intensive processes, our next step is to terminate those processes to free up system resources. It is crucial to understand that killing a process may have an impact on the performance of your system and should be done carefully.
+### Step 5: Verifying Process Termination
 
-To kill a process, you will need to know its PID, which can be found by using the 'top', 'ps', or 'htop' command. Once you have the PID, you can use the 'kill' command followed by the PID to kill the process.
-
-```
-# kill <PID>
-```
-
-If the process is still running, you can use the 'kill -9 <PID>' command to force kill it. 
-
-## Step 4: Bonus Tips
-
-- For managing multiple processes, use the 'killall' command instead of killing them one by one.
-- You can also use the 'nice' command to change the priority of a process. By default, processes have a priority of 0, and using the nice command, you can increase or decrease the priority level.
-- Use the 'renice' command to change the priority of a running process.
+After killing a process, it is important to verify that it has been successfully terminated. This can be done by using the `ps` command again and checking if the process is still listed. If the process is no longer listed, it has been successfully terminated.
 
 ## Conclusion
 
-In this tutorial, we have discussed how to identify and kill CPU/memory intensive processes on a Red Hat system. As a Red Hat Certified Systems Administrator, it is essential to have a good understanding of managing system resources to ensure your system is running efficiently. We hope this tutorial has helped you prepare for the Red Hat Certified Systems Administrator Exam 200 objective on identifying and killing processes.
+In this tutorial, we have covered the steps needed to identify and kill CPU/memory intensive processes. As a systems administrator, it is important to regularly monitor and manage these processes to ensure optimal system performance. By following the steps outlined in this tutorial, you will be able to successfully complete this objective in the Red Hat Certified Systems Administrator Exam. 

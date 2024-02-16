@@ -1,10 +1,10 @@
 +++
 title = "Change passwords and adjust password aging for local user accounts"
-date = "2024-02-16T10:36:45-05:00"
+date = "2024-02-16T11:52:11-05:00"
 author = "root"
 cover = ""
-tags = ["system", "systems", "user's", "`/etc/default/useradd`", "passwords:", "user", "log", "passwords"]
-keywords = ["`/etc/default/useradd`", "security", "`password", "user.", "passwords.", "amount", "file", "`/etc/pam.d/system-auth`"]
+tags = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
+keywords = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
 description = ""
 showFullContent = false
 readingTime = true
@@ -13,61 +13,75 @@ color = "" #color from the theme settings
 +++
 
 
-# Tutorial: Change Passwords and Adjust Password Aging for Local User Accounts
+# Tutorial: Changing Passwords and Adjusting Password Aging for Local User Accounts
 
-## Introduction
-
-In this tutorial, we will cover one of the objectives of the Red Hat Certified Systems Administrator (RHCSA) Exam 200: Change passwords and adjust password aging for local user accounts. This knowledge is crucial for any administrator who wants to ensure the security of their system by managing user passwords effectively.
+In this tutorial, we will discuss the Red Hat Certified Systems Administrator Exam 200 objective: "Change passwords and adjust password aging for local user accounts". This objective requires knowledge of how to manage user accounts on a Red Hat Linux system, specifically the password settings. We will cover the steps to change passwords and adjust password aging for local user accounts in great depth, providing clear instructions and explanations along the way.
 
 ## Prerequisites
+Before we begin, it is assumed that you have a basic understanding of Linux and the terminal. Additionally, make sure you have administrative privileges to modify user accounts on the system. Now, let's get started!
 
-Before we begin, it is assumed that you have a basic understanding of the Linux command line and user management. This tutorial will be focused on Red Hat Enterprise Linux (RHEL) system, but the concepts can be applied to any Linux distribution.
+## Step 1: Check User Account Details
+The first step is to check the details of the user account whose password you want to change. You can do this by using the `id` command followed by the username. For example:
 
-## Step 1: Changing User Passwords
+```
+id username
+```
+This command will display information about the user's groups, UID, and GID. Make note of the user's UID and GID for later use.
 
-The first step in managing passwords for local user accounts is to change the default passwords. This is important because default passwords are usually well-known and can be a security vulnerability. To change a user's password, follow these steps:
+## Step 2: Change Password
+To change the password for a local user account, we will use the `passwd` command. This command allows us to specify a new password for the user. It is important to note that only a user with administrative privileges can use this command to modify the password for another user.
 
-1. Log into the system as the root user.
-2. Use the `passwd` command followed by the username to change the password for that user. For example: `passwd username`
-3. You will be prompted to enter the new password and confirm it by entering it again.
-4. Once the password is changed, you will receive a confirmation message.
+To change the password, simply type the following command:
 
-## Step 2: Setting Password Expiration
+```
+passwd username
+```
 
-To ensure the security of the system, it is important to enforce password expiration for user accounts. This means that the password will expire after a certain amount of time and users will be required to change it. To set password expiration, follow these steps:
+where **username** is the name of the user whose password you want to change. You will be prompted to enter the new password twice for verification. Make sure to use a strong and secure password.
 
-1. Log into the system as the root user.
-2. Use the `chage` command followed by the username to view and modify password expiration settings for that user. For example: `chage -l username`
-3. You will see information about the user's password aging, including the password expiration date and the number of days before the password expires.
-4. To set a specific password expiration date, use the `-E` flag followed by the date in the format MM/DD/YY. For example: `chage -E 05/01/21 username`
-5. To set the number of days before the password expires, use the `-M` flag followed by the number of days. For example: `chage -M 90 username`
+## Step 3: Verify Password Change
+After changing the password, it is always a good idea to verify that it has been changed successfully. To do this, you can use the `su` command to switch to the user whose password you just changed. If you are able to log in with the new password, then it means the password has been successfully changed.
 
-## Step 3: Enforcing Strong Passwords
+## Step 4: Adjust Password Aging
+To adjust password aging for local user accounts, we will use the `chage` command. This command allows us to set and modify the expiration dates for user passwords. It is important to set password expiration dates to ensure that passwords are regularly updated for security purposes.
 
-Another important aspect of managing local user passwords is to enforce strong password policies. This helps to prevent users from setting weak passwords that are easily guessable. To enforce strong passwords, follow these steps:
+To view current password aging settings, use the following command:
 
-1. Log into the system as the root user.
-2. Edit the `/etc/pam.d/system-auth` file using a text editor such as `vi` or `nano`.
-3. Look for the line that starts with `password requisite pam_cracklib.so`. This line specifies the parameters for password complexity requirements.
-4. Add or modify the following parameters to enforce strong passwords:
-  - `minlen` - sets the minimum length for passwords.
-  - `dcredit` - sets the minimum number of digits required in the password.
-  - `ucredit` - sets the minimum number of uppercase letters required in the password.
-  - `ocredit` - sets the minimum number of special characters required in the password.
-  - `lcredit` - sets the minimum number of lowercase letters required in the password.
+```
+chage -l username
+```
 
-## Step 4: Disabling Inactive User Accounts
+This will display information about the user's password aging, including the last password change date, password expiration date, and more.
 
-To ensure the security of the system, it is important to disable inactive user accounts. These are accounts that have not been used for a set period of time and could potentially be a security risk. To disable inactive user accounts, follow these steps:
+## Step 5: Set Password Expiration Date
+To set a password expiration date, we will use the `-E` flag with the `chage` command. For example, to set a password expiration date of 60 days from today for the user, we would use the following command:
 
-1. Log into the system as the root user.
-2. Edit the `/etc/default/useradd` file using a text editor such as `vi` or `nano`.
-3. Look for the line that starts with `INACTIVE=`. This line specifies the number of days before a user account is disabled due to inactivity.
-4. Set the value to the desired number of days, or `0` to disable the feature completely.
-5. Save the changes and exit the editor.
+```
+chage -E 2021-09-12 username
+```
+
+This will set the password expiration date for the user to 60 days from the current date.
+
+## Step 6: Set Password Inactivity Period
+In addition to setting an expiration date, we can also set an inactivity period for passwords using the `-I` flag with the `chage` command. This will force users to change their password after a certain number of days of inactivity. For example, to set an inactivity period of 15 days for the user, we would use the following command:
+
+```
+chage -I 15 username
+```
+
+## Step 7: Set Password Warning Days
+We can also set the number of days before a password expiration date that a warning will be displayed to the user. This can be done using the `-W` flag with the `chage` command. For example, to set a warning of 7 days before the password expires, we would use the following command:
+
+```
+chage -W 7 username
+```
+
+## Step 8: Disable Password Aging
+If you wish to disable password aging for a user, you can use the `-M` flag with the `chage` command. This will set the maximum number of days between password changes to unlimited. For example, if we want to disable password aging for the user, we would use the following command:
+
+```
+chage -M -1 username
+```
 
 ## Conclusion
-
-In this tutorial, we have covered the Red Hat Certified Systems Administrator Exam 200 objective: Change passwords and adjust password aging for local user accounts. By following these steps, you should now have a good understanding of how to effectively manage user passwords on your system to enhance its security. 
-
-Remember to regularly change passwords, set password expiration, enforce strong passwords, and disable inactive user accounts to minimize potential security risks. Good luck on your RHCSA exam!
+Congratulations, you have now successfully learned how to change passwords and adjust password aging for local user accounts in Red Hat Linux! These steps are essential knowledge for managing user accounts on a Linux system. Remember to regularly update passwords and adjust aging settings to ensure the security of your system. Thank you for following along with this tutorial.  

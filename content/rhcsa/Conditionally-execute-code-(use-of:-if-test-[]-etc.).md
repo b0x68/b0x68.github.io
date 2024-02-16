@@ -1,10 +1,10 @@
 +++
 title = "Conditionally execute code (use of: if, test, [], etc.)"
-date = "2024-02-16T10:30:11-05:00"
+date = "2024-02-16T11:45:25-05:00"
 author = "root"
 cover = ""
-tags = ["[file];", "command", "command.", "commands", "shell", "logical", "systems", "file"]
-keywords = ["command,", "[file];", "systems", "commands", "file.", "logical", "command.", "shell"]
+tags = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
+keywords = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
 description = ""
 showFullContent = false
 readingTime = true
@@ -12,107 +12,116 @@ hideComments = false
 color = "" #color from the theme settings
 +++
 
+# Conditional Execution in Red Hat Certified Systems Administrator Exam
 
-# Red Hat Certified Systems Administrator Exam 200 Objective: Conditionally Execute Code
+In this tutorial, we will explain the Red Hat Certified Systems Administrator (RHCSA) Exam 200 Objective: "Conditionally execute code". This is an important topic that covers the use of various conditional statements and commands such as if, test, and []; which are essential for automating tasks and managing system resources efficiently.
 
-Conditional execution is an important concept in programming and is a key skill that is tested in the Red Hat Certified Systems Administrator (RHCSA) Exam 200. The ability to execute code conditionally allows a program to make decisions based on certain conditions, and perform different actions depending on the situation. In this tutorial, we will dive deep into this objective and cover everything you need to know about conditionally executing code.
+Before we dive into the specifics of conditional execution, let's first understand its importance in a server environment. As a system administrator, you will often come across situations where you need to execute a set of commands or a script based on certain conditions. This could be anything from checking the status of a service to allocating resources based on system load. Conditional execution allows you to automate these tasks and make your system more efficient.
 
-## What is Conditional Execution?
+Now, let's take a closer look at the various components of conditional execution and how they function.
 
-Conditional execution is a programming technique that allows code to be executed only if a certain condition is true. This condition can be anything from a simple comparison between two variables to a complex expression evaluating multiple conditions. The use of conditional execution saves time and resources by only executing code when it is necessary.
+## If Statement
 
-In the RHCSA Exam 200, you will be tested on your ability to use conditional execution in various scenarios using tools such as `if`, `test`, `[]`, and others.
+The if statement is a basic conditional statement that allows you to execute a set of commands only if a specific condition is met. Its syntax is as follows:
 
-## Using the `if` Statement
+`if [condition]
+then
+  [commands]
+fi`
 
-The `if` statement is a fundamental component of conditional execution in programming. It allows us to execute a block of code only if a certain condition is met. The structure of an `if` statement is as follows:
+If the condition is true, the commands within the 'then' block will be executed. Otherwise, the if statement will be skipped. Let's look at a practical example of this.
 
-```
-if [condition]; then
-  [code to execute]
-fi 
-```
+Suppose you want to check if a specific service is running on your server. You can use the following if statement:
 
-Let's break down each element of this structure:
+`if systemctl is-active [service]
+then
+  echo "Service is running"
+fi`
 
-- The `if` keyword marks the beginning of the statement.
-- The condition is inside the brackets `[]` and can be any valid expression that evaluates to either true or false.
-- The `; then`  signifies the end of the condition and the start of the code block to be executed if the condition is met.
-- The `code to execute` can be a single line or multiple lines of code that will be executed only if the condition is true.
-- Finally, the `fi` keyword marks the end of the statement.
+If the specified service is running, the echo command will be executed and you will see the message "Service is running" in the terminal. Otherwise, if the service is not running, the if statement will be skipped, and you will not see any output.
 
-For example, let's say we have a variable `num` with the value 5. We want to print a message if the value of `num` is equal to 5. We can use the `if` statement to achieve this as follows:
+## Test Command
 
-```
-if [ $num -eq 5 ]; then
-  echo "The value of num is 5"
-fi
-```
+The test command is used to evaluate conditional expressions and is commonly used in combination with the if statement. Its syntax is as follows:
 
-In this example, the condition `[ $num -eq 5 ]` is true, so the code `echo "The value of num is 5"` will be executed and the message will be printed to the screen.
+`test [expression]`
 
-## Using the `test` Command
+If the expression evaluates to true, the test command will return an exit status of zero. Otherwise, if the expression is false, it will return a non-zero exit status. Let's look at some examples of the test command in action.
 
-The `test` command is another tool that is commonly used for conditional execution. It allows us to evaluate a condition and return a true or false value. The basic syntax for the `test` command is:
+### Checking File Existence
 
-```
-test [condition]
-```
+One use case of the test command is to check if a file exists in a specified location. This can be done using the '-e' flag, which stands for "exist". Here's an example:
 
-Similar to the `if` statement, the condition can be any valid expression that evaluates to true or false. The `test` command will return a 0 exit status if the condition is true and 1 if the condition is false. This can be useful in shell scripts to perform different actions based on the exit status of the `test` command.
+`if test -e /home/user/file.txt
+then
+  echo "File exists"
+fi`
 
-Let's modify our previous example using the `test` command instead of the `if` statement:
+If the file "file.txt" exists in the specified location, the echo command will be executed, and you will see the message "File exists" in the terminal. Otherwise, the if statement will be skipped.
 
-```
-if test $num -eq 5; then
-  echo "The value of num is 5"
-fi
-```
+### Checking Numeric Values
 
-Both approaches will give the same result but it's important to note that the `[]` around the condition are optional when using the `test` command.
+The test command can also be used to check for numeric values. You can use the flags '-eq', '-ne', '-gt', '-lt', '-ge', and '-le' to compare two numeric values. For example:
 
-## Combining Conditions with `test`
+`if test 5 -gt 3
+then
+  echo "5 is greater than 3"
+fi`
 
-One of the powerful features of `test` is the ability to combine multiple conditions using logical operators such as `&&` (AND), `||` (OR), and `!` (NOT). This allows us to create more complex conditions to control the execution of code.
+In this example, the '-gt' flag is used to check if 5 is greater than 3. If it is, the echo command will be executed, and you will see the message "5 is greater than 3" in the terminal.
 
-Let's take a look at an example using the logical AND (`&&`) operator:
+## Square Brackets [ ]
 
-```
-if test $num -eq 5 && test $mode = "production"; then
-  echo "The value of num is 5 and the mode is production"
-fi
-```
+The square brackets [ ] are used to enclose conditions or expressions, similar to the test command. It is essentially equivalent to the test command, and its use is preferred due to its simplicity. Let's look at some examples:
 
-In this example, both conditions must evaluate to true for the code block to be executed.
+### Checking File Existence
 
-## Using `test` with Other Commands
+The -e flag can also be used within square brackets to check for file existence. Here's an example:
 
-Apart from evaluating variables and expressions, the `test` command can also be used in combination with other commands to conditionally execute code. For example, we can use the `test` command to check if a file exists before executing a command that requires the file. The structure for this is:
+`if [ -e /home/user/file.txt ]
+then
+  echo "File exists"
+fi`
 
-```
-if test -f [file]; then
-  [code to execute]
-fi
-```
+This will have the same effect as the previous example using the test command.
 
-Here, the `-f` flag checks if the given file exists and is a regular file. Other useful flags for file testing are `-d` (checks if file is a directory), `-r` (checks for read permission) and `-w` (checks for write permission).
+### Checking String Values
 
-## Using `if` with `elif` and `else` Clauses
+Apart from numeric values, the square brackets can also be used to compare string values. You can use the equality and inequality operators (= and !=) to compare two strings. For example:
 
-The `if` statement can also be extended to include the `elif` and `else` clauses, allowing us to execute different blocks of code depending on multiple conditions. The structure for this is as follows:
+`if [ "Red Hat" = "Red Hat" ]
+then
+  echo "The strings are equal"
+fi`
 
-```
-if [condition 1]; then
-  [code to execute if condition 1 is true]
-elif [condition 2]; then
-  [code to execute if condition 2 is true]
-else
-  [code to execute if both condition 1 and 2 are false]
-fi
-``` 
+This example will print the message "The strings are equal" because the strings on either side of the '=' operator are equal. You can also use the '-z' flag to check for an empty string or the '-n' flag to check for a non-empty string.
 
-The `elif` clause can be repeated multiple times to handle more conditions, and the `else` clause is optional. If all conditions evaluate to false, the code inside the `else` block will be executed.
+## Logical Operators
+
+In addition to conditional expressions, conditional execution also involves the use of logical operators to combine multiple conditions. The '&&' (AND) and '||' (OR) operators are commonly used in combination with if statements and square brackets to create complex conditional statements. Let's explore their usage through some examples.
+
+### Combining Conditions with AND Operator
+
+Using the '&&' operator allows you to execute a set of commands only if all the specified conditions evaluate to true. For example:
+
+`if [ -e file1 ] && [ -d directory ]
+then
+  echo "File exists and directory exists"
+fi`
+
+In this example, the '&&' operator is used to combine two conditions. The 'if' statement will only be executed if both conditions are true. If the first condition is false, the second condition will not even be evaluated.
+
+### Combining Conditions with OR Operator
+
+Using the '||' operator allows you to execute a set of commands if any of the specified conditions evaluates to true. For example:
+
+`if [ -e file1 ] || [ -e file2 ]
+then
+  echo "At least one of the files exists"
+fi`
+
+In this example, the '||' operator is used to combine two conditions. The 'if' statement will be executed if either of the conditions is true. If the first condition is true, the second condition will not even be evaluated.
 
 ## Conclusion
 
-In this tutorial, we covered the Red Hat Certified Systems Administrator Exam 200 objective of conditionally executing code. We learned about the `if` statement, `test` command, and different ways of combining conditions to control the execution of code. We also touched upon using `else` and `elif` clauses for more complex scenarios. With this knowledge, you should now be well-prepared for this objective in your RHCSA exam.
+In this tutorial, we have explored conditional execution in great depth. We have covered the use and syntax of the if statement, test command, square brackets, and logical operators. These are essential concepts for the Red Hat Certified Systems Administrator (RHCSA) Exam 200 and will help you in automating tasks and managing system resources efficiently. We hope this tutorial has provided a comprehensive understanding of this topic and will aid you in your preparation for the RHCSA exam. Good luck!

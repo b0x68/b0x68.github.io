@@ -1,86 +1,103 @@
 +++
 title = "Create, delete, and modify local user accounts"
-date = "2024-02-16T10:36:35-05:00"
+date = "2024-02-16T11:52:01-05:00"
 author = "root"
 cover = ""
-tags = ["shell,", "selinux", "group,", "userdel", "`usermod`", "`--shell`", "adduser", "`adduser`"]
-keywords = ["tasks,", "command", "selinux", "user,", "`--shell`", "system.", "user", "(group"]
+tags = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
+keywords = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
 description = ""
 showFullContent = false
 readingTime = true
 hideComments = false
 color = "" #color from the theme settings
 +++
+ #
 
+# Tutorial: How to Create, Delete, and Modify Local User Accounts in Red Hat
 
-# Red Hat Certified Systems Administrator Exam 200 Objective: Create, delete, and modify local user accounts
-
-## Introduction
-In order to effectively manage a Red Hat system, it is important for a system administrator to have knowledge and skills in creating, deleting, and modifying local user accounts. Understanding this objective is essential for passing the Red Hat Certified Systems Administrator Exam 200. In this tutorial, we will provide a step-by-step guide on how to perform these tasks, in detail.
+In this tutorial, we will be discussing how to create, delete, and modify local user accounts in Red Hat. This is an important skill that is tested in the Red Hat Certified Systems Administrator Exam 200. By following the steps in this tutorial, you will gain a better understanding of the process and be prepared for the exam.
 
 ## Prerequisites
-Before getting started, make sure you have the following prerequisites:
-- A Red Hat system to work on
-- Access to the root user or a user with sudo privileges
-- Basic knowledge of the Linux command line interface (CLI)
+
+Before we begin, you will need to have a Red Hat system set up with administrative privileges. It is recommended to use a virtual machine for this tutorial. You will also need a basic understanding of the command line interface (CLI) and how to use it.
 
 ## Creating a Local User Account
-To create a new local user account, follow these steps:
 
-1. Log in to the system as the root user or a user with sudo privileges.
+Step 1: Log in as root or a user with administrative privileges.
 
-2. Use the `adduser` command to add a new user. For example:
-    ```
-    sudo adduser johndoe
-    ```
-   This will create a new local user named "johndoe" with default options.
+Step 2: Open the terminal and type in the following command to create a new user account:
 
-3. You will be prompted to set a password for the new user. Enter a strong password and confirm it.
+```
+useradd [username]
+```
 
-4. The `adduser` command also allows you to specify additional options for the new user. You can use the `--comment` option to add a brief description or full name for the user, the `--home` option to specify a different home directory for the user, and the `--shell` option to set a specific login shell for the user.
+Replace [username] with the desired username for the account.
 
-5. Once the user is created, you can verify it by using the `id` command:
-    ```
-    id johndoe
-    ```
-   This will display the user's information, including their UID (user ID) and GID (group ID).
+Step 3: Set a password for the new account by using the 'passwd' command:
+
+```
+passwd [username]
+```
+
+Step 4: You will be prompted to provide and confirm the password for the user account.
+
+Step 5: Next, you can set the expiry date for the user account (optional). To do this, use the 'chage' command:
+
+```
+chage -E [expiry date] [username]
+```
+
+Replace [expiry date] with the desired date in YYYY-MM-DD format.
+
+Congratulations! You have successfully created a local user account.
 
 ## Deleting a Local User Account
-To delete a local user account, follow these steps:
 
-1. Log in to the system as the root user or a user with sudo privileges.
+Step 1: Log in as root or a user with administrative privileges.
 
-2. Use the `userdel` command to delete the user. For example:
-    ```
-    sudo userdel johndoe
-    ```
-   This will delete the "johndoe" user from the system.
+Step 2: Open the terminal and type in the following command to delete a user account:
 
-3. If you want to also delete the user's home directory and mail spool, use the `userdel` command with the `-r` option:
-    ```
-    sudo userdel -r johndoe
-    ```
-   This will delete the user's home directory and any associated files.
+```
+userdel [username]
+```
 
-4. You can also use the `userdel` command with other options, such as `-f` to force the deletion of the user even if they are currently logged in, or `-Z` to remove SELinux user mapping for the user.
+Replace [username] with the username of the account you want to delete.
+
+Step 3: Confirm the deletion by pressing 'y' when prompted.
 
 ## Modifying a Local User Account
-To modify a local user account, follow these steps:
 
-1. Log in to the system as the root user or a user with sudo privileges.
+Step 1: Log in as root or a user with administrative privileges.
 
-2. Use the `usermod` command to modify the user's settings. For example, to change the user's login shell, you can use the `-s` option:
-    ```
-    sudo usermod -s /bin/bash johndoe
-    ```
-   This will change the login shell for the "johndoe" user to "/bin/bash".
+Step 2: Open the terminal and type in the following command to modify a user account:
 
-3. Other options that can be used with `usermod` to modify a user account include `-c` to change the user's full name or description, `-d` to change the user's home directory, and `-l` to change the username.
+```
+usermod [options] [username]
+```
 
-4. To add or remove a user from a specific group, use the `usermod` command with the `-aG` option, followed by the group name. For example, to add the "johndoe" user to the "wheel" group, use the following command:
-    ```
-    sudo usermod -aG wheel johndoe
-    ```
+Replace [options] with the desired modifications, such as changing the username or home directory.
+
+### Examples of common options:
+
+- To change the username from 'user1' to 'newuser1':
+```
+usermod -l newuser1 user1
+```
+
+- To change the home directory from '/home/user1' to '/home/newuser1':
+```
+usermod -d /home/newuser1 user1
+```
+
+- To add the user to a specific group:
+```
+usermod -aG [groupname] [username]
+```
+
+Replace [groupname] with the name of the group you want to add the user to. You can add multiple groups by separating them with a comma.
+
+Congratulations! You have successfully modified a local user account.
 
 ## Conclusion
-In this tutorial, we have covered the Red Hat Certified Systems Administrator Exam 200 objective of creating, deleting, and modifying local user accounts in great depth. These skills are essential for managing a Red Hat system effectively. With the knowledge gained from this tutorial, you should be well prepared to tackle this objective in the exam. Good luck!
+
+In this tutorial, we have covered how to create, delete, and modify local user accounts in Red Hat. By following these steps, you should now have a better understanding of how to manage user accounts on a Red Hat system. Remember to practice these skills and read through the Red Hat documentation for further information. Good luck with your Red Hat Certified Systems Administrator Exam!

@@ -1,10 +1,10 @@
 +++
 title = "Configure key-based authentication for SSH"
-date = "2024-02-16T10:37:40-05:00"
+date = "2024-02-16T11:52:58-05:00"
 author = "root"
 cover = ""
-tags = ["systems", "password.", "file,", "password-based", "passwords.", "command-line", "[remote_username]@[remote_system]", "user."]
-keywords = ["login", "systemctl", "authentication", "system", "[remote_username]@[remote_system]", "password.", "networks.", "service."]
+tags = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
+keywords = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
 description = ""
 showFullContent = false
 readingTime = true
@@ -13,69 +13,102 @@ color = "" #color from the theme settings
 +++
 
 
-# Red Hat Certified Systems Administrator Exam 200 Objective: Configure key-based authentication for SSH
+## Introduction
 
-SSH (Secure Shell) is a widely used protocol for secure communication over networks. It is used to remotely access and manage systems through a command-line interface. In order to secure this communication, SSH allows authentication using keys instead of passwords. In this tutorial, we will discuss how to configure key-based authentication for SSH on a Red Hat Certified Systems Administrator Exam 200.
+In this tutorial, we will explain in great depth the objective of "Configure key-based authentication for SSH" for the Red Hat Certified Systems Administrator Exam 200. SSH (Secure Shell) is a widely used protocol for remotely accessing and managing systems. By configuring key-based authentication for SSH, we can enhance the security of remote access to our systems by using public and private keys instead of traditional password authentication.
 
 ## Prerequisites
 
-Before we begin, make sure you have the following prerequisites in place:
+Before we begin, you should have a basic understanding of SSH and its configuration. You should also have a Red Hat Enterprise Linux (RHEL) system with SSH installed, as well as a user with root privileges to perform the necessary configurations.
 
-- A Red Hat Enterprise Linux (RHEL) system with SSH installed and running.
-- Basic knowledge of SSH and command-line interface.
+## Step 1: Generating the public and private keys
 
-## Step 1: Generate a SSH key pair
+The first step in configuring key-based authentication for SSH is to generate the necessary public and private keys. These keys will be used instead of passwords to authenticate remote users.
 
-The first step in configuring key-based authentication for SSH is to generate a public and private key pair. This can be done with the `ssh-keygen` command.
+1.1. Log into your RHEL system with root privileges.
+
+1.2. Navigate to the `.ssh` directory in the home directory of the user you want to use for SSH access.
+
+1.3. If the `.ssh` directory does not exist, create it by using the `mkdir` command:
 
 ```
+mkdir .ssh
+```
+
+1.4. Change the permissions of the `.ssh` directory to be accessible only by the user:
+
+```
+chmod 700 .ssh
+```
+
+1.5. Navigate to the `.ssh` directory and generate the key pair using the `ssh-keygen` command:
+
+```
+cd .ssh
 ssh-keygen
 ```
 
-You will be prompted to enter a file name for the key pair and a passphrase. It is important to choose a strong passphrase to secure your private key. It is also recommended to use a unique file name for your key pair.
+1.6. The `ssh-keygen` command will prompt you for the location to save the keys and ask you to enter a passphrase (optional). Press Enter to use the default location and leave the passphrase blank if you don't want to use one.
 
-After completing this step, you will have a public key file (`id_rsa.pub`) and a private key file (`id_rsa`) in your current directory.
+1.7. Once the keys have been generated, you will see two files: `id_rsa` (private key) and `id_rsa.pub` (public key).
 
-## Step 2: Copy the public key to the remote system
+## Step 2: Configuring the server for key-based authentication
 
-The next step is to copy the public key to the remote system where you want to configure key-based authentication. This can be done using the `ssh-copy-id` command.
+The next step is to configure the server to accept the public key for remote authentication.
 
-```
-ssh-copy-id -i ~/.ssh/id_rsa.pub [remote_username]@[remote_system]
-```
-
-You will be prompted to enter the password for the remote user. Once the key is copied, the remote system will add the public key to the `authorized_keys` file, which is used for key-based authentication.
-
-## Step 3: Configure SSH to use key-based authentication
-
-Now that the keys are in place, we need to configure SSH on the remote system to use key-based authentication. This can be done by editing the `sshd_config` file.
+2.1. Navigate to the `/etc/ssh` directory and open the `sshd_config` file in a text editor:
 
 ```
-sudo vi /etc/ssh/sshd_config
+cd /etc/ssh
+vi sshd_config
 ```
 
-Find the line `#PubkeyAuthentication yes` and uncomment it by removing the `#` symbol. If the line does not exist, add it to the file.
-
-Next, find the line `#PasswordAuthentication yes` and change `yes` to `no` to disable password authentication. This will ensure that only key-based authentication is allowed.
-
-Save and close the file.
-
-## Step 4: Reload SSH service and test the configuration
-
-To apply the changes made to the `sshd_config` file, we need to reload the SSH service.
+2.2. Look for the following line in the `sshd_config` file and make sure it is uncommented:
 
 ```
-sudo systemctl reload sshd
+PubkeyAuthentication yes
 ```
 
-Next, try connecting to the remote system using SSH.
+2.3. If the line is commented out, remove the `#` symbol at the beginning of the line.
+
+2.4. Save and close the `sshd_config` file.
+
+2.5. Restart the SSH service for the changes to take effect:
 
 ```
-ssh [remote_username]@[remote_system]
+systemctl restart sshd
 ```
 
-You will be prompted to enter the passphrase for your private key. If everything is set up correctly, you should be able to login without entering a password.
+## Step 3: Configuring the client for key-based authentication
+
+Now, we need to configure the client system to use the private key for remote authentication.
+
+3.1. Log into the client system with the user you want to use for remote SSH access.
+
+3.2. Navigate to the `.ssh` directory in the user's home directory.
+
+3.3. Create a file called `config` using a text editor and add the following lines:
+
+```
+Host <server_hostname>
+User <remote_username>
+IdentityFile ~/.ssh/id_rsa
+```
+
+3.4. Replace `<server_hostname>` with the hostname or IP address of the server, and `<remote_username>` with the username used on the server for remote access.
+
+3.5. Save the `config` file and close the text editor.
+
+## Step 4: Testing the configuration
+
+To test our configuration, we will try to log into the server using SSH with the configured user:
+
+```
+ssh <server_hostname>
+```
+
+If everything is configured correctly, SSH will use the private key to authenticate the user and allow remote access without requiring a password. If you have set a passphrase for the private key, you will be prompted to enter it.
 
 ## Conclusion
 
-In this tutorial, we have discussed how to configure key-based authentication for SSH on a Red Hat Certified Systems Administrator Exam 200. This method of authentication is more secure than password-based authentication and is widely used in production environments. It is important to regularly update your keys and use strong passphrases to maintain the security of your SSH communication. 
+In this tutorial, we have explained in depth how to configure key-based authentication for SSH, which is a critical security measure for remote access to systems. By using public and private keys instead of passwords, we can enhance the security of our systems and protect them from potential attacks. Remember to always keep your private key secure and do not share it with anyone. 

@@ -1,10 +1,10 @@
 +++
 title = "Securely transfer files between systems"
-date = "2024-02-16T10:32:32-05:00"
+date = "2024-02-16T11:47:31-05:00"
 author = "root"
 cover = ""
-tags = ["system:", "user@192.168.1.100`", "<username>@<source_system>:/<source_directory>/<filename>", "files", "user", "command.", "<filename>`", "command"]
-keywords = ["system:", "<username>@<source_system>:/<source_directory>/<filename>", "<filename>`", "password.", "systems.", "login", "system", "command,"]
+tags = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
+keywords = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
 description = ""
 showFullContent = false
 readingTime = true
@@ -13,100 +13,144 @@ color = "" #color from the theme settings
 +++
 
 
-#Tutorial: Securely Transfer Files Between Systems
+# Tutorial: Securely Transfer Files Between Systems
 
-In this tutorial, we will dive into the Red Hat Certified Systems Administrator Exam 200 Objective on securely transferring files between systems. We will cover the necessary steps and tools to ensure your file transfers are secure and reliable.
+In this tutorial, we will cover the Red Hat Certified Systems Administrator Exam 200 Objective: "Securely Transfer Files Between Systems". This objective aims to test your ability to securely transfer files between systems in a Red Hat environment. In today's digital world, the ability to safely and efficiently transfer files between systems is a crucial skill for any system administrator. So, let's get started.
 
-##Step 1: Understanding the Importance of Secure File Transfers
+## Requirements
 
-When transferring files between systems, it is crucial to ensure that the files are sent and received securely. This is especially important when dealing with sensitive information or when transferring files over insecure networks. By securing your file transfers, you can prevent unauthorized access to your files and maintain the integrity of the data being transferred.
+To complete this objective, you will need:
+- Two Red Hat systems (could be virtual machines or physical machines)
+- Basic knowledge of command line operations
+- Basic knowledge of file permissions and ownership
+- Basic understanding of networking and IP addresses
 
-##Step 2: Setting Up SSH Keys
+## Step 1: Understanding the Different Methods of File Transfer
 
-One of the most common ways to securely transfer files between systems is by using Secure Shell (SSH) protocol. To use this method, you will need to set up SSH keys between the systems you wish to transfer files between. SSH keys provide a secure way of authenticating the connection between two systems without the need for passwords. Here's how to set up SSH keys:
+Before we dive into the actual transfer process, let's take a moment to understand the different methods of file transfer. There are two main ways to transfer files between systems: Secure Copy (SCP) and File Transfer Protocol (FTP).
 
-1. On the source system, generate a public-private key pair by using the `ssh-keygen` command. You can choose to specify a passphrase for added security, but this is not mandatory.
+**Secure Copy (SCP)** is a secure method of transferring files between systems using the Secure Shell (SSH) protocol. It uses encryption to protect the transferred files, making it a more secure option compared to FTP. SCP also has the advantage of being able to transfer files and folders recursively, meaning it can transfer entire directories with their subdirectories and files.
 
-2. Copy the public key to the destination system by using the `ssh-copy-id` command. This command will prompt you for the destination system's password. Once completed, the public key will be added to the destination system’s `~/.ssh/authorized_keys` file.
+**File Transfer Protocol (FTP)** is a standard network protocol used for transferring files between a client and a server. FTP doesn't provide encryption by default, making it less secure than SCP. However, it does have the advantage of being a widely supported protocol and offers more advanced features like resume download and file compression.
 
-3. Repeat the same process on the destination system, generating a public-private key pair and copying the public key to the source system.
+In this tutorial, we will focus on using SCP for securely transferring files between systems.
 
-##Step 3: Using Secure Copy (SCP) for File Transfers
+## Step 2: Setting Up SSH on Both Systems
 
-Once the SSH keys have been set up, you can use the `scp` command to securely transfer files between systems. SCP is a secure version of the `cp` command that allows you to copy files over SSH connections.
+As we will be using SCP, we need to ensure that both systems have SSH installed and configured. You can check if your system already has SSH installed by running the following command in the terminal:
 
-To transfer a file from the source system to the destination system, use the following command:
+```
+ssh -V
+```
 
-`scp <filename> <username>@<destination_system>:/<destination_directory>`
+If SSH is not installed, you can install it by using the package manager for your respective system.
 
-For example:
+For Red Hat Enterprise Linux (RHEL), you can use the following command to install SSH:
 
-`scp test.txt user@192.168.1.100:/home/user/files`
+```
+yum install openssh-server openssh-clients
+```
 
-This command will copy the test.txt file to the /home/user/files directory on the destination system. You will be prompted for the destination system's password only if you did not set up SSH keys.
+Once SSH is installed, you will need to start the SSH service and ensure it gets started automatically on boot. To do this, run the following commands:
 
-To transfer a file from the destination system to the source system, simply reverse the command, like this:
+```
+systemctl start sshd
+systemctl enable sshd
+```
 
-`scp <username>@<source_system>:/<source_directory>/<filename> .`
+Note: In cases where the server does not use systemd, you can start and enable SSH by running the following commands:
 
-For example:
+```
+service sshd start
+chkconfig sshd on
+```
 
-`scp user@192.168.1.100:/home/user/files/test.txt .`
+Repeat these steps on both systems.
 
-This command will copy the test.txt file from the /home/user/files directory on the destination system to your current working directory on the source system.
+## Step 3: Generating SSH Keys
 
-##Step 4: Using SFTP for Secure File Transfers
+To improve security and efficiency, we will now generate SSH keys on the system from which we will transfer the files (i.e. the client system). Generating SSH keys involves creating a public and private key pair. The public key will be stored on the receiving system (i.e. the server system), and the private key will be kept on the client system.
 
-Another option for secure file transfers between systems is to use Secure File Transfer Protocol (SFTP). This protocol provides a secure method for file transfers over SSH connections. To use SFTP, follow these steps:
+On the client system, run the following command to generate the keys:
 
-1. On the source system, navigate to the directory that contains the file you want to transfer.
+```
+ssh-keygen -t rsa
+```
 
-2. Open a new terminal window and connect to the destination system using the `sftp` command:
+This will prompt you to choose a location to save the keys and to optionally provide a passphrase for added security. For this tutorial, let's keep the default location and leave the passphrase blank.
 
-`sftp <username>@<destination_system>`
+Once the keys are generated, you can view the public key by running the following command:
 
-For example:
+```
+cat ~/.ssh/id_rsa.pub
+```
 
-`sftp user@192.168.1.100`
+Copy the output of this command as we will need it in the next step.
 
-3. You will be prompted for the destination system's password. Once connected, you will see a `sftp>` prompt.
+## Step 4: Adding the Public Key to the Server System
 
-4. Use the `put` command to transfer the file from the source system to the destination system:
+On the server system, we need to add the public key to the authorized_keys file. This file contains a list of public keys that are allowed to connect to the server via SSH. To do this, we will use the SSH-copy-id command.
 
-`sftp> put <filename>`
+Run the following command on the server system, replacing <public_key> with the key you copied in the previous step:
 
-For example:
+```
+ssh-copy-id -i <public_key> <remote_username>@<server_ip_address>
+```
 
-`sftp> put test.txt`
+This will prompt you for the password of the remote user. Enter the password and press enter to add the key to the authorized_keys file.
 
-This will transfer the test.txt file to the current working directory on the destination system.
+## Step 5: Securely Transferring Files
 
-5. To transfer a file from the destination system to the source system, use the `get` command:
+Now that SSH is set up and the keys have been exchanged, we can securely transfer files between the two systems. We will use the scp command to do this.
 
-`sftp> get <filename>`
+The basic syntax for scp is as follows:
 
-For example:
+```
+scp <source_file> <remote_username>@<server_ip_address>:<destination_file>
+```
 
-`sftp> get test.txt`
+For example, to transfer a file named "test.txt" from the client system to the home directory of the remote user on the server, we would run the following command on the client system:
 
-This will transfer the test.txt file from the current working directory on the destination system to your current working directory on the source system.
+```
+scp test.txt <remote_username>@<server_ip_address>:~
+```
 
-##Step 5: Enabling FTPS for Secure File Transfers
+Similarly, we can transfer a file from the server to the client system by using the following command on the client system:
 
-If you prefer to use the File Transfer Protocol (FTP) for file transfers, you can still do so securely by using FTPS, which is FTP over SSL. FTPS encrypts the data and authentication information, making it a secure option for transferring files between systems.
+```
+scp <remote_username>@<server_ip_address>:<source_file> <destination_file>
+```
 
-To enable FTPS on both the source and destination systems, you will need to install and configure an FTPS server, such as vsftpd.
+SCP also allows us to recursively transfer directories and their contents by using the -r flag. For example, to transfer a directory named "documents" from the client system to the server, we would use the following command:
 
-1. Install vsftpd on both the source and destination systems.
+```
+scp -r documents <remote_username>@<server_ip_address>:~
+```
 
-2. Configure vsftpd by enabling SSL encryption and setting up user login credentials for FTPS connections.
+## Step 6: Ensuring Proper File Permissions and Ownership
 
-3. Open port 990 for FTPS connections on both systems.
+It's essential to ensure that the files transferred between systems have the correct permissions and ownership. To view the permissions and ownership of a file, we can use the ls command with the -l flag.
 
-4. Connect to the destination system from the source system using an FTPS client, such as FileZilla.
+For example, to view the permissions and ownership of a file named "test.txt", we would use the following command:
 
-5. Use your FTPS login credentials to securely transfer files between systems.
+```
+ls -l test.txt
+```
 
-##Conclusion
+To change the permissions, we can use the chmod command. For example, to give read, write, and execute permissions to the owner of the file, we would run the following command:
 
-In this tutorial, we have covered the necessary steps and tools to securely transfer files between systems. By setting up SSH keys, using SCP and SFTP, or enabling FTPS, you can ensure the confidentiality, integrity, and authenticity of your file transfers. With your newfound knowledge, you can confidently tackle the Red Hat Certified Systems Administrator Exam 200 Objective on securely transferring files between systems.
+```
+chmod u+rwx test.txt
+```
+
+To change the ownership of a file, we can use the chown command. For example, to change the ownership of "test.txt" to the user "admin", we would run the following command:
+
+```
+chown admin test.txt
+```
+
+It's recommended to review and adjust the permissions and ownership of any transferred files to maintain proper security.
+
+## Conclusion
+
+Congratulations! You have now learned how to securely transfer files between systems in a Red Hat environment. By setting up SSH, exchanging keys, and using the SCP command, you can safely and efficiently transfer files between systems without worrying about security risks. Make sure to review the permissions and ownership of the transferred files to ensure proper security. Thank you for following this tutorial, and we hope it has been helpful in preparing you for the Red Hat Certified Systems Administrator Exam 200 Objective: "Securely Transfer Files Between Systems".

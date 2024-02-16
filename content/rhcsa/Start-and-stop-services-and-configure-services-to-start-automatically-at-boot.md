@@ -1,10 +1,10 @@
 +++
 title = "Start and stop services and configure services to start automatically at boot"
-date = "2024-02-16T10:35:04-05:00"
+date = "2024-02-16T11:49:52-05:00"
 author = "root"
 cover = ""
-tags = ["command,", "boot:", "command.", "systems", "system.", "services?", "linux", "network"]
-keywords = ["`systemctl`", "`systemctl", "boot.", "command", "`httpd.service`).", "boot", "--type=service`", "network"]
+tags = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
+keywords = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
 description = ""
 showFullContent = false
 readingTime = true
@@ -13,56 +13,64 @@ color = "" #color from the theme settings
 +++
 
 
-# Introduction
+# Tutorial: Starting and Stopping Services and Configuring Automatic Start on Boot
 
-Welcome to our tutorial on the Red Hat Certified Systems Administrator Exam 200 Objective: "Start and stop services and configure services to start automatically at boot." This objective is an important component of the exam as it tests your knowledge and skills in managing services on a Red Hat Enterprise Linux system. In this tutorial, we will provide in-depth explanations and step-by-step instructions on how to start and stop services and configure them to start automatically at boot.
+## Introduction
 
-## What are services?
+The Red Hat Certified Systems Administrator (RHCSA) exam is a performance-based certification exam that focuses on the skills required to perform essential system administration tasks on Red Hat Enterprise Linux (RHEL) systems. Objective 200 of the exam specifically covers the topic of starting and stopping services, as well as configuring services to start automatically at boot. In this tutorial, we will provide a step-by-step guide on how to complete this objective in great depth.
 
-Before we dive into the specifics of managing services, let's first understand what services are. In simple terms, services are programs or daemons that run in the background and provide specific functionality to the operating system. For example, a web server service provides the functionality of serving web pages, while a network time protocol (NTP) service ensures accurate time synchronization on the system. Services are crucial for the functioning of a Linux system and managing them is a key responsibility of a system administrator.
+## Understanding Services and Daemons
+
+Before we dive into the specific tasks of starting and stopping services and configuring them for automatic start, it is important to have a basic understanding of what services and daemons are in a Linux system. Services, also known as system services or daemons, are background processes responsible for performing various tasks on a Linux system. These services can include network services, web servers, logging services, and many others.
+
+Daemons are similar to services in the sense that they are also background processes that perform various tasks. The main difference is that daemons are typically long-running processes that continuously operate in the background, while services are usually started and stopped on demand.
 
 ## Starting and Stopping Services
 
-Now, let's look at the steps to start and stop services on a Red Hat Enterprise Linux system.
+### Checking for Active Services
 
-### Starting Services
+Before starting or stopping any services, it is important to determine which services are currently active on your system. To do this, you can use the `systemctl` command, which is the primary tool used for managing services in RHEL systems. To check the status of all running services, use the following command:
 
-To start a service, we use the `systemctl start` command followed by the name of the service. For example, to start the apache web server service, we would use the following command:
+`systemctl list-units --type=service --all`
+
+This will output a list of all services on your system, along with their current status (active, inactive, or failed).
+
+### Starting a Service
+
+To start a service on your system, you can use the `systemctl start` command, followed by the name of the service. For example, to start the Apache web server service, you would use the following command:
 
 `systemctl start httpd`
 
-This command will start the service and it will be immediately available for use. You can verify the status of the service by using the `systemctl status` command, which will show whether the service is active or not.
+This will start the service immediately and output a success message if successful. 
 
-### Stopping Services
+### Stopping a Service
 
-To stop a service, we use the `systemctl stop` command followed by the name of the service. For example, to stop the apache web server service, we would use the following command:
+Similarly, to stop a service, you can use the `systemctl stop` command, followed by the name of the service. For example, to stop the SSH service, you would use the following command:
 
-`systemctl stop httpd`
+`systemctl stop sshd`
 
-This command will stop the service and it will no longer be available. You can also check the status of the service using the `systemctl status` command, which will now show that the service is inactive.
+This will stop the service immediately and output a success message if successful.
 
-## Configuring Services to Start Automatically at Boot
+## Configuring Automatic Start on Boot
 
-By default, services do not automatically start when the system is rebooted. We need to configure them to start automatically to ensure that the services are always available. Here are the steps to configure services to start automatically at boot:
+In some cases, you may want a service to start automatically every time your system boots up. This can be achieved by configuring the service to start on boot, using the `systemctl enable` command.
 
-1. First, we need to list all the services that are currently configured to start at boot using the `systemctl list-unit-files --type=service` command.
-2. Find the service that you want to enable and note down its name (e.g. `httpd.service`).
-3. Use the `systemctl enable` command followed by the service name to configure the service to start at boot. For example:
+### Enabling Automatic Start
 
-`systemctl enable httpd.service`
+To enable automatic start for a service, simply use the `systemctl enable` command, followed by the name of the service. For example, to enable the MariaDB database service, you would use the following command:
 
-4. To verify that the service is now configured to start at boot, use the `systemctl is-enabled` command followed by the service name. The output should show `enabled`.
+`systemctl enable mariadb`
 
-Congratulations, you have now successfully configured a service to start automatically at boot!
+This will create a symbolic link for the service in the appropriate `/etc/systemd/system` directory, and the service will now start automatically on boot.
 
-## Bonus Tip: Managing Multiple Services at Once
+### Disabling Automatic Start
 
-If you need to start, stop, or enable multiple services at once, you can use the `systemctl` command with the `space` option. For example, to start the apache web server and NTP services, we would use the following command:
+If you no longer want a service to start automatically on boot, you can disable it using the `systemctl disable` command. For example, to disable the Nginx web server service, you would use the following command:
 
-`systemctl start httpd ntpd`
+`systemctl disable nginx`
 
-This will start both services at once, saving you time and effort.
+This will remove the symbolic link for the service in the `/etc/systemd/system` directory, and the service will no longer start automatically on boot.
 
 ## Conclusion
 
-In this tutorial, we have covered the Red Hat Certified Systems Administrator Exam 200 objective of starting and stopping services and configuring them to start automatically at boot. Make sure to practice these steps and explore other service management commands to fully understand this topic. With this knowledge, you will be well-prepared for the exam and more importantly, be able to confidently manage services on a Red Hat Enterprise Linux system. 
+In this tutorial, we have covered the basics of starting and stopping services in a Red Hat Enterprise Linux system, as well as configuring services for automatic start on boot. Remember, it is important to have a good understanding of the services and daemons on your system before attempting to manage them. By following the steps outlined in this tutorial, you should be well-prepared to complete Objective 200 of the RHCSA exam. 

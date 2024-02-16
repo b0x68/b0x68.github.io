@@ -1,10 +1,10 @@
 +++
 title = "Interrupt the boot process in order to gain access to a system"
-date = "2024-02-16T10:31:14-05:00"
+date = "2024-02-16T11:46:22-05:00"
 author = "root"
 cover = ""
-tags = ["system.", "single-user", "bootloader)", "password", "task", "process.", "system,", "boot"]
-keywords = ["single-user", "process", "kernel", "remount", "bootloader)", "mounted", "linux", "linux"."]
+tags = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
+keywords = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
 description = ""
 showFullContent = false
 readingTime = true
@@ -14,67 +14,56 @@ color = "" #color from the theme settings
 
 
 # Tutorial: Interrupting the Boot Process to Gain Access to a System
- 
-The Red Hat Certified Systems Administrator Exam 200 objective focuses on the importance of being able to interrupt the boot process of a system in order to gain access. This skill is essential for system administrators as it allows them to troubleshoot and fix any issues that may arise during the boot process, as well as gain access to the system if necessary. In this tutorial, we will cover all the steps required to successfully interrupt the boot process and gain access to a system.
 
-## What is the Boot Process?
+Welcome to our tutorial on how to interrupt the boot process in order to gain access to a system, as required for the Red Hat Certified Systems Administrator (RHCSA) Exam 200. In this tutorial, we will provide step-by-step instructions on how to interrupt the boot process on a Red Hat Enterprise Linux (RHEL) system and gain access to it.
 
-Before we dive into the tutorial, let's first understand what the boot process is. The boot process is the series of events that occur when a computer is powered on and starts up. This process is responsible for loading the operating system, initializing hardware components, and starting services and applications. The boot process has several stages, including the BIOS, boot loader, and kernel. It is crucial to understand the boot process to be able to interrupt it successfully.
+## Prerequisites
 
-## Why Interrupt the Boot Process?
+Before we begin, you will need to have the following:
 
-There are several reasons why a system administrator may need to interrupt the boot process. The most common reason is to troubleshoot issues that may arise during boot up, such as a kernel panic or system error. By interrupting the boot process, the administrator can access the system and diagnose and fix the issue. Another reason to interrupt the boot process is to gain access to the system in case the login credentials are not working or if there is a need to access the system in single-user mode.
+- Access to a RHEL system
+- Basic knowledge of Linux and the boot process
+- Familiarity with command line interface (CLI) and some basic commands
+- A user account with administrator privileges on the RHEL system
 
-## Steps to Interrupt the Boot Process
+## Understanding the Boot Process
 
-Now, let's get into step-by-step instructions on how to successfully interrupt the boot process and gain access to a system.
+Before we learn how to interrupt the boot process, it is important to understand how the boot process works. When a computer is powered on, it goes through a series of steps to load the operating system (OS) and make it available for use. This process is known as the boot process.
 
-### Step 1: Power on the System
+The boot process consists of several stages, with each stage responsible for loading different components of the OS. These stages include the BIOS, the boot loader, the initialization process, and the kernel. Once the kernel is loaded, it takes over and starts the OS. During this process, there are certain points where interrupting the process can give you access to the system.
 
-The first step is to power on the system. Make sure that the system is connected to a power source and turned on.
+## Interrupting the Boot Process
 
-### Step 2: Access the GRUB Menu
+Now, let's go through the steps to interrupt the boot process and gain access to a RHEL system.
 
-The GRUB (Grand Unified Bootloader) is responsible for loading the Linux kernel and initial RAM disk. To interrupt the boot process, we need to access the GRUB menu. When the system is booting up, press any key (usually Esc or Shift) to access the GRUB menu. If the system is not set up to show the GRUB menu by default, you can edit the GRUB configuration file to enable it.
+1. Start or restart the RHEL system. As the system is booting up, press the **Escape** key on your keyboard to access the GRUB boot menu. GRUB (Grand Unified Bootloader) is the boot loader used in RHEL, which allows you to select the OS to boot from.
 
-### Step 3: Edit the Boot Menu Entry
+2. Once the GRUB boot menu appears, use the arrow keys to highlight the kernel you want to boot and press **e** to edit its settings.
 
-Once you have accessed the GRUB menu, you will see a list of boot options. Locate the boot menu entry for the operating system you want to interrupt (usually the first one). Press the 'e' key to edit the boot menu entry.
+3. This will bring up the kernel parameters screen. Use the arrow keys to move the cursor to the line starting with `linux` and press **End** or use the arrow keys to move to the end of that line.
 
-### Step 4: Add the 'init' Command
+4. At the end of the line, add `rd.break` to the end of the line. This will interrupt the boot process before the initialization process starts.
 
-In the boot menu entry, find the line that starts with "* linux". At the end of this line, add the keyword 'init=/bin/bash'. This will tell the system to boot into single-user mode and launch a bash shell for us to gain access.
+5. Press **Ctrl + X** or **F10** to boot with the modified kernel parameters.
 
-### Step 5: Boot into Single-User Mode
+6. This will bring you to a shell prompt with the **switch_root:/#**. The root file system is mounted as read-only at this point.
 
-Now, press 'Ctrl+x' or 'F10' to boot with the changes made to the boot menu entry. The system will boot into single-user mode, and you will see a bash shell prompt.
+7. Remount the root file system with read/write permissions by running the command `mount -o remount,rw /sysroot`.
 
-### Step 6: Remount the Root Filesystem
+8. Next, change the root to the new root by running the command `chroot /sysroot`.
 
-In single-user mode, the root filesystem is mounted as 'read-only' to avoid any accidental changes. We need to remount it as 'read-write' to make any changes. To do this, use the command:
+9. Now you can make any necessary changes to the system, such as resetting passwords or modifying configurations.
 
-```
-mount -o remount,rw /
-```
+## Recovering from Changes
 
-### Step 7: Change Password (Optional)
+After you have made the necessary changes, you must exit and reboot the system for the changes to take effect. To exit the chroot environment, enter the command `exit`. Then, exit the root file system by entering the command `exit` again.
 
-If your goal is to gain access to the system, you can now change the password by using the 'passwd' command. Enter a new password when prompted.
-
-### Step 8: Make Necessary Changes
-
-Now that you have access to the system, you can make any necessary changes or troubleshoot any issues that may have caused you to interrupt the boot process.
-
-### Step 9: Exit Single-User Mode
-
-Once you have made all the necessary changes, you can exit single-user mode and continue with the boot process. To do this, use the command:
-
-```
-exec /sbin/init
-```
-
-This will start the normal boot process and bring you to the login screen.
+Once the system has rebooted, you can log in with the modified credentials or access the modified configurations.
 
 ## Conclusion
 
-In this tutorial, we have covered all the steps required to interrupt the boot process and gain access to a system. As a system administrator, it is essential to have the knowledge and skills to perform this task successfully. By following these steps, you can troubleshoot and fix any boot issues that may arise, as well as gain access to the system in case of login or other access issues. 
+Congratulations! You have successfully interrupted the boot process and gained access to a RHEL system. This skill is essential for any RHCSA certified professional, as it allows you to troubleshoot and recover from various boot-related issues.
+
+In this tutorial, we have covered the steps to interrupt the boot process and make changes on a RHEL system. We also explained the importance of understanding the boot process and provided a brief overview of the stages involved.
+
+Thank you for following along with our tutorial. We hope it has been helpful and wish you success on the RHCSA Exam 200. 

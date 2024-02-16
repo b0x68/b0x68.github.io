@@ -1,10 +1,10 @@
 +++
 title = "Assign physical volumes to volume groups"
-date = "2024-02-16T10:33:01-05:00"
+date = "2024-02-16T11:48:01-05:00"
 author = "root"
 cover = ""
-tags = ["group!", "command", "logical", "partitions", "groups.", "system", "volumes**:", "groups**:"]
-keywords = ["command", "linux.", "**logical", "volumes,", "volume", "**volume", "volumes**:", "(logical"]
+tags = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
+keywords = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
 description = ""
 showFullContent = false
 readingTime = true
@@ -13,42 +13,27 @@ color = "" #color from the theme settings
 +++
 
 
-# Red Hat Certified Systems Administrator Exam 200 Objective: Assign Physical Volumes to Volume Groups Tutorial
+# Assigning Physical Volumes to Volume Groups
 
-Welcome to this tutorial on how to assign physical volumes to volume groups in Red Hat Linux. This is an important objective from the Red Hat Certified Systems Administrator Exam 200 and this tutorial will provide a detailed overview on how to accomplish this task.
+## Introduction
+In this tutorial, we will dive deep into the objective of "Assign physical volumes to volume groups" as part of the Red Hat Certified Systems Administrator Exam. This objective covers one of the essential tasks in system administration, which is managing storage devices and organizing them into logical volumes for efficient storage management. In this tutorial, we will cover the concepts of physical volumes, volume groups, and the steps involved in assigning physical volumes to volume groups.
 
-## Pre-requisites
-Before we begin, there are a few pre-requisites that you should be aware of:
-- Basic understanding of Red Hat Linux operating system
-- Familiarity with command line interface
-- Administrative privileges on the system
+## Understanding Physical Volumes
+A physical volume, also known as a PV, is a partition or a storage device that is used to store data in a Logical Volume Manager (LVM) environment. In other words, it is a physical storage device that can be used to create logical volumes. Some commonly used LVM physical volumes include disks, hard drives, partitions, and RAID devices. These physical volumes are necessary for creating and allocating logical volumes to store data.
 
-## Understanding LVM (Logical Volume Management)
-Logical Volume Management or LVM is a method for managing storage in a Linux system. It allows for easy management and allocation of storage space by separating logical storage space from physical storage devices. LVM consists of three main components: physical volumes, volume groups, and logical volumes.
+## What is a Volume Group?
+A volume group, also known as a VG, is a collection of one or more physical volumes that are grouped together to act as a pool of storage space. A volume group provides a logical abstraction layer that allows us to manage multiple physical volumes as a single entity. Logical volumes are created from volume groups, and they are used to store data or act as physical partitions for the operating system. In summary, volume groups act as a bridge between physical and logical volumes, allowing the storage space to be organized and managed efficiently.
 
-- **Physical Volumes**: These are the physical storage devices such as hard drives or solid state drives that are used to store data.
-- **Volume Groups**: Volume groups are created by combining one or more physical volumes together. They act as a container for logical volumes.
-- **Logical Volumes**: These are virtual partitions created within volume groups and are used to store data just like physical partitions.
+## Steps to Assign Physical Volumes to Volume Groups
+Now that we have a basic understanding of physical volumes and volume groups let's dive into the steps involved in assigning physical volumes to volume groups.
 
-## Assigning Physical Volumes to Volume Groups
-Now, let's dive into the steps for assigning physical volumes to volume groups. The steps below assume that you have already created a physical volume and a volume group, if not please refer to Red Hat documentation for instructions on how to do so.
+1. Identify available physical volumes: The first step is to identify the physical volumes that are available on the system. This can be done by using the `fdisk -l` command, which will display the list of all physical volumes connected to the system.
 
-### Step 1: Identify the Physical Volumes
-The first step is to identify the physical volumes that you want to assign to a volume group. You can use the `fdisk -l` command to view a list of physical volumes on your system.
+2. Create a new volume group: If there are no existing volume groups, we can create a new one using the `vgcreate` command. This command takes two arguments, the name of the volume group and one or more physical volumes that will be added to the group. For example, `vgcreate newvg /dev/sdb /dev/sdc` will create a new volume group named "newvg" and add physical volumes /dev/sdb and /dev/sdc to it.
 
-### Step 2: Prepare the Physical Volumes
-Before you can add physical volumes to a volume group, you must first prepare them. This can be done by using the `pvcreate` command followed by the name of the physical volume. For example: `pvcreate /dev/sdc`
+3. Add physical volumes to an existing volume group: To add physical volumes to an existing volume group, we use the `vgextend` command. This command takes two arguments, the name of the volume group and one or more physical volumes that will be added to the group. For example, `vgextend existingvg /dev/sdd` will add the physical volume /dev/sdd to the existing volume group "existingvg".
 
-### Step 3: Verify the Physical Volumes
-Use the `pvdisplay` command to verify that the physical volumes have been prepared.
-
-### Step 4: Add Physical Volumes to Volume Groups
-Once the physical volumes are prepared, you can add them to a volume group using the `vgextend` command followed by the volume group name and the physical volume name. For example: `vgextend vg1 /dev/sdc`
-
-### Step 5: Verify the Volume Group
-Use the `vgdisplay` command to verify that the volume group now includes the new physical volumes.
-
-Congratulations, you have successfully assigned physical volumes to a volume group!
+4. Remove physical volumes from a volume group: If you want to remove a physical volume from a volume group, you can use the `pvmove` command. This command moves all the data from the specified physical volume to other physical volumes in the volume group, essentially removing the physical volume from the group.
 
 ## Conclusion
-In this tutorial, we went through the steps of assigning physical volumes to volume groups in Red Hat Linux. This is an important skill for any Red Hat Certified Systems Administrator and it is essential to have a good understanding of LVM and its components. We hope this tutorial helped you understand this objective in depth and will help you in your journey towards becoming a Red Hat Certified Systems Administrator. Happy learning!
+In this tutorial, we have covered the objective of "Assign physical volumes to volume groups" in great depth. We have learned about physical volumes and volume groups, and how they are used in managing storage devices in a logical volume manager environment. We also discussed the steps involved in assigning physical volumes to volume groups, including creating new volume groups, adding physical volumes to existing groups, and removing physical volumes from volume groups. By mastering this objective, you will be better equipped to manage storage devices in a production environment and successfully pass the Red Hat Certified Systems Administrator Exam.

@@ -1,10 +1,10 @@
 +++
 title = "Attach persistent storage to a container"
-date = "2024-02-16T10:40:09-05:00"
+date = "2024-02-16T11:55:20-05:00"
 author = "root"
 cover = ""
-tags = ["container", "container", "persistentvolumeclaim", "volumemounts", "command", "containers", "container", "myimage"]
-keywords = ["/mount/path", "--image=myimage", "volume", "image", "container", "systems", "myimage"]
+tags = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
+keywords = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
 description = ""
 showFullContent = false
 readingTime = true
@@ -13,87 +13,63 @@ color = "" #color from the theme settings
 +++
 
 
-# Tutorial: Attaching Persistent Storage to a Container
+# How to Attach Persistent Storage to a Container in Red Hat Certified Systems Administrator Exam 200
 
-In this tutorial, we will learn how to attach persistent storage to a container in Red Hat Certified Systems Administrator Exam 200. Persistent storage is used to store data that needs to be accessed by a container even if the container is restarted or recreated.
+## Introduction
+One of the key skills that is assessed in the Red Hat Certified Systems Administrator Exam 200 is the ability to attach persistent storage to a container. This tutorial will guide you through the process of attaching persistent storage to a container on a Red Hat Enterprise Linux system. 
 
-We will cover the following topics:
+## Prerequisites
+Before we begin, make sure that you have the following prerequisites:
+- A Red Hat Enterprise Linux system with Docker installed.
+- Basic knowledge of Docker and containers.
+- Basic knowledge of persistent storage and file systems.
+- Root or sudo privileges on the system.
 
-1. Understanding persistent storage
-2. Creating a persistent volume
-3. Attaching persistent storage to a container
-4. Verifying successful attachment
+## Step 1: Check Storage Availability
+The first step is to check the storage availability on your system. This can be done by using the `df` command, which displays the currently available storage volumes and their mount points. Ensure that you have enough available space for the persistent storage that you want to attach to the container.
 
-## Understanding Persistent Storage
+## Step 2: Create a Persistent Storage Volume
+Next, you need to create a persistent storage volume that will be attached to the container. This can be achieved using a variety of methods, such as LVM, NFS, or GlusterFS. In this tutorial, we will be using a normal ext4 file system for our persistent storage. 
 
-Persistent storage is a form of storage that is designed to retain data even when the container that uses it is stopped or deleted. This is different from volatile storage, which only stores data while the container is running.
+To create the persistent storage volume, follow these steps:
 
-Managing persistent storage is important for applications that require data persistence, such as databases or file servers. In a container environment, persistent storage can be attached to a container as a shared volume, allowing multiple containers to access the same data.
+1. Choose a location for your persistent storage volume, preferably on a separate partition or disk.
+2. Create a new partition using the `parted` or `fdisk` command.
+3. Format the partition to the ext4 file system using the `mkfs` command.
+4. Create a mount point for the persistent storage using the `mkdir` command.
+5. Mount the persistent storage volume to the mount point using the `mount` command.
+6. Verify that the persistent storage is successfully mounted by using the `df` command.
 
-## Creating a Persistent Volume
+## Step 3: Start a Container
+Now that we have our persistent storage volume ready, we can start a container and attach the storage to it. To start a container, you can use the `docker run` command, specifying the persistent storage volume with the `--volume` flag. For example:
 
-Before we can attach persistent storage to a container, we need to create a persistent volume. A persistent volume is a part of storage that is independent from any individual container, making it accessible to any container within the cluster.
-
-To create a persistent volume, follow these steps:
-
-1. Log into your Red Hat server and open the command line interface.
-2. Use the `oc` command to create a persistent volume, specifying the storage size, access mode, and storage type.
 ```
-oc create -f my_pv.yaml
+docker run -it --name mycontainer --volume /path/to/persistent/storage:/container/storage:Z <image_name>
 ```
-3. The YAML file should have the following structure:
-```
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: my-pv
-spec:
-  capacity:
-    storage: 1Gi # Change this value according to your storage needs
-  accessModes: 
-    - ReadWriteOnce # Change this value according to your access mode preferences
-  persistentVolumeReclaimPolicy: Retain
-  nfs:
-    path: /path/to/data # Change this value to the path where you want to store the data for this persistent volume
-    server: <nfs-server-address> # Change this value to the address of your NFS server
-```
-4. Save the file and wait for the persistent volume to be created.
 
-## Attaching Persistent Storage to a Container
+In this command, we are starting a container with the name `mycontainer` and attaching the persistent storage volume located at `/path/to/persistent/storage` to the container's internal storage location at `/container/storage`.
 
-Now that we have created our persistent volume, we can attach it to a container. To do this, we will use a persistent volume claim, which is a request for a specific persistent volume to be attached to our container.
+Note the use of the `:Z` at the end of the volume flag. This is important because it sets the security context of the persistent storage to match that of the container, allowing the container to have the necessary read/write access to the storage.
 
-Follow these steps to attach persistent storage to a container:
+## Step 4: Verify Persistent Storage Attachment
+To verify that the persistent storage has been successfully attached to the container, you can use the `docker inspect` command. This command will display detailed information about the container, including its mounted volumes. You should see your persistent storage volume listed as a mounted volume for the container.
 
-1. Start your container using the `oc run` command and specifying the persistent volume claim name.
-```
-oc run my-container --image=myimage --restart=Always --overrides='{ "apiVersion": "v1", "spec": { "volumes": [ { "name": "mypvlclaim", "persistentVolumeClaim": { "claimName": "my-pvc" } } ], "containers": [ { "name": "my-container", "image": "myimage", "volumeMounts": [ { "mountPath": "/mount/path", "name": "mypvclaim" } ], "env": [ { "name": "MOUNT_DIR", "value": "/mount/path" } ] } ] } }'
-```
-2. The `MOUNT_DIR` environment variable specifies the directory within the container where you want to mount the persistent volume.
-3. Save the changes and start the container.
-4. Once the container is running, you can access the persistent storage through the mount directory specified in the `MOUNT_DIR` environment variable.
+## Step 5: Modify Container to Use Persistent Storage
+By default, the container will not automatically use the attached persistent storage. To modify the container to use the persistent storage, you need to make changes to its configuration. This can be done in several ways, such as using the `docker commit` command or editing the container's Dockerfile. For the purposes of this tutorial, we will be using the `docker commit` command to make changes to the container.
 
-## Verifying Successful Attachment
+To modify the container using the `docker commit` command, follow these steps:
 
-To verify that persistent storage has been successfully attached to a container, follow these steps:
+1. Edit the container's configuration to use the persistent storage. For example, if you want to modify the container's Apache configuration, you would edit the `/etc/httpd/conf/httpd.conf` file.
+2. Stop the container using the `docker stop` command.
+3. Use the `docker commit` command to create a new image from the modified container. For example:
 
-1. Log into your Red Hat server and open the command line interface.
-2. Use the `oc` command to check the status of your container.
-```
-oc get pods
-```
-3. The output should show the status of your container as "Running".
-4. Use the `oc` command to check the status of your persistent volume claim.
-```
-oc get pvc
-```
-5. The output should show the status of your persistent volume claim as "Bound".
-6. Use the `oc` command to check the status of your persistent volume.
-```
-oc get pv
-```
-7. The output should show the status of your persistent volume as "Available" or "Claimed", indicating that it is successfully attached to your container.
+    ```
+    docker commit mycontainer myimage
+    ```
+    This will create a new image, named `myimage`, from the modified container `mycontainer`.
 
-Congratulations! You have successfully attached persistent storage to a container. This will ensure that your container can access the necessary data for your applications even if it is restarted or recreated.
+4. Start a new container using the newly created image, specifying the persistent storage volume with the `--volume` flag once again.
+5. Verify that the container is now using the modified configuration, which should be accessing the persistent storage.
 
-In this tutorial, we covered the basics of persistent storage, creating a persistent volume, attaching it to a container, and verifying the successful attachment. You are now ready to confidently handle the "Attach persistent storage to a container" objective in the Red Hat Certified Systems Administrator Exam 200. 
+## Conclusion
+Congratulations! You have now successfully attached persistent storage to a container on your Red Hat Enterprise Linux system. This is a valuable skill that is frequently used in production environments, and one that you will be expected to demonstrate in the Red Hat Certified Systems Administrator Exam 200. Practice and master this skill, and you will be well on your way to becoming a Red Hat Certified Systems Administrator.

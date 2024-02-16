@@ -1,10 +1,10 @@
 +++
 title = "Boot systems into different targets manually"
-date = "2024-02-16T10:31:04-05:00"
+date = "2024-02-16T11:46:13-05:00"
 author = "root"
 cover = ""
-tags = ["<target>`.", "system.", "multi-user", "target", "rd.lvm.lv=rhel/swap", "boot", "targets", ""linux""]
-keywords = ["boot", "systemd.unit=rescue.target`", "rescue.target`.", "system.", "booted,", "rd.lvm.lv=rhel/swap", "booting", "<target>`."]
+tags = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
+keywords = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
 description = ""
 showFullContent = false
 readingTime = true
@@ -13,40 +13,64 @@ color = "" #color from the theme settings
 +++
 
 
-# Boot systems into different targets manually
+# Booting Systems into Different Targets Manually
 
-In this tutorial, we will explore how to manually boot a Red Hat Linux system into different targets. This is one of the objectives of the Red Hat Certified Systems Administrator Exam 200 and is an important skill for any Linux system administrator to master.
+Boot targets are specific modes or levels in which a system can be booted into. Each boot target is designed for a specific purpose, such as booting a system into a graphical user interface (GUI) or a command-line interface. The ability to manually boot a system into different targets is an important skill for a Red Hat Certified Systems Administrator and is included as an objective in the Red Hat Certified Systems Administrator Exam 200.
 
-## Targets in Red Hat Linux
+In this tutorial, we will go in-depth on how to manually boot systems into different targets, covering the following topics:
 
-Targets in Red Hat Linux are similar to runlevels in other Linux distributions. They represent different states or levels of functionality for the operating system. There are several different targets in Red Hat Linux, each with a specific purpose. These include:
+1. Understanding Boot Targets
+2. Accessing Boot Manager
+3. Selecting a Boot Target
+4. Verifying Boot Target Change
+5. Troubleshooting Boot Target Issues
 
-- Graphical user interface (GUI) target: This is the default target for most Red Hat Linux installations and provides a full graphical environment for users to interact with the system.
-- Multi-user with networking target: This is a target that provides the same functionality as the GUI target, but without the graphical interface. It is commonly used for server installations.
-- Rescue target: This target is used for troubleshooting and repairing a system that is not functioning properly.
-- Emergency target: This is the most minimal target and is used for system recovery and maintenance tasks.
+Let's get started!
 
-## Manually Booting Into Different Targets
+## Understanding Boot Targets
 
-To manually boot a Red Hat Linux system into different targets, follow these steps:
+As mentioned earlier, boot targets are specific modes or levels in which a system can be booted into. The available boot targets may vary depending on the operating system and system configuration. For Red Hat Enterprise Linux, the common boot targets are:
 
-1. Boot the system and wait for the GRUB boot loader menu to appear.
-2. Use the arrow keys to highlight the desired boot entry and press "e" to edit the boot options.
-3. Navigate to the line that starts with "linux" and add the following text to the end of the line: `systemd.unit=<target>`
-   
-   Replace `<target>` with the target you want to boot into. For example, to boot into the rescue target, the line would look like this: `linux /vmlinuz-3.10.0-123.el7.x86_64 root=/dev/mapper/rhel-root ro crashkernel=auto rd.lvm.lv=rhel/swap vconsole.keymap=us rhgb quiet systemd.unit=rescue.target`
-4. Press "Ctrl-X" or "F10" to boot the system.
-5. The system will now boot into the target specified in the boot options.
+- Graphical (GUI) - This target allows for booting into a desktop environment with a graphical user interface.
+- Multi-user (Text mode) - This target boots the system into a command-line interface, also known as text mode.
+- Rescue - This target is used for troubleshooting and repairing a system that is having issues with its primary boot targets.
+- Network - This target is used to boot a system over the network, instead of using the local storage devices.
 
-## Setting a Default Target for Booting
+Now that we understand the different boot targets, let's see how we can manually boot into them.
 
-If you want to set a default target for booting without manually editing the boot options every time, follow these steps:
+## Accessing Boot Manager
 
-1. Open the terminal and switch to the root user by running the command `su -`.
-2. Use the `systemctl` command to view the current default target by running `systemctl get-default`.
-3. To change the default target, run `systemctl set-default <target>`. For example, to set the rescue target as the default, run `systemctl set-default rescue.target`.
-4. The next time the system is booted, it will automatically boot into the target specified as the default.
+The first step to manually booting a system into a different target is to access the boot manager. The steps to access the boot manager may vary depending on the system's hardware, but the most common method is to press a specific key (e.g. F12 or Esc) during the system's startup process.
+
+Once in the boot manager, select the device from which you want to boot the system. This can be a local storage device, such as a hard drive or a USB drive, or a network device.
+
+## Selecting a Boot Target
+
+After selecting the boot device, the system will attempt to boot into the default boot target. To manually choose a different boot target, we need to interrupt the boot process by pressing a key (e.g. Tab or Esc). This will bring up the boot menu, which lists all available boot targets.
+
+Use the arrow keys to navigate the boot menu and highlight the desired boot target. Then, press Enter to confirm the selection. The system will then boot into the chosen target.
+
+## Verifying Boot Target Change
+
+Once the system has successfully booted into the selected target, it is important to verify the change. This can be done by checking the output of the "runlevel" command, which displays the current run level of the system. Each boot target corresponds to a specific run level, as shown below:
+
+- Graphical (GUI) - Run level 5
+- Multi-user (Text mode) - Run level 3
+- Rescue - Run level 1 or S (single user mode)
+- Network - Run level 2
+
+To verify the current boot target, type "runlevel" in the command line and press Enter. The output will display the current run level, which should correspond to the boot target we manually selected.
+
+## Troubleshooting Boot Target Issues
+
+In some cases, you may encounter issues while trying to boot a system into a specific target manually. This can be due to various reasons, such as incorrect boot loader settings or missing files. To troubleshoot these issues, you can use the rescue target to boot into a minimal system and perform troubleshooting steps.
+
+One of the common issues with boot target changes is incorrect boot loader settings. If this is the case, you can use the rescue target to access the system's configuration files and make necessary changes to the boot loader.
+
+If the issue persists, you can also refer to Red Hat documentation or seek help from the Red Hat community for further troubleshooting steps.
 
 ## Conclusion
 
-Manually booting a Red Hat Linux system into different targets is a useful skill for any system administrator to have. By understanding the different targets available and how to set a default target, you can easily manage and troubleshoot your Linux systems. Practice this skill regularly to prepare for the Red Hat Certified Systems Administrator Exam 200 and to become a proficient Linux administrator.
+Being able to manually boot systems into different targets is a crucial skill for a Red Hat Certified Systems Administrator. In this tutorial, we covered the basics of boot targets, accessing the boot manager, selecting a boot target, verifying the change, and troubleshooting boot target issues.
+
+Remember to thoroughly understand the different boot targets for your operating system and constantly practice manually booting into them. This will not only prepare you for the Red Hat Certified Systems Administrator Exam 200 but also help in real-world scenarios where you may need to switch boot targets. 

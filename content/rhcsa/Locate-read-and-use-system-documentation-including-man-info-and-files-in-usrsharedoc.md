@@ -1,10 +1,10 @@
 +++
 title = "Locate, read, and use system documentation including man, info, and files in /usr/share/doc"
-date = "2024-02-16T10:29:56-05:00"
+date = "2024-02-16T11:45:12-05:00"
 author = "root"
 cover = ""
-tags = ["package.", "linux", "configuration", "commands", "system", "mount`", "systems.", "systems,"]
-keywords = ["files", "system", "package.", "tasks", "systems,", "configuration", "files.", "linux"]
+tags = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
+keywords = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
 description = ""
 showFullContent = false
 readingTime = true
@@ -13,54 +13,54 @@ color = "" #color from the theme settings
 +++
 
 
-# Red Hat Certified Systems Administrator Exam 200 Objective: Locate, read, and use system documentation including man, info, and files in /usr/share/doc
 
-System documentation is an essential aspect of managing and administering any operating system. As a Red Hat Certified Systems Administrator (RHCSA), it is crucial to be able to locate, read, and use system documentation effectively. In this tutorial, we will explore the objective of "Locate, read, and use system documentation including man, info, and files in /usr/share/doc" in great depth.
+**Introduction:**
+Welcome to the tutorial for the Red Hat Certified Systems Administrator Exam 200 Objective on locating, reading, and using system documentation. This is an important skill for Linux administrators as it allows them to effectively troubleshoot and manage their systems. In this tutorial, we will cover the various tools and resources available for accessing system documentation, including man pages, info pages, and files in the /usr/share/doc directory.
 
-## Understanding the Objective
+**Accessing Man Pages:**
+The most common tool for accessing system documentation is the man command. Man pages, short for manual pages, provide detailed documentation on various commands, utilities, and system functions. To view a man page, simply type the command "man" followed by the name of the command or function you want to learn about.
 
-The purpose of this objective is to enable the RHCSA to access and utilize system documentation for various tasks such as troubleshooting, installing packages, and configuring system components. The objective specifically mentions three resources - man, info, and files in /usr/share/doc. Let's take a closer look at each of these resources.
+For example, to view the man page for the "ls" command, you would type:
+`man ls`
 
-### Man Pages
+The man page will open in your terminal, allowing you to scroll through it using the arrow keys. You can also use the "page up" and "page down" keys to navigate through longer man pages.
 
-Man, short for manual, is a documentation system found in Unix and Unix-like systems, including Red Hat Enterprise Linux (RHEL). The man command displays the manual pages for a specific command or system component. These manual pages provide detailed information about the usage, options, and examples of the command or component.
+**Understanding Man Page Sections:**
+Man pages are divided into different sections to make it easier to find the information you need. The following are the most common sections you will come across:
 
-### Info Pages
+- Section 1: User Commands - provides documentation on commands available to all users.
+- Section 5: File Formats and Conventions - documents file formats and configuration conventions.
+- Section 8: System Administration Commands - documents commands typically used by system administrators.
 
-Info is another documentation system found in Unix and Unix-like systems. It is similar to man pages but provides more comprehensive and structured information about commands, system components, and configuration files. Info pages use a tree-like structure that allows for easier navigation and browsing of related topics. 
+You can specify the section you want to view by adding the section number after the command name. For example:
+`man 5 passwd`
 
-### Files in /usr/share/doc
+This will show the man page for the "passwd" command under section 5, which covers file formats and conventions.
 
-Lastly, the objective mentions files in /usr/share/doc. This directory contains various system documentation files, such as README, CHANGELOG, and INSTALL, for installed packages. These files provide detailed information about the package, its version, dependencies, and installation instructions.
+**Navigating Man Pages:**
+Man pages are typically organized in a specific way, making it easier to find the information you need. Here are some tips for navigating through man pages:
 
-Now that we have a basic understanding of the resources mentioned in the objective let's look at how we can use them to achieve the objective.
+- Use the "forward slash (/)" key to search for a specific term in the man page.
+- Use the "n" key to move to the next instance of the search term.
+- Use the "g" key to go to the top of the man page.
+- Use the "G" key to go to the bottom of the man page.
+- Use the "q" key to quit the man page and return to your terminal.
 
-## Locating System Documentation
+**Accessing Info Pages:**
+Another tool for accessing system documentation is the info command. Info pages provide more in-depth documentation compared to man pages and are typically used for more complex commands or functions.
 
-As an RHCSA, you must know how to locate system documentation effectively. The following are some ways to locate relevant documentation:
+To view an info page, type the command "info" followed by the name of the command or function. For example:
+`info tar`
 
-- Use the man command with the desired topic to display the manual pages. For example, `man systemctl` will display the manual page for the systemctl command.
-- Use the info command with the desired topic to display the info pages. For example, `info mount` will display the info pages for the mount command.
-- Use the find command to locate files in the /usr/share/doc directory. For example, `find /usr/share/doc -name README` will display a list of all README files in the /usr/share/doc directory.
+The info page will open in a separate window, with a hierarchical structure that you can navigate using the arrow keys. Press the "q" key to return to your terminal.
 
-## Reading System Documentation
+**Accessing Documentation Files:**
+The /usr/share/doc directory contains documentation files for various packages and applications installed on your system. These files are usually in plain text format and can provide additional information on how to use or troubleshoot a particular package.
 
-Once you have located the appropriate documentation, the next step is to read and understand it. Here are some tips for effective reading of system documentation:
+To access these files, navigate to the /usr/share/doc directory and use the "ls" command to view the available files. You can then use the "cat" command to view the contents of a specific file. For example:
+`cat /usr/share/doc/coreutils/README`
 
-- Start with the introductory sections, which typically provide an overview of the topic and its purpose.
-- Familiarize yourself with the syntax and structure used in the documentation.
-- Pay attention to the options and their descriptions, as they provide valuable information about the functionality of the command or component.
-- Look for examples provided in the documentation. These can help you understand how to use the command or configuration file in different scenarios.
+This will display the contents of the README file for the coreutils package.
 
-## Using System Documentation
-
-The final step in achieving the objective is to use the system documentation to perform tasks. Here are some ways to use system documentation effectively:
-
-- Use the examples provided in the documentation to perform tasks.
-- Refer to the options and their descriptions to use them appropriately.
-- Look for links to related topics or commands in the documentation to expand your knowledge.
-- In the case of files in the /usr/share/doc directory, refer to the installation instructions or CHANGELOG files for information on how to install or update the package.
-
-## Conclusion
-
-Being able to locate, read, and use system documentation is a crucial skill for any RHCSA. In this tutorial, we explored the objective of "Locate, read, and use system documentation including man, info, and files in /usr/share/doc" in great depth. We discussed the resources mentioned in the objective - man, info, and files in /usr/share/doc and looked at ways to effectively locate, read, and use system documentation. With this knowledge, you will be able to perform various tasks and troubleshoot issues efficiently as an RHCSA.
+**Conclusion:**
+In this tutorial, we have covered the various tools and resources for accessing system documentation, including man pages, info pages, and files in the /usr/share/doc directory. Being able to locate, read, and use system documentation is a crucial skill for Linux administrators, and we hope this tutorial has helped you understand the process in great depth. Best of luck on your Red Hat Certified Systems Administrator Exam!

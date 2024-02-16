@@ -1,10 +1,10 @@
 +++
 title = "Configure systems to boot into a specific target automatically"
-date = "2024-02-16T10:35:14-05:00"
+date = "2024-02-16T11:49:59-05:00"
 author = "root"
 cover = ""
-tags = ["process.", "**basic.target:**", "terminal.", "target.", "reboot", "boots", "target", "processes"]
-keywords = ["file,", "command", "systems", "**multi-user.target:**", "`systemd.unit=graphical.target`", "**graphical.target**", "**grub_cmdline_linux**", "systemd"]
+tags = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
+keywords = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
 description = ""
 showFullContent = false
 readingTime = true
@@ -13,54 +13,60 @@ color = "" #color from the theme settings
 +++
 
 
-# Introduction to Configuring Systems to Boot into Specific Targets Automatically
+# Red Hat Certified Systems Administrator Exam 200 Objective: "Configure systems to boot into a specific target automatically"
 
-As a Red Hat Certified Systems Administrator (RHCSA), it is essential to understand how to configure systems to boot into specific targets automatically. This objective is vital in ensuring your system is up and running in the desired state after a reboot or power loss. In this tutorial, we will cover the steps required to configure your system to boot into a specific target automatically.
+In this tutorial, we will explore the objective of configuring systems to boot into a specific target automatically. This is an important skill for any Red Hat Certified Systems Administrator, as it allows for efficient and automated system startup, reducing manual interventions and potential mistakes.
 
 ## Understanding System Targets
 
-Before we dive into the steps for configuring system targets, let's first understand what system targets are. A system target is a predefined state or level that your system boots into after starting up. It determines which services, applications, and processes are started during the boot process. It is a crucial aspect of managing your system's startup and performance.
+Before we dive into the steps to configure automatic booting, let's first understand what system targets are. In Red Hat Enterprise Linux, a target is a predefined state of services and resources that a system must reach during the boot process or while the system is running. It can be thought of as a set of rules that define what services should be started, stopped or enabled during system startup or while the system is running.
 
-Red Hat Enterprise Linux (RHEL) uses systemd as its system and service manager, which means that all system targets are managed by systemd. There are seven predefined system targets in RHEL, each with a specific purpose:
+There are primarily two types of targets in Red Hat Enterprise Linux:
+- **Multi-user.target:** This is the default target for most system boots and is used for normal system operation. It starts a minimal set of services required for a functional system, such as networking, file systems, and system logging.
+- **Graphical.target:** This target is used for systems that have a graphical desktop environment installed. It starts all the services necessary for a functional graphical desktop session.
 
-- **rescue.target:** This target boots your system into a minimal state, without any services or applications, allowing you to troubleshoot and fix issues on your system.
-- **emergency.target:** This target boots your system into an even more minimal state than rescue.target, focused on resolving critical system issues.
-- **multi-user.target:** This target is the default for RHEL. It boots your system into a multi-user, non-graphical environment.
-- **graphical.target:** This target is similar to multi-user.target, but it boots your system into a graphical environment.
-- **basic.target:** This target is an intermediate state between multi-user.target and graphical.target. It allows you to boot into a state with minimal services and applications but still have access to a graphical interface.
-- **default.target:** This target is the same as multi-user.target and is the most common target used for server deployments.
-- **shutdown.target:** This target gracefully shuts down your system.
+## Configuring Automatic Booting
 
-Knowing the purpose of each system target will help you determine which target is suitable for your system's needs.
+Now that we understand system targets, let's go through the steps to configure automatic booting into a specific target.
 
-## Configuring System Targets
+### Step 1: Identify the Current Default Target
 
-Now that we have a better understanding of system targets, let's learn how to configure them to automatically boot into a specific target.
+The first step is to identify the current default target on your system. This can be done by running the following command in the terminal:
 
-1. The first step is to identify which target you want your system to boot into automatically. For this tutorial, we will configure our system to boot into the **graphical.target**.
+```
+systemctl get-default
+```
 
-2. Once you have identified the target, you need to edit the **/etc/default/grub** configuration file. This file contains the configuration for the GRUB bootloader, which is responsible for loading the Linux kernel during the boot process.
+The output will show the current default target. It is usually set to `multi-user.target`, but if you have a graphical desktop environment installed, it might be set to `graphical.target`.
 
-3. Open the **/etc/default/grub** file using a text editor of your choice. You can do this by running the command `sudo vim /etc/default/grub` in your terminal.
+### Step 2: List Available Targets
 
-4. In the **/etc/default/grub** file, locate the line that starts with **GRUB_CMDLINE_LINUX**. This line contains the kernel boot parameters used by GRUB.
+Next, we need to identify which other targets are available on our system. This can be done by running the following command:
 
-5. To configure your system to boot into the **graphical.target**, add the following parameter at the end of the **GRUB_CMDLINE_LINUX** line: `systemd.unit=graphical.target`
+```
+systemctl list-units --type=target --all
+```
 
-6. Save the changes and exit the text editor.
+This will show a list of all available targets, along with their status (whether they are enabled or disabled).
 
-7. Next, you need to regenerate the GRUB configuration file by running the command `sudo grub2-mkconfig -o /boot/grub2/grub.cfg` in your terminal. This command will use the changes you made in the **/etc/default/grub** file to generate a new GRUB configuration file.
+### Step 3: Set the Default Target
 
-8. The final step is to set your chosen target as the default boot target. You can do this by running the command `sudo systemctl set-default graphical.target` in your terminal.
+To set the default target, we will use the `systemctl` command again. We can specify which target we want to set as the default using the `set-default` option. For example, if we want to change the default target to `graphical.target`, we would run the following command:
 
-Congratulations! You have successfully configured your system to boot into the **graphical.target** automatically.
+```
+systemctl set-default graphical.target
+```
 
-## Verifying the Configuration
+### Step 4: Verify the Changes
 
-To verify that your system is now configured to boot into the specified target automatically, you can simply reboot your system. After the reboot, your system should start up into the desired target.
+To ensure that the changes have been applied successfully, we can once again use the `systemctl get-default` command. It should now show the new target as the default.
 
-You can also run the command `systemctl get-default` in your terminal to see which target is currently set as the default.
+### Step 5: Test the Changes
+
+It's always a good practice to test any changes we make before implementing them in a production environment. To test the changes, we can reboot our system and see if it boots into the new default target automatically. To reboot, we can use the `reboot` command.
+
+Upon reboot, the system should automatically boot into the new default target that we have set.
 
 ## Conclusion
 
-Congratulations on completing this tutorial! You have learned about system targets, their purpose, and how to configure your system to boot into a specific target automatically. This knowledge is essential for any Red Hat Certified Systems Administrator and will help you manage and troubleshoot your system more efficiently. We hope this tutorial has been helpful, and we wish you all the best for your RHCSA certification exam. Happy learning!
+In this tutorial, we learned about the Red Hat Certified Systems Administrator Exam 200 Objective of configuring systems to boot into a specific target automatically. We discussed what system targets are and the two types of targets available in Red Hat Enterprise Linux. We also went through the steps to configure automatic booting, including identifying the current default target, listing all available targets, setting the default target, and testing the changes. By following these steps, you should now have a better understanding of how to configure systems to boot into a specific target automatically. 

@@ -1,10 +1,10 @@
 +++
 title = "Configure a container to start automatically as a systemd service"
-date = "2024-02-16T10:39:58-05:00"
+date = "2024-02-16T11:55:10-05:00"
 author = "root"
 cover = ""
-tags = ["mycontainer-image", "boot", "command-line", "file", "security", "services", "containerization", "dockerfile:"]
-keywords = ["dockerfile:", "image:", "`mycontainer`,", "`mycontainer`", "containers.", "file", "system.", "`dockerfile`"]
+tags = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
+keywords = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
 description = ""
 showFullContent = false
 readingTime = true
@@ -13,104 +13,90 @@ color = "" #color from the theme settings
 +++
 
 
-# Tutorial: Configuring a container as a systemd service on Red Hat Certified Systems Administrator Exam
+# Red Hat Certified Systems Administrator Exam 200 Objective: "Configure a container to start automatically as a systemd service"
 
-In this tutorial, we will walk through the process of configuring a container to start automatically as a systemd service on the Red Hat Certified Systems Administrator Exam. By completing this objective, you will gain the necessary knowledge and skills to successfully configure and manage containers as systemd services in a Red Hat environment. 
+In today's world of ever-growing virtualization and cloud computing, containerization has become a popular approach for deploying and managing applications. And with the rise of container orchestration tools like Kubernetes, the demand for professionals who can configure and manage containers is increasing rapidly. As a Red Hat Certified Systems Administrator, it is important to have a good understanding of containerization and its tools. In this tutorial, we will go in-depth to explore how to configure a container to start automatically as a systemd service.
 
-## Prerequisites
-- A basic understanding of containers and containerization. 
-- Familiarity with Red Hat Enterprise Linux (RHEL) and its command-line interface (CLI).
-- Root or sudo access to RHEL.
+## What is systemd?
 
-## Step 1: Install and Configure Docker
-The first step in configuring a container as a systemd service is to install and configure Docker on your RHEL system. Docker is a popular containerization platform that enables you to create and manage containers. Follow the below steps to install and configure Docker on your RHEL system:
+Systemd is an init system and service manager for Linux operating systems. It is designed to provide a more powerful and efficient way of starting and managing services compared to the traditional init system. Systemd is responsible for starting, stopping, and supervising system services, including containers. It is also responsible for managing system resources, such as power management, logging, and device management.
 
-1. Update your system by running the command `yum update`.
-2. Install Docker by running the command `yum install docker`.
-3. Start the Docker service by running the command `systemctl start docker`.
-4. Enable the Docker service to automatically start at boot by running the command `systemctl enable docker`.
+## What is a container?
 
-## Step 2: Create a Container Image
-Next, we need to create a container image that will be used to start our systemd service. A container image is a single file that contains all the necessary files and dependencies required to run an application in a container. Follow these steps to create a simple container image using a Dockerfile:
+Containers are lightweight, standalone, and executable packages that encapsulate a piece of software and all its dependencies. They are designed to run isolated applications on a single host machine without requiring a virtual machine. Containers offer a faster, more portable, and efficient way of deploying applications, making them a popular choice among developers and system administrators.
 
-1. Create a new directory for your container by running the command `mkdir mycontainer`.
-2. Navigate to the directory by running the command `cd mycontainer`.
-3. Create a new file named `Dockerfile` using your preferred text editor.
-4. Copy and paste the following code into the Dockerfile:
+## Setting up a container to start as a systemd service
 
-```
-FROM centos:latest
-RUN yum -y update && \
-    yum -y install httpd && \
-    yum clean all
-COPY index.html /var/www/html/
-EXPOSE 80
-CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
-```
+Before we dive into configuring a container to start automatically as a systemd service, let's first make sure we have the necessary prerequisites in place:
 
-5. Save and close the file.
-6. Create a new file named `index.html` within the `mycontainer` directory.
-7. Add some HTML content into the `index.html` file, such as `<h1>Hello World</h1>`.
-8. Save and close the file.
+- A Linux operating system with systemd installed (In this tutorial, we will be using Red Hat Enterprise Linux)
+- Docker or Podman (container engines)
+- A container image to use (In our example, we will be using a web application container image)
 
-The above Dockerfile will create a container based on the latest version of CentOS, update the system, install Apache HTTP server, copy the `index.html` file into the container, expose port 80, and start the HTTP server.
+Once we have all the necessary prerequisites, we can move on to the steps to configure a container to start as a systemd service.
 
-## Step 3: Build the Container Image
-Now that we have created our Dockerfile and `index.html` file, we can build our container image. Follow these steps to build the image:
+### Step 1: Create a container image
 
-1. In the `mycontainer` directory, run the command `docker build -t mycontainer-image .`. This command will build an image with the name `mycontainer-image` based on the Dockerfile in the current directory.
-2. Once the build process is complete, you can verify the image by running the command `docker images`. You should see your newly created image in the list.
+The first step is to create a container image for our web application. If you already have a container image, you can skip this step. Otherwise, we will use the following command to create a basic web application using the "index.html" file:
 
-## Step 4: Create a Systemd Service Unit File
-To configure our container to start automatically as a systemd service, we need to create a systemd unit file. This file will define the service and its properties, such as the container image to use and any specific configurations. Follow these steps to create the unit file:
+`mkdir html_files`
 
-1. Create a new file named `mycontainer.service` in the `/etc/systemd/system/` directory using your preferred text editor.
-2. Copy and paste the following code into the file:
+`vi html_files/index.html` (Add some basic HTML code here, like "Hello from my web application!")
 
-```
+`docker build -t mywebapp:1.0 .`
+
+### Step 2: Create a systemd unit file
+
+A systemd unit file is a configuration file that describes how a systemd service should be managed. We will create a unit file in the "/etc/systemd/system" directory with the name "mywebapp.service." We can use any text editor to create the file, but for simplicity, we will use the "vi" editor:
+
+`sudo vi /etc/systemd/system/mywebapp.service`
+
+Within this file, we need to provide some information, like the service name, description, recommended resources to be used, and command-line options. We will use the following template for our unit file:
+
+``` 
 [Unit]
-Description=My Container Service
+Description= My Web Application Service
 Requires=docker.service
 After=docker.service
 
 [Service]
+ExecStart=/usr/bin/docker run -p 80:80 mywebapp:1.0
 Restart=always
-RestartSec=900
-
-ExecStartPre=-/usr/bin/docker kill mycontainer
-ExecStartPre=-/usr/bin/docker rm mycontainer
-
-ExecStart=/usr/bin/docker run --rm --name=mycontainer -p 80:80 mycontainer-image
-
-ExecStop=/usr/bin/docker stop mycontainer
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=multi-user.target 
 ```
 
-3. Save and close the file.
+Now, let's break down the different sections of this unit file:
 
-The above unit file will create a service named `mycontainer`, define its dependencies and restart policies, and specify the docker run command to start and stop the container.
+- `[Unit]`: This section provides general information about the service, like the name and description.
+- `Requires`: This option specifies that our service depends on the docker service, and it will not start until the docker service has started successfully.
+- `After`: This option sets the order in which services are started. In this case, we want our service to start after the docker service has started.
+- `[Service]`:
+- `ExecStart`: This is the main command that will be executed to start our container. In this case, we are using Docker to run our container and expose port 80 for our web application. Make sure to use the appropriate command for the container engine you are using.
+- `Restart`: This option specifies that the service should be restarted if it fails for any reason.
+- `[Install]`: This section specifies where the service should be located in the multi-user target, which is responsible for starting services during boot time.
 
-## Step 5: Enable and Start the Service
-Now that we have created our systemd unit file, we can enable and start the service. Follow these steps to enable and start the service:
+### Step 3: Start the service and verify its status
 
-1. Reload systemd to ensure it picks up the changes made to unit files by running the command `systemctl daemon-reload`.
-2. Enable the `mycontainer` service by running the command `systemctl enable mycontainer`.
-3. Start the service by running the command `systemctl start mycontainer`.
-4. Check the status of the service by running the command `systemctl status mycontainer`. You should see the service is active (running) and its process ID (PID).
+Now that we have our unit file configured, we can start our service using the following command:
 
-## Step 6: Test the Service
-To ensure that our container is starting correctly and serving our HTML content, we can test the service. Follow these steps to test the service:
+`sudo systemctl start mywebapp`
 
-1. In your browser, navigate to `http://(server IP address)` where the server IP address is the IP address of your RHEL system.
-2. If everything is configured correctly, you should see the HTML content we added to the `index.html` file within the container. 
-3. To stop the service, run the command `systemctl stop mycontainer` and ensure the webpage is no longer accessible. 
+We can also verify the status of our service using the following command:
 
-Congratulations, you have successfully configured a container to start automatically as a systemd service on your Red Hat Certified Systems Administrator Exam.
+`sudo systemctl status mywebapp`
 
-## Additional Notes
-- You can customize the Dockerfile and systemd unit file to suit your specific needs and configurations.
-- You can also use other containerization platforms, such as Podman, to build and run containers on Red Hat systems.
-- Remember to regularly update and maintain your container images and services for security and performance purposes.
-- It is recommended to practice this process multiple times before taking the exam to familiarize yourself with each step and troubleshoot any potential issues that may arise.
+If the service has started successfully, we should see a "active (running)" status. If there are any errors, the status will show as "failed," and we can check the logs for more information.
+
+### Step 4: Enable the service to start on boot
+
+If we want our service to start automatically every time the system boots, we can enable it using the following command:
+
+`sudo systemctl enable mywebapp`
+
+Now, the next time our system boots, the service will start automatically, and we won't have to start it manually.
+
+## Conclusion
+
+In this tutorial, we went in-depth into configuring a container to start automatically as a systemd service. We started by understanding what systemd and containers are and their importance in today's world of virtualization. Then, we walked through the steps to create a unit file and start our container service. By the end of this tutorial, we should have a clear understanding of how to configure a container to start automatically as a systemd service, which is an essential skill for any Red Hat Certified Systems Administrator. 

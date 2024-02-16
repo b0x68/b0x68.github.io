@@ -1,10 +1,10 @@
 +++
 title = "Set enforcing and permissive modes for SELinux"
-date = "2024-02-16T10:37:49-05:00"
+date = "2024-02-16T11:53:07-05:00"
 author = "root"
 cover = ""
-tags = ["systems", "service", "files", "permissions.", "selinux,", "selinux.", "command", "`etc/selinux/config`,"]
-keywords = ["system.", "(security-enhanced", "`selinux=`", "/etc/selinux/config", "configuration", "command", "logged", "selinux."]
+tags = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
+keywords = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
 description = ""
 showFullContent = false
 readingTime = true
@@ -13,69 +13,50 @@ color = "" #color from the theme settings
 +++
 
 
-# Setting Enforcing and Permissive Modes for SELinux
+Introduction:
 
-SELinux (Security-Enhanced Linux) is a security feature in Linux systems that enforces mandatory access control policies. It provides an additional layer of protection by restricting access to certain resources based on user roles and permissions. In this tutorial, we will discuss how to set enforcing and permissive modes for SELinux, one of the objectives for the Red Hat Certified Systems Administrator Exam.
+SELinux, or Security-Enhanced Linux, is a mandatory access control (MAC) security mechanism used in Red Hat Enterprise Linux (RHEL) to provide an extra layer of security for the operating system. The Red Hat Certified Systems Administrator (RHCSA) exam evaluates candidates' ability to configure and manage SELinux, including setting enforcing and permissive modes. This tutorial will explain in depth how to set these modes for SELinux on RHEL.
 
-## Prerequisites
+Prerequisites:
 
-Before we begin, make sure you have the following:
-- A Red Hat Enterprise Linux system
-- Root access or sudo privileges
-- Basic understanding of SELinux and its policies
+Before attempting to set enforcing and permissive modes for SELinux, it is important to have a basic understanding of SELinux concepts such as domains, contexts, and policies. It is also essential to have a working knowledge of the terminal and basic command-line syntax.
 
-## Understanding Enforcing and Permissive Modes
+Step 1: Understanding Enforcing and Permissive Modes:
 
-SELinux has three different modes - enforcing, permissive, and disabled. In enforcing mode, SELinux actively enforces its security policies and denies access to any unauthorized resource. In permissive mode, all the actions that would normally be denied in enforcing mode are logged but allowed to continue. This mode is mainly used for troubleshooting purposes, as it allows you to identify which actions are being denied by SELinux. In disabled mode, SELinux is completely turned off and has no effect on system security.
+Before we dive into how to set these modes, let's first understand what enforcing and permissive modes mean for SELinux.
 
-Now, let's dive into the steps to set enforcing and permissive modes for SELinux.
+Enforcing mode is the default mode for SELinux and is where all access attempts are actively checked against the SELinux policy. If a user or process attempts to access a resource that is not permitted by the policy, it will be denied and logged. This mode enforces strict security controls and is suitable for production environments.
 
-## Setting Enforcing Mode
+Permissive mode, on the other hand, is a more lenient mode where access attempts are still checked against the policy, but instead of being denied, they are only logged. This mode is useful for troubleshooting as it allows you to see which actions would be denied if SELinux were in enforcing mode, without actually impacting the system's operations.
 
-1. Log in to your system as root or with a sudo user.
-2. Open the configuration file for SELinux, `etc/selinux/config`, using a text editor. For example, you can use the `nano` editor by running the following command:
-```
-nano /etc/selinux/config
-```
-3. Locate the line that says `SELINUX=` and change its value from `disabled` to `enforcing`.
-4. Save the changes and exit the text editor.
-5. Reboot your system for the changes to take effect.
+Step 2: Checking Current SELinux Mode:
 
-Upon reboot, SELinux will be in enforcing mode. All the policies will be actively enforced, and any unauthorized action will be denied.
+As mentioned earlier, enforcing mode is the default for SELinux. However, it is always good practice to check the current mode before attempting to change it.
 
-## Setting Permissive Mode
+To check the current mode, use the "getenforce" command in the terminal. This will return either "Enforcing" or "Permissive" to indicate the current mode. If the output is "Disabled," it means that SELinux is not currently enabled on the system.
 
-1. Log in to your system as root or with a sudo user.
-2. Open the configuration file for SELinux, `etc/selinux/config`, using a text editor. For example, you can use the `nano` editor by running the following command:
-```
-nano /etc/selinux/config
-```
-3. Locate the line that says `SELINUX=` and change its value from `disabled` to `permissive`.
-4. Save the changes and exit the text editor.
-5. Reboot your system for the changes to take effect.
+Step 3: Changing SELinux Mode:
 
-After reboot, SELinux will be in permissive mode. All actions that would normally be denied in enforcing mode will be logged but allowed to continue. This mode is useful for troubleshooting SELinux-related issues.
+To set enforcing mode for SELinux, use the command "setenforce 1" in the terminal. Similarly, to set permissive mode, use "setenforce 0." These commands will immediately change the mode for SELinux, but the change will not persist after a system reboot.
 
-## Checking the Current Mode
+Step 4: Setting SELinux Mode Persistently:
 
-To verify the current mode of SELinux, you can use the `sestatus` command. It will display information about the current status, including the mode and the enforced policies. Running this command after setting enforcing or permissive mode will show the changes you made.
+To make the mode change for SELinux persistent after a system reboot, we need to modify the SELinux configuration file. This file is located at "/etc/selinux/config" and can be edited using a text editor such as "vi" or "nano."
 
-## Applying Modes Only for Specific Services
+To set enforcing mode persistently, open the configuration file and change the value of "SELINUX" to "enforcing." To set permissive mode persistently, change the value to "permissive." Once the value is changed, save and exit the file.
 
-You can also set enforcing or permissive mode for specific services only, rather than for the entire system. This can be useful when testing SELinux policies for a particular service.
+Step 5: Reloading SELinux Configuration:
 
-1. Log in to your system as root or with a sudo user.
-2. Use the `semanage` command to view the current mode settings for all the services:
-```
-semanage boolean -l
-```
-3. Locate the service for which you want to change the mode and take note of its name.
-4. Use the `semanage` command with the `-i` option to change the mode for that service. For example, to change the mode for the HTTPD service, you would use the following command:
-```
-semanage boolean -i -m <desired_mode> -1 httpd_can_network_connect
-```
-Here, `<desired_mode>` represents either `enforcing` or `permissive`. The `-m` option specifies the mode, and the `-1` option applies it to the specified service. Note that this command works for built-in SELinux policies only. For custom policies, you will have to modify the policy files manually.
+After making changes to the SELinux configuration file, it is necessary to reload the SELinux policy to apply the changes. This can be done by executing the command "load_policy" in the terminal.
 
-## Conclusion
+Step 6: Checking the Persistence of Mode Changes:
 
-In this tutorial, we have discussed the process of setting enforcing and permissive modes for SELinux. We have covered the importance of these modes and how to apply them to the entire system or specific services. Understanding and effectively utilizing these modes is crucial for managing SELinux policies and maintaining system security. Be sure to practice and familiarize yourself with these concepts properly, as they are essential for passing the Red Hat Certified Systems Administrator Exam.
+To confirm that the SELinux mode changes have been applied and will persist after a system reboot, use the "getenforce" command again. The output should now show the new mode.
+
+Step 7: Troubleshooting SELinux Mode Changes:
+
+If you encounter issues after changing the SELinux mode, it is essential to troubleshoot and identify the cause. Some common troubleshooting steps include checking the SELinux logs, using the "sestatus" command to view the current SELinux status, and reviewing the SELinux policy to see which actions are being denied.
+
+Conclusion:
+
+In this tutorial, we have learned how to set enforcing and permissive modes for SELinux on RHEL. We also discussed the differences between these modes and how to check the current mode, change it, and make the changes persistent. Remember to always consider the security implications before changing SELinux modes and regularly review logs and policies to maintain a secure and stable system. 

@@ -1,10 +1,10 @@
 +++
 title = "Perform basic container management such as running, starting, stopping, and listing running"
-date = "2024-02-16T10:39:35-05:00"
+date = "2024-02-16T11:54:48-05:00"
 author = "root"
 cover = ""
-tags = ["system,", "container's", "containerization", "system.", "system's", "images**:", "image.", "<container"]
-keywords = ["container,", "tasks", "**podman**:", "systems", "containers,", "image.", "command,", "system."]
+tags = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
+keywords = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
 description = ""
 showFullContent = false
 readingTime = true
@@ -12,62 +12,87 @@ hideComments = false
 color = "" #color from the theme settings
 +++
 
+#
+# Introduction to Container Management on Red Hat: 
+Containers are a lightweight and efficient way to package and run applications. They provide a stable and consistent environment for applications to run, making it easier to deploy and manage them. As a system administrator, it is essential to have a good understanding of container management to be able to effectively manage and troubleshoot applications in a Red Hat environment.
 
-# Red Hat Certified Systems Administrator Exam 200 Objective: Perform Basic Container Management
+In this tutorial, we will cover the Red Hat Certified Systems Administrator Exam 200 objective: "Perform basic container management such as running, starting, stopping, and listing running". We will go through the various commands and techniques required to perform basic container management in Red Hat, providing you with a comprehensive guide to mastering this objective.
 
-In today's digital world, containerization has become an essential aspect of software development and deployment. Red Hat Certified Systems Administrator (RHCSA) certification is a well-recognized and highly sought-after certification in the IT industry. One of the objectives of the RHCSA exam (Exam 200) is to test your knowledge and skills in basic container management. This tutorial will provide in-depth information on this objective to help you prepare and ace the exam.
+# Objectives:
 
-## Understanding Containers
-Before diving into the specifics of container management, it's important to have a clear understanding of what containers are. Containers are a lightweight and portable way of packaging, deploying, and running applications. In simple terms, containers are self-contained and isolated environments that contain all the necessary components and dependencies for an application to run. This allows applications to run consistently and reliably, regardless of the underlying computing environment.
+- Understand the core concepts of containers in Red Hat.
+- Learn how to run containers on Red Hat.
+- Explore how to start and stop containers.
+- Understand how to list running and stopped containers.
+- Troubleshoot common issues related to container management.
 
-## Container Management Tools
-Red Hat offers various tools for container management, depending on your specific needs and environment. Some of the popular tools include:
+# Core Concepts of Containers in Red Hat:
+Before we dive into the specifics of container management, it is essential to have a good understanding of the core concepts of containers in Red Hat. 
 
-- **Docker**: Docker is a popular open-source platform for building and running containers. It provides a user-friendly command-line interface (CLI) for managing containers.
-- **Podman**: Podman is a container management tool that is native to Red Hat Enterprise Linux (RHEL) since version 7. Podman allows you to run containers in a non-daemon mode, making it a secure alternative to Docker.
-- **Kubernetes**: Kubernetes is an advanced container orchestration tool for managing multiple containers at scale. It allows for easy scaling, networking, and load balancing of containers.
+Containers are lightweight and isolated environments that run on top of a host operating system. They encapsulate all the libraries and dependencies required for an application to run, providing a consistent runtime environment. This isolation ensures that applications can run on any host system without having to worry about compatibility issues or dependencies.
 
-For the purpose of this tutorial, we will focus on using Docker for basic container management.
+In Red Hat, containers are managed through a container engine called "podman". Podman can run both rootless and root-owned containers, making it a flexible and secure tool for container management. It also allows for easy creation, deployment, and management of containers using a simple command-line interface.
 
-## Basic Docker Commands
-To start managing containers with Docker, you first need to have Docker installed and running on your system. Once you have Docker set up, you can use the following basic commands to manage containers:
-
-- **docker pull**: This command allows you to download the container image from a Docker registry.
-- **docker run**: Using this command, you can create and start a new container from a specified image.
-- **docker start**: This command starts an existing container that has been stopped.
-- **docker stop**: This command stops a running container but does not remove it.
-- **docker rm**: You can use this command to remove a stopped container from your system.
-- **docker ps**: This command lists all the running containers on your system.
-- **docker images**: Using this command, you can view all the downloaded images on your system.
-
-## Starting and Stopping Containers
-To perform basic container management, you need to know how to start and stop containers. Let's go through the steps for starting and stopping a container using Docker:
-
-### Starting a Container
-1. First, open your terminal or command-line interface (CLI) and ensure Docker is running.
-2. Use the **docker pull** command to download a container image from a registry.
+# Running Containers on Red Hat:
+The first step in container management is to run a container on a Red Hat system. To run a container using podman, you can use the following command:
 ```
-$ docker pull nginx
+$ podman run [options] image [command [args...]]
 ```
-3. Once the download is complete, use the **docker run** command to create and start a new container from the downloaded image.
+Let's break down the options in this command:
+
+- The "run" keyword instructs podman to run a container.
+- The [options] parameter specifies any additional configuration options for the container. Some commonly used options include --detach (to run the container in the background), --name (to give the container a specific name), and --publish (to expose ports from the container to the host).
+- The "image" parameter specifies the image that you want to use to run the container. Red Hat provides a plethora of images in its registry, which you can access through the "podman search" command.
+- The [command [args...]] parameter allows you to specify a command to run within the container. If not specified, the container will run the default command defined in the image's Dockerfile.
+
+For example, let's run a container using the "nginx" image from the Red Hat registry and expose port 80 to the host:
 ```
-$ docker run -d -p 8080:80 nginx
+$ podman run --detach --name webserver -p 80:80 nginx 
 ```
-In the above command, **-d** flag runs the container in detached mode, and **-p** flag exposes the container's port 80 to your system's port 8080.
+This command will pull the latest version of the "nginx" image, create a container named "webserver", and expose container port 80 to host port 80.
 
-4. To verify that the container is running, you can use the **docker ps** command. You should see your container in the list of running containers with its container ID, image name, status, and other details.
-
-### Stopping a Container
-1. To stop a running container, use the **docker stop** command and provide the container ID or name as the argument.
+# Starting and Stopping Containers:
+Once you have a container running, you may need to start or stop it at any given time. To start a stopped container, use the following command:
 ```
-$ docker stop <container ID or name>
+$ podman start <container-name>
 ```
-2. To verify that the container has stopped, you can use the **docker ps** command. The stopped container should no longer appear on the list.
+Similarly, to stop a running container, use the following command:
+```
+$ podman stop <container-name>
+```
+You can also use the container's ID instead of its name in these commands.
 
-## Listing Running Containers
-To view a list of all the running containers on your system, you can use the **docker ps** command. This command displays various details such as container ID, image name, status, ports, etc. However, if you want to view detailed information about all the containers on your system, including the stopped ones, you can use the **docker ps -a** command.
+# Listing Running and Stopped Containers:
+To list all the running containers on a Red Hat system, you can use the following command:
+```
+$ podman ps
+```
+This command will display a list of all the running containers, along with their name, ID, and other relevant information.
 
-## Conclusion
-Managing containers involves performing various tasks such as starting, stopping, and listing running containers. In this tutorial, we have covered the basics of container management using Docker, which is a popular container management tool. To become proficient in managing containers, it's essential to practice using these commands and understand how they work. We hope this tutorial has helped you gain a better understanding of basic container management and prepared you for the RHCSA Exam 200 objective. Good luck on your certification journey!
+To list all the stopped containers on a Red Hat system, use the following command:
+```
+$ podman ps -a
+```
+This command will display a list of both running and stopped containers.
 
- 
+# Troubleshooting Common Container Management Issues:
+Like any other technology, container management on Red Hat may encounter some common issues that you should be aware of. These issues can range from problems starting or stopping containers to issues with network connectivity.
+
+One of the most common troubleshooting steps is to check the logs of the container to identify any errors or issues. You can use the following command to view the logs of a container:
+```
+$ podman logs <container-name>
+```
+
+If you encounter any errors related to port binding or connectivity, you may need to check if the ports are properly exposed and opened. You can use the following commands to check and open ports on a Red Hat system:
+```
+$ podman port <container-name>
+$ sudo firewall-cmd --add-port=<port-number>/tcp --permanent
+$ sudo firewall-cmd --reload
+```
+
+Additionally, you can also use various debugging techniques such as running containers in interactive mode, executing commands within a container, or inspecting the container's network settings to troubleshoot and resolve any issues.
+
+# Conclusion:
+In this tutorial, we have covered the Red Hat Certified Systems Administrator Exam 200 objective: "Perform basic container management such as running, starting, stopping, and listing running". We went through the core concepts of containers in Red Hat, learned how to run and start/stop containers, and explored techniques to troubleshoot common issues related to container management.
+
+By understanding and mastering container management on Red Hat, you will be well-equipped to deploy and manage applications in a Red Hat environment, making you a valuable asset as a Red Hat Certified Systems Administrator.

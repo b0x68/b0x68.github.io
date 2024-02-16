@@ -1,10 +1,10 @@
 +++
 title = "Preserve system journals"
-date = "2024-02-16T10:32:10-05:00"
+date = "2024-02-16T11:47:08-05:00"
 author = "root"
 cover = ""
-tags = ["process", "files,", "configuration", "logs,", "files", "logs.", "system", "`/etc/systemd`"]
-keywords = ["journal", "service.", "service", "files,", "journals,", "logs", "security", "files"]
+tags = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
+keywords = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
 description = ""
 showFullContent = false
 readingTime = true
@@ -13,30 +13,67 @@ color = "" #color from the theme settings
 +++
 
 
-# Tutorial: Preserving System Journals in Red Hat
+# Tutorial: How to Preserve System Journals on a Red Hat Certified System Administrator Exam
 
-The preservation of system journals is an important aspect of maintaining a secure and efficient Red Hat system. System journals contain important logs and records of system events that can be used for troubleshooting, monitoring, and auditing purposes. In this tutorial, we will go into great depth about the Red Hat Certified Systems Administrator Exam 200 objective of preserving system journals.
+As a Red Hat Certified System Administrator, one of the key skills you are required to possess is the ability to preserve system journals. System journals contain important information and logs about the system's activities, which can be crucial in troubleshooting and identifying system issues. In this tutorial, we will explore in great depth how to preserve system journals on a Red Hat Certified System Administrator Exam.
 
-## Objective Overview
-The objective of preserving system journals in the Red Hat Certified Systems Administrator Exam 200 is to ensure that system logs and journal files are securely stored, archived, and maintained. This includes setting up proper log rotation, configuring journal retention policies, and managing archived logs for future analysis.
+## Step 1: Understanding the Importance of System Journals
 
-## Importance of Preserving System Journals
-System journals play a critical role in maintaining the security and performance of a Red Hat system. They record important information such as system events, errors, user activity, and system resources usage. This data can be crucial for troubleshooting issues, identifying security breaches, and monitoring system performance. Additionally, logs and journal files can also be used for compliance and auditing purposes to ensure that the system is functioning according to industry standards and regulations.
+System journals are a collection of log files that record various system activities, including system events, user activities, software updates, and more. These logs are essential in monitoring and troubleshooting the system's performance and identifying any issues that may arise.
 
-## Setting up Log Rotation
-One of the first steps in preserving system journals is to set up log rotation. Log rotation is the process of managing and rotating log files to prevent them from becoming too large and taking up excessive disk space. This is important as large log files can slow down system performance and may even lead to system crashes.
+Preserving system journals is crucial as it ensures that the data recorded in these logs is not lost. This data can be critical in diagnosing and resolving system problems, and without it, the troubleshooting process can become much more challenging.
 
-To set up log rotation, you will need to use the `logrotate` utility. This process involves creating a configuration file in the `/etc/logrotate.d/` directory for each log file that needs to be rotated. In this file, you can define parameters such as the rotation frequency, file size limit, and actions to be taken after rotation (e.g. compress, delete, or keep).
+## Step 2: Identifying the Different Types of System Journals
 
-## Configuring Journal Retention Policies
-Along with log rotation, it is important to configure journal retention policies to ensure that system journals are not retained for an excessive amount of time. This can help to conserve disk space and improve system performance.
+There are two main types of system journals that you may encounter on the Red Hat Certified System Administrator Exam: the systemd journal and the rsyslog journal.
 
-To configure journal retention policies, you will need to use the `systemd-journald` service. This service is responsible for managing system journals and can be configured through the `journald.conf` file located in the `/etc/systemd` directory. In this file, you can specify the maximum disk space that can be used for journal files, the maximum number of journal files to be stored, and the maximum retention time for journal files.
+The **systemd journal** is the default logging system on Red Hat Enterprise Linux (RHEL) 7 and above. It collects and stores system logs in binary format in /run/log/journal. This type of journal is managed by the `journalctl` command.
 
-## Managing Archived Logs
-Archived logs are important for future analysis and retention. These logs contain historical records of system events and can be useful for troubleshooting or auditing purposes. However, it is important to manage these archived logs to prevent them from becoming a security risk.
+The **rsyslog journal** is the legacy logging system that is still used in RHEL 6 and some older versions. It collects and stores logs in plain text format in /var/log directory. This type of journal is managed by the `rsyslogd` service.
 
-Archived logs can be stored in a centralized location such as a separate server or external storage device. To manage archived logs, you can use tools such as `rsync` or `scp` to transfer the logs to the designated location. It is also important to regularly review and delete old archived logs that are no longer needed to free up disk space and reduce the risk of sensitive information being accessed by unauthorized users.
+## Step 3: Configuring Systemd Journal Preserving on RHEL 7 and above
+
+To preserve systemd journals on RHEL 7 and above, you need to configure the journal's retention policy. This policy defines how long the system logs will be preserved before being automatically deleted.
+
+1. To configure the retention policy, open the /etc/systemd/journald.conf file with a text editor.
+
+2. Locate the `[Journal]` section and add the following line: `MaxRetentionSec=<duration>`
+
+3. Replace `<duration>` with the desired retention period in seconds. For example, to preserve the logs for 1 year, you would input `MaxRetentionSec=31536000` (60 seconds x 60 minutes x 24 hours x 365 days).
+
+4. Save the changes and exit the text editor.
+
+5. Reload the systemd journal configuration by running the command `systemctl restart systemd-journald`.
+
+6. Test the retention policy by creating a test log and checking if it is still present after the specified duration.
+
+## Step 4: Configuring Rsyslog Journal Preserving on RHEL 6 and older versions
+
+To preserve rsyslog journals on RHEL 6 and older versions, you will need to configure the rsyslogd service to store logs in a separate directory. This will ensure that the logs are not deleted when the /var/log directory is rotated.
+
+1. Create a new directory to store the preserved logs. For example, `/var/log/preserved`.
+
+2. Open the `/etc/rsyslog.conf` file with a text editor.
+
+3. Locate the `$WorkDirectory` line and edit it to point to the new directory you created in the previous step. For example, `$WorkDirectory /var/log/preserved`.
+
+4. Locate the `$ActionFileDefaultTemplate` line and add `DefaultFile` at the end. This will ensure that logs are stored in the specified directory with the correct file name.
+
+5. Save the changes and exit the text editor.
+
+6. Reload the rsyslogd service by running the command `service rsyslog restart`.
+
+7. Test the configuration by creating a test log and checking if it is present in the new directory.
+
+## Step 5: Other Tips for Preserving System Journals
+
+Here are a few additional tips to keep in mind when preserving system journals on a Red Hat Certified System Administrator Exam:
+
+- Regularly back up the system logs to a separate location to ensure they are not lost in case of system failure.
+- Adjust the log rotation frequency to ensure that logs are not deleted before the retention period.
+- Use the `journalctl` or `rsyslogd` commands to view and manage the system logs.
+- Familiarize yourself with the various log files and their contents to better understand the system's activities.
 
 ## Conclusion
-In this tutorial, we have gone into great depth about the objective of preserving system journals in the Red Hat Certified Systems Administrator Exam 200. We have discussed the importance of system journals, how to set up log rotation and configure journal retention policies, and the importance of managing archived logs. By following these guidelines, you can help to ensure the proper preservation of system journals and maintain the security and efficiency of your Red Hat system.
+
+Preserving system journals is an essential skill for any Red Hat Certified System Administrator. In this tutorial, we have explored how to configure the retention policy for systemd and rsyslog journals, as well as some additional tips to keep in mind. By following these steps, you will be well prepared to preserve system journals on the Red Hat Certified System Administrator Exam.

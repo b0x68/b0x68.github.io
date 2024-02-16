@@ -1,10 +1,10 @@
 +++
 title = "Adjust process scheduling"
-date = "2024-02-16T10:31:38-05:00"
+date = "2024-02-16T11:46:37-05:00"
 author = "root"
 cover = ""
-tags = ["linux", "command,", "user", "scheduler", "tasks:", "command.", "system's", "/etc/security/limits.conf'"]
-keywords = ["commands", "process,", "tasks:", "systemd", "process", "swap:", "processes", "processes."]
+tags = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
+keywords = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
 description = ""
 showFullContent = false
 readingTime = true
@@ -13,92 +13,56 @@ color = "" #color from the theme settings
 +++
 
 
-# Tutorial: Adjusting Process Scheduling in Red Hat Certified Systems Administrator Exam 200 Objective
+# Tutorial: Adjusting Process Scheduling in Red Hat Certified Systems Administrator Exam
 
-In this tutorial, we will be exploring the objective of adjusting process scheduling in the Red Hat Certified Systems Administrator Exam 200. This objective falls under the "System Management" category and holds a weight of 4% on the overall exam.
+In this tutorial, we will discuss the objective of adjusting process scheduling in the Red Hat Certified Systems Administrator (RHCSA) Exam 200 and provide detailed steps and explanations on how to successfully accomplish this task.
 
-Process scheduling refers to the mechanism by which a computer's operating system decides which process should be allocated CPU time. It is an essential component of the operating system and plays a crucial role in managing system resources efficiently.
+## Introduction
 
-In Red Hat Enterprise Linux (RHEL), there are various tools and techniques available for adjusting process scheduling. In this tutorial, we will cover the following topics:
+In a Linux operating system, the process scheduler is responsible for determining the order in which processes will run on the system’s CPU. By adjusting the process scheduling, we can optimize the performance of our system and manage the allocation of system resources.
 
-1. Process Scheduling Overview
-2. Types of Process Scheduling
-3. Adjusting Process Scheduling using 'nice' and 'renice' commands
-4. Monitoring and Managing Process Scheduling using 'top' command
-5. Global Process Scheduling Settings
+In the RHCSA Exam 200, one of the objectives is to adjust process scheduling. This means that you will be tested on your ability to modify the process scheduler and manage processes on a system. This tutorial will guide you through the necessary steps to successfully complete this objective in the exam.
 
-## 1. Process Scheduling Overview
+## Prerequisites
 
-As mentioned earlier, process scheduling is the mechanism by which the operating system decides which process gets to use the CPU next. It ensures that the system resources are allocated efficiently and fairly among all the active processes.
+Before we begin, make sure you have the following:
 
-In RHEL, the Linux scheduler is responsible for managing process scheduling. It uses algorithms to determine the priority of each process and assigns CPU time accordingly.
+- A basic understanding of Linux and the command line interface
+- An RHCSA certification exam environment
+- Administrative privileges on the system
 
-## 2. Types of Process Scheduling
+## Step 1: Understanding the Process Scheduler in Linux
 
-There are two types of process scheduling in RHEL:
+The Linux process scheduler is responsible for managing the allocation of system resources to processes, such as CPU time, memory, and I/O (input/output) operations. The default process scheduler in most Linux distributions is the Completely Fair Scheduler (CFS), which uses a priority-based algorithm to determine the order of process execution.
 
-- time-sharing: In this type, the CPU time is shared between multiple processes based on their priority.
-- real-time: This type is used for applications that require a guaranteed amount of CPU time at a specific time. These processes have a higher priority over time-sharing processes.
+There are several tools and commands that can be used to view and manage the process scheduler, such as `top`, `ps`, and `nice`. Familiarize yourself with these tools before proceeding to the next step.
 
-It is important to note that the scheduler can be adjusted to favor one type of scheduling over the other, depending on the system's need.
+## Step 2: Modifying Process Scheduling with `nice`
 
-## 3. Adjusting Process Scheduling using 'nice' and 'renice' commands
+The `nice` command allows you to adjust the priority of a process, which affects its position in the process queue and determines how much system resources it will receive. A higher priority value means the process will receive more resources, while a lower value means the process will have lower priority.
 
-The 'nice' and 'renice' commands are used to adjust the priority of a process. They are used to change the "niceness" value, which determines the priority of a process in the time-sharing scheduling policy.
+To modify the priority of a process, use the `nice` command followed by the process ID (PID) and the priority value you want to set. For example, to set the priority of the process with PID 1234 to -10 (highest priority), use the command:
 
-The 'nice' command is used when starting a new process, and the 'renice' command is used to alter the niceness value of an already running process.
+`nice -n -10 1234`
 
-To set a higher niceness value (lower priority) for a process, use the following command:
+You can also use the `renice` command to modify the priority of a process that is already running. This can be useful in situations where a certain process needs more resources to complete its task.
 
-```
-nice +[value] [command]
-```
+## Step 3: Setting Process Priorities with `chrt`
 
-For example, to start a new process with a low priority, we can use the following command:
-```
-nice +10 top
-```
+The `chrt` command can be used to modify the scheduling policy and priority of a process. The scheduling policy determines the behavior and priority of a process, such as real-time or batch. The priority values range from 1 to 99, with 1 being the highest priority.
 
-This will start the 'top' command with a niceness value of 10, giving it a lower priority over other processes.
+To use the `chrt` command, you must specify both the scheduling policy and the priority. For example, to set the scheduling policy of a process with PID 1234 to real-time with a priority of 80, use the command:
 
-To change the niceness value of a running process, we use the 'renice' command. The syntax is as follows:
-```
-renice [value] [PID]
-```
+`chrt -r -p 80 1234`
 
-Here, the PID is the process ID of the process that we want to modify. For example, to increase the priority of a process with PID 1234, we can use the following command:
-```
-renice -5 1234
-```
+## Step 4: Viewing and Managing Processes with `top`
 
-## 4. Monitoring and Managing Process Scheduling using 'top' command
+The `top` command is a powerful tool for viewing and managing processes in a Linux system. It displays a list of currently running processes, their statuses, and resource usage.
 
-The 'top' command is a useful tool for monitoring and managing process scheduling. It displays the list of currently running processes and their respective resource utilization, including CPU usage and priority.
-
-To launch the 'top' command, open the terminal and type 'top' in the prompt. Here's an example output of the command:
-
-```
-Tasks: 117 total, 2 running, 115 sleeping, 0 stopped, 0 zombie
-%Cpu(s): 0.5 us, 0.2 sy, 0.0 ni, 99.3 id, 0.0 wa, 0.0 hi, 0.0 si, 0.0 st
-KiB Mem :  8005116 total,  1723880 free,  3787972 used,  2493264 buff/cache
-KiB Swap:  7812092 total,  7812092 free,        0 used.  3618852 avail Mem
-
-  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
- 2221 root      20   0  643904  37416  15028 S   0.6  0.5   0:29.89 Xorg
- 5352 smith     20   0 1065660  83744  45752 S   0.6  1.0   0:09.07 gnome-online-acc
-    1 root      20   0  170740   6364   3728 S   0.0  0.1   0:03.21 systemd
-```
-
-From the above output, we can see the niceness value under the "NI" column. We can also use the 'F' (capital F) command to change the fields displayed and add the "NI" column to the output.
-
-## 5. Global Process Scheduling Settings
-
-In RHEL, the global process scheduling settings can be modified by editing the ' /etc/security/limits.conf' file. The parameters that can be adjusted include 'nice', 'rtpriority', 'priority', and 'memlock'.
-
-It is recommended to consult the official RHEL documentation for more information on these parameters and their acceptable values.
+To launch `top`, simply type `top` in the command line. You can use the arrow keys to navigate through the list of processes and the function keys to perform different actions, such as changing the sorting criteria or killing a process.
 
 ## Conclusion
 
-In this tutorial, we have covered the 'Adjust Process Scheduling' objective of the Red Hat Certified Systems Administrator Exam 200 in great depth. We have discussed the basics of process scheduling, two types of scheduling, and different tools and techniques for adjusting it.
+In this tutorial, we covered the objective of adjusting process scheduling in the Red Hat Certified Systems Administrator Exam 200. We discussed the importance of the process scheduler in the Linux operating system and provided step-by-step instructions for modifying process priorities using commands such as `nice`, `renice`, and `chrt`.
 
-By mastering the concepts covered in this tutorial, you will be well-prepared to tackle any questions related to process scheduling on the exam. Make sure to practice and familiarize yourself with the different commands and their usage to gain confidence in this objective. 
+Remember to practice using these commands and tools in your RHCSA exam environment to prepare yourself thoroughly for the exam. With this knowledge, you should be able to successfully complete the objective of adjusting process scheduling in the RHCSA Exam 200.

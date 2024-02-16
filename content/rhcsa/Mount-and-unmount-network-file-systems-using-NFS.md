@@ -1,10 +1,10 @@
 +++
 title = "Mount and unmount network file systems using NFS"
-date = "2024-02-16T10:34:02-05:00"
+date = "2024-02-16T11:48:56-05:00"
 author = "root"
 cover = ""
-tags = ["command", "network,", "linux", "(network", "reboots", "unmount", "`umount`", "terminal"]
-keywords = ["unmounting,", "unmounting?", "mounting", "network", "reboot", "configuration", "process", "commands:"]
+tags = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
+keywords = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
 description = ""
 showFullContent = false
 readingTime = true
@@ -14,109 +14,104 @@ color = "" #color from the theme settings
 
 
 ## Introduction
-
-Welcome to this comprehensive tutorial on how to mount and unmount network file systems using NFS. This tutorial is designed to help you prepare for the Red Hat Certified Systems Administrator (RHCSA) Exam 200 objective and gain a strong understanding of NFS file systems.
-
-NFS (Network File System) is a distributed file system protocol that allows a client computer to access files over a network as if they were stored locally. With NFS, you can easily share files and resources between multiple computers within a network, making it a popular choice for enterprise environments. Being able to mount and unmount NFS file systems is a crucial skill for any system administrator, and this tutorial will guide you through the process step-by-step.
+In this tutorial, we will be covering how to mount and unmount network file systems using NFS (Network File System) for the Red Hat Certified Systems Administrator Exam 200 Objective. NFS is a commonly used protocol for sharing files over a network. We will go through the step-by-step process of configuring NFS on both the server and client side, as well as how to mount and unmount NFS file systems.
 
 ## Prerequisites
+- Red Hat Enterprise Linux operating system installed on both the server and client machines
+- Basic understanding of networking and file systems
+- Root privileges on the server and client machines
 
-Before we dive into the tutorial, let’s first go through the prerequisites to ensure you have all the necessary tools and knowledge to follow along.
+## Step 1: Install NFS
+First, we need to make sure that the NFS package is installed on both the server and client machines. To do this, we will use the following command in the terminal:
 
-1. A basic understanding of Linux operating systems such as Red Hat Enterprise Linux or CentOS.
-2. A terminal or command line interface on your system.
-3. Access to a network that supports NFS.
-4. Basic knowledge of networking and file systems.
+`yum install nfs-utils`
 
-## What is Mounting and Unmounting?
+This command will install all the necessary packages and dependencies for NFS to work.
 
-Before we get into the specifics of NFS, let's briefly understand the concepts of mounting and unmounting in Linux.
+## Step 2: Configure the NFS Server
+Once the NFS package is installed, we can start configuring the NFS server. The server will be the machine where we want to share files from. We will need to make some changes to the `/etc/exports` file to specify which directories we want to share and with whom. To edit the file, use the following command:
 
-Mounting is the process of making a file system accessible to the system by attaching it to a specified directory (known as the mount point). This allows the system to access and read the files in the file system.
+`vi /etc/exports`
 
-Unmounting, on the other hand, is the process of making a file system inaccessible to the system and detaching it from the mount point. This is important to ensure that all changes made to the files in the file system are properly saved and no data is lost.
+In this file, we will add a line for each directory we want to share. The basic syntax is as follows:
 
-## Setting Up NFS Server
+`/directory/to/share <client-ip>(options)`
 
-Before we can start working with NFS, we need to set up an NFS server to share files with our client machine. For the purpose of this tutorial, we will use a CentOS machine as our NFS server. 
+For example, if we want to share the `/home` directory with a client with the IP address 192.168.1.100, we would add the following line to the `/etc/exports` file:
 
-1. Install NFS server on your CentOS machine using the following command:
+`/home 192.168.1.100(rw,sync)`
 
-`sudo yum install nfs-utils`
+This means that the `/home` directory will be shared with the client with read-write access and any changes made by the client will be synchronized with the server. There are many more options that can be used, but we will cover the basics in this tutorial.
 
-2. Next, open the NFS configuration file located at `/etc/exports` using your preferred text editor.
+Once all the necessary directories are added, save and exit the file.
 
-`sudo vi /etc/exports`
+## Step 3: Start the NFS Service
+Before we can start using NFS, we need to start the NFS service. To do this, we will use the following command:
 
-3. In the exports file, specify the directory you want to share and the client machine that can access it. For example:
+`systemctl start nfs`
 
-`/home/users 192.168.1.100(rw,sync)`
+We can also make sure that the service starts automatically upon boot by using the following command:
 
-This exports the `/home/users` directory on your NFS server to the client with IP address `192.168.1.100` and allows it to read and write to the shared directory.
+`systemctl enable nfs`
 
-4. Once you have added all the necessary entries, save and close the file.
+## Step 4: Configure the Firewall
+If you are running a firewall on either the server or client machines, you will need to make sure that NFS traffic is allowed. To do this, we will need to add some rules to the firewall. The commands may vary depending on the type of firewall you are using. Here are some examples for the `firewalld` and `iptables` firewalls:
 
-5. Finally, start the NFS server and enable it to start on boot using the following commands:
+### firewalld
+To allow NFS traffic through the `firewalld` firewall, we will need to add the appropriate service to the allowed services list. To do this, use the following command:
 
-```
-sudo systemctl start nfs-server
-sudo systemctl enable nfs-server
-```
+`firewall-cmd --add-service=nfs –permanent`
 
-## Mounting NFS File Systems
+This will allow NFS traffic through port 2049. If you want to specify a port, you can use the following command:
 
-Now that our NFS server is set up, we can move on to the process of mounting NFS file systems on our client machine.
+`firewall-cmd --add-port=<port number>/tcp`
 
-1. First, create a mount point on the client machine where we will attach the NFS file system. For example:
+Once the appropriate rules are added, we need to reload the firewall for the changes to take effect by running the following command:
 
-`sudo mkdir /mnt/nfs`
+`firewall-cmd --reload`
 
-2. Next, we need to mount the NFS file system to the mount point using the following command:
+### iptables
+To allow NFS traffic through the `iptables` firewall, we will need to add some rules to the firewall. Here are the basic commands needed to allow the necessary ports:
 
-`sudo mount -t nfs <NFS server IP>:/home/users /mnt/nfs`
+`iptables -A INPUT -p tcp --dport 2049 -j ACCEPT`
 
-The `-t` flag specifies the type of file system, in this case, NFS. Replace `<NFS server IP>` with the IP address of your NFS server.
+`iptables -A INPUT -p udp --dport 2049 -j ACCEPT`
 
-3. If the mount command is successful, you can view the contents of the NFS file system by running the `ls` command on the mount point directory.
+`service iptables save`
 
-4. By default, NFS shares are mounted as read-only. If you want to mount the NFS file system as read-write, add the `rw` option in the mount command as follows:
+These commands will allow NFS traffic to go through ports 2049 for both TCP and UDP protocols.
 
-`sudo mount -t nfs -o rw <NFS server IP>:/home/users /mnt/nfs`
+## Step 5: Configure the NFS Client
+Now that the server is configured and the necessary rules are in place, we can move on to configuring the client machine. The client is the machine that will be accessing the shared files from the NFS server. We will need to make some changes to the `/etc/fstab` file to mount the NFS file system. To edit the file, use the following command:
 
-## Unmounting NFS File Systems
+`vi /etc/fstab`
 
-Unmounting NFS file systems is just as crucial as mounting them. It's important to properly unmount NFS shares to ensure that all changes are saved and no data is lost.
+At the bottom of the file, we will add a line to mount the NFS file system. The basic syntax is as follows:
 
-1. To unmount an NFS share, first navigate to the mount point directory using the `cd` command.
+`<server-ip>:/directory/on/server /local/directory nfs <options> 0 0`
 
-2. Then, use the `umount` command followed by the mount point to unmount the NFS file system. For example:
+For example, if the server's IP address is 192.168.1.200 and we want to mount the `/home` directory, we will add the following line:
 
-`sudo umount /mnt/nfs`
+`192.168.1.200:/home /mnt/nfs nfs rw,sync 0 0`
 
-3. If the command is successful, the NFS file system will be detached from the mount point and the directory will be empty.
+This means that the `/home` directory from the server will be mounted into the `/mnt/nfs` directory on the client with read-write access and any changes made by the client will be synchronized with the server. Save and exit the file.
 
-## Mounting NFS File Systems Automatically on Boot
+## Step 6: Mount the NFS File System
+Now that the necessary configurations have been made on both the server and client sides, we can proceed to mount the NFS file system. To do this, use the following command on the client machine:
 
-Manually mounting NFS file systems every time your client machine reboots can be time-consuming and inefficient. To avoid this, we can configure the client to automatically mount NFS file systems on boot.
+`mount -a`
 
-1. To do this, open the `/etc/fstab` file on your client machine using a text editor.
+This will mount all the file systems specified in the `/etc/fstab` file. If everything is configured correctly, the NFS file system should now be mounted on the client machine.
 
-`sudo vi /etc/fstab`
+## Step 7: Verify the NFS File System
+To verify that the NFS file system was mounted successfully, we can use the `df` command to display all the currently mounted file systems. The output should include the NFS file system that we just mounted.
 
-2. Add the entry for your NFS file system at the end of the file in the following format:
+## Unmounting the NFS File System
+To unmount the NFS file system, use the following command on the client machine:
 
-`<NFS server IP>:/home/users    /mnt/nfs    nfs    defaults    0  0` 
+`umount /mnt/nfs` (or whichever local directory you chose for mounting)
 
-The first field specifies the NFS server and directory, the second field is the mount point, and the third field is the type of file system. The `defaults` option uses the default options for mounting the file system. The last two fields specify the dump and pass values, which are set to 0 in this case.
-
-3. Save and close the file.
-
-4. To test the configuration, reboot your client machine and verify that the NFS file system is automatically mounted on boot.
+This will unmount the NFS file system from the client machine.
 
 ## Conclusion
-
-Congratulations! You have successfully learned how to mount and unmount NFS file systems and configure them to be mounted automatically on boot. These are essential skills for any system administrator and will also help you in your preparation for the RHCSA Exam 200.
-
-Remember to always properly unmount NFS file systems to avoid data loss and keep your system running smoothly. Also, double check the exports and fstab configuration to avoid any errors.
-
-Thank you for following along with this tutorial. With practice and experience, you will become proficient in working with NFS file systems and ace your RHCSA exam. Good luck!
+In this tutorial, we covered how to configure and use NFS to mount and unmount network file systems. We went through the necessary steps of configuring both the server and client machines, as well as how to start the NFS service and make sure that the necessary firewall rules are in place. Remember to always check for any errors and make sure that the configurations are correct before proceeding with the exam. Good luck on your Red Hat Certified Systems Administrator Exam!

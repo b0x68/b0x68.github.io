@@ -1,10 +1,10 @@
 +++
 title = "Create and remove physical volumes"
-date = "2024-02-16T10:32:53-05:00"
+date = "2024-02-16T11:47:53-05:00"
 author = "root"
 cover = ""
-tags = ["disks/partitions", "system", "group", "partition", "partition,", "group.", "user", "systems"]
-keywords = ["group.", "group", "systems", "volume.", "commands.", "partition,", "`fdisk`", "logical"]
+tags = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
+keywords = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
 description = ""
 showFullContent = false
 readingTime = true
@@ -13,80 +13,80 @@ color = "" #color from the theme settings
 +++
 
 
-# Tutorial: Creating and Removing Physical Volumes in Red Hat Certified Systems Administrator Exam
+# Red Hat Certified Systems Administrator Exam 200 Objective: "Create and remove physical volumes" Tutorial
 
-In this tutorial, we will go through the process of creating and removing physical volumes in Red Hat Certified Systems Administrator Exam 200 Objective. As a Red Hat Certified Systems Administrator, it is essential to have a thorough understanding of creating and managing physical volumes to effectively utilize the storage space available on your system.
+## Introduction
+A physical volume (PV) is a partition or a disk on a physical hard drive that is used by the Linux Logical Volume Manager (LVM). It is the first step in setting up LVM and plays a crucial role in managing storage on Red Hat Enterprise Linux systems. This tutorial will provide a step-by-step guide on how to create and remove physical volumes, which is one of the objectives for the Red Hat Certified Systems Administrator Exam (EX200).
 
 ## Prerequisites
+Before we begin, make sure you have a basic understanding of Linux commands and have access to a Red Hat Enterprise Linux system. Additionally, it is recommended to have some knowledge of LVM concepts such as logical volumes and volume groups.
 
-- A Red Hat Enterprise Linux (RHEL) system
-- Basic knowledge of Linux commands and disk management
-- Root access or a user with sudo privileges
+## Step 1: Checking existing physical volumes
+First, we need to check if there are any existing physical volumes on our system. This can be done by running the `pvs` command, which will display a list of all physical volumes and their attributes, such as size and mount point.
 
-## What are Physical Volumes?
-
-Physical volumes (PVs) are essentially block devices, such as hard drives or solid-state drives, that are designated as storage space for Logical Volumes (LVs) in the Red Hat Logical Volume Manager (LVM). PVs can be combined to form a Volume Group (VG), which then serves as a storage pool for creating and managing LVs.
-
-## Step 1: Checking Existing Physical Volumes
-
-Before creating new physical volumes, it is essential to check the existing ones on your system to get an overview of the storage space available. To do this, use the `pvdisplay` command, which will provide details about all the physical volumes currently in use on your system.
-
-```bash
-[root@server ~]# pvdisplay
+```
+$ pvs
 ```
 
-## Step 2: Creating a Physical Volume
+If there are no existing physical volumes, the output will be blank.
 
-To create a new physical volume, you will first need to have an unpartitioned disk or partition available. You can check this using `fdisk` or `lsblk` commands.
+## Step 2: Creating a physical volume
+To create a physical volume, we first need to identify the drive or partition we want to use. This can be done by using the `fdisk -l` command, which lists all available drives and their partitions.
 
-Once you have identified the unpartitioned disk or partition, you can use the `pvcreate` command to initialize it as a physical volume.
-
-```bash
-[root@server ~]# pvcreate /dev/sdb
+```
+$ fdisk -l
 ```
 
-This command will create a physical volume named `/dev/sdb`, which is now available for use in a VG.
+Once we have identified the drive or partition, we can use the `pvcreate` command to create the physical volume.
 
-You can also create multiple physical volumes at once by passing in the names of the disks/partitions separated by spaces.
-
-```bash
-[root@server ~]# pvcreate /dev/sdb /dev/sdc /dev/sdd
+```
+$ pvcreate /dev/sdb
 ```
 
-## Step 3: Adding Physical Volumes to a Volume Group
+This will initialize the drive or partition as a physical volume and assign a unique identifier (PV UUID) to it.
 
-To make use of the newly created physical volumes, you will need to add them to a Volume Group. A Volume Group serves as a virtual pool of storage space that can span across multiple physical volumes.
+## Step 3: Displaying the newly created physical volumes
+To verify that the physical volume has been successfully created, we can use the `pvs` command again.
 
-To add physical volumes to an existing Volume Group, use the `vgextend` command followed by the name of the Volume Group and the name(s) of the physical volumes to be added.
-
-```bash
-[root@server ~]# vgextend vg_sys /dev/sdb /dev/sdc
+```
+$ pvs
 ```
 
-This command will add the physical volumes `/dev/sdb` and `/dev/sdc` to the Volume Group named `vg_sys`.
+The output should now show the new physical volume along with its attributes.
 
-## Step 4: Removing Physical Volumes from Volume Group
+## Step 4: Adding a physical volume to a volume group
+The next step is to add the physical volume to a volume group (VG). A volume group is a collection of physical volumes that are managed together.
 
-If you need to remove a physical volume from a Volume Group, you can use the `vgreduce` command followed by the name of the Volume Group and the name(s) of the physical volumes to be removed.
+To add our new physical volume to an existing volume group, we can use the `vgextend` command.
 
-```bash
-[root@server ~]# vgreduce vg_sys /dev/sdc
+```
+$ vgextend vg0 /dev/sdb
 ```
 
-This command will remove the physical volume `/dev/sdc` from the Volume Group named `vg_sys`.
+This will add our new physical volume to the `vg0` volume group. If we wanted to create a new volume group with only our new physical volume, we could use the `vgcreate` command instead.
 
-## Step 5: Deleting Physical Volumes
+## Step 5: Displaying the volume groups
+To verify that the physical volume has been added to the volume group, we can use the `vgs` command. This will display a list of all volume groups and their attributes.
 
-If you no longer need a physical volume, you can delete it using the `pvremove` command followed by the name of the physical volume.
-
-```bash
-[root@server ~]# pvremove /dev/sdb
+```
+$ vgs
 ```
 
-This command will remove all LVM structures from the physical volume `/dev/sdb` and render it back to its original partition condition.
+Our new physical volume should now be listed as part of the volume group we specified.
 
-**Note:** Deleting a physical volume will permanently remove all data stored on it, so use this command with caution.
+## Step 6: Removing a physical volume
+If we want to remove a physical volume from a volume group, we can use the `pvremove` command. This will remove the physical volume from the specified volume group and all the data on the physical volume will be lost.
+
+```
+$ pvremove /dev/sdb
+```
+
+## Step 7: Removing a volume group
+To remove a volume group, we can use the `vgremove` command. This will remove the specified volume group and all associated logical volumes and physical volumes.
+
+```
+$ vgremove vg0
+```
 
 ## Conclusion
-
-Congratulations! You have now learned how to create, add, remove, and delete physical volumes in Red Hat Certified Systems Administrator Exam 200 Objective. This skill is essential for effectively managing storage space on your system, and practicing these steps will prepare you for the exam and real-world scenarios. Remember to handle all LVM commands with care, as they deal with critical system components.
+In this tutorial, we have covered the basics of creating and removing physical volumes. This is an essential skill for any Red Hat Certified Systems Administrator, as it is a crucial step in managing storage using LVM. Now, you are ready to confidently tackle this objective in the Red Hat Certified Systems Administrator Exam (EX200). 

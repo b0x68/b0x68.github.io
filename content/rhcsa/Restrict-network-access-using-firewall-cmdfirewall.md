@@ -1,101 +1,134 @@
 +++
 title = "Restrict network access using firewall-cmd/firewall"
-date = "2024-02-16T10:36:25-05:00"
+date = "2024-02-16T11:51:48-05:00"
 author = "root"
 cover = ""
-tags = ["firewalld", "--add-service=ssh`.", "firewall.", "system", "services", "command:", "system.", "firewalls"]
-keywords = ["firewall-cmd?", "--add-service=ssh`.", "firewall-cmd/firewall", "network", "linux", "command:", "security", "service"]
+tags = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
+keywords = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
 description = ""
 showFullContent = false
 readingTime = true
 hideComments = false
 color = "" #color from the theme settings
 +++
+ 
 
+# Tutorial: Restricting Network Access using firewall-cmd/firewall
 
-# Red Hat Certified Systems Administrator Exam 200 Objective: Restrict Network Access using firewall-cmd/firewall Tutorial
+In this tutorial, we will be discussing the Red Hat Certified Systems Administrator Exam 200 Objective: "Restrict network access using firewall-cmd/firewall." We will go through the process of setting up and using the firewall-cmd and firewall tools to restrict network access and secure your system.
 
-In this tutorial, we will dive into the details of how to restrict network access using firewall-cmd/firewall, which is a crucial skill to master for the Red Hat Certified Systems Administrator Exam 200. Firewalls are essential security measures that control the flow of network traffic to and from a system. They act as a barrier between a trusted internal network and an untrusted external network, such as the internet.
+## What is firewall-cmd/firewall?
 
-By the end of this tutorial, you will understand:
+firewall-cmd and firewall are command line tools used to manage firewalls in Linux systems, specifically in Red Hat Enterprise Linux (RHEL). These tools provide administrators with a flexible and powerful way to control network traffic and secure their system by defining rules and policies.
 
-- How to use firewall-cmd to interact with the firewall
-- The structure and terminology of the firewall rules
-- How to configure network zones and services
-- How to restrict network access using firewall rules
-- How to save and persist firewall changes
+## Prerequisites
 
-So let's get started!
+Before beginning this tutorial, you will need:
 
-## What is firewall-cmd?
+- A system running Red Hat Enterprise Linux
+- root or sudo privileges
+- Basic knowledge of command line interface (CLI)
 
-firewall-cmd is a command-line interface (CLI) tool that allows you to manage the firewall on a system. It is the primary means of configuring the firewall in Red Hat Enterprise Linux (RHEL). It uses D-Bus to communicate with the firewalld service, which is responsible for managing the firewall. The firewalld service uses a set of rules to determine which network packets are allowed or blocked.
+## Setting Up firewall-cmd/firewall
 
-## Understanding Firewall Rules
+1. First, make sure you have the latest version of firewalld package installed on your system. You can check this by running the following command:
 
-Before we jump into configuring the firewall, it is essential to understand the structure of firewall rules. Firewall rules are made up of four main components:
+`firewall-cmd --version`
 
-1. **Rule Type:** This specifies the type of rule, such as a zone rule, service rule, or port rule.
-2. **Zone:** A zone is a subset of the network with a specific level of trust attached to it. The default zones in Red Hat Enterprise Linux are public, external, internal, dmz, and work.
-3. **Source and Destination:** These specify the network or IP addresses from where the traffic is coming and where it is going.
-4. **Action:** This determines whether the traffic is allowed or blocked.
+2. If you don't have the package installed, run the following command to install it:
 
-## Configuring Network Zones and Services
+`sudo yum install firewalld`
 
-Before we can start restricting network access, we need to configure network zones and services. These are essential components of the firewall that help define the level of trust attached to a particular network or service.
+3. Once the package is installed, start the firewalld service and enable it to start on boot by running the following commands:
 
-To configure network zones and services using firewall-cmd, follow these steps:
+`sudo systemctl start firewalld`<br>
+`sudo systemctl enable firewalld`
 
-Step 1: List the available network zones by running the command `sudo firewall-cmd --get-zones`.
+4. Verify that the service is running by using the following command:
 
-Step 2: Choose the appropriate zone for your system. For this tutorial, we will use the `public` zone.
+`firewall-cmd --state`
 
-Step 3: To set your interface to a specific zone, run the command `sudo firewall-cmd --zone=public --change-interface=<interface_name>`. Replace the <interface_name> with the name of your interface.
+This should return a message stating that the service is running.
 
-Step 4: Next, we need to define the services that are allowed in this zone. To view the list of available services, run the command `sudo firewall-cmd --get-services`.
+## Understanding Zones and Default Policies
 
-Step 5: Let's say we want to allow SSH access. We can add this service to our zone by running the command `sudo firewall-cmd --zone=public --add-service=ssh`.
+In firewalld, zones are predefined sets of rules that control how traffic is allowed or blocked in a specific network or interface. There are several built-in zones in firewalld, such as public, home, internal, and external. Each zone has its own set of rules and policies.
 
-Step 6: To make these changes permanent, use the `--permanent` flag with the above commands and then reload the firewall by running `sudo firewall-cmd --reload`.
+Before we start adding rules, it's important to understand the default policies for the zones. By default, firewalld has its `default_zone` set to `public`, and the default policy for this zone is `DROP` (meaning all incoming connections are blocked). To check your default zone, run the following command:
 
-## Restricting Network Access using Firewall Rules
+`firewall-cmd --get-default-zone`
 
-Now that we have configured our zones and services, we can start restricting network access using firewall rules. There are two types of rules you can use: **zone rules** and **service rules**.
+To check the default policy for your current default zone, run:
 
-### Zone Rules
+`firewall-cmd --zone=<zone> --get-default`
 
-Zone rules apply to all traffic coming into or going out of a specific zone. To add a rule for a zone, follow these steps:
+## Managing Zones and Rules
 
-Step 1: List the current rules for the zone by running `sudo firewall-cmd --zone=<zone_name> --list-all`.
+Now that we have a basic understanding of zones and policies, let's dive into managing them using firewall-cmd and firewall tools.
 
-Step 2: To add a rule, use the `--add-rich-rule` option followed by the rule arguments. For example, if we want to block all incoming traffic from a specific IP address, we can use the following command:
+### Adding and Removing Zones
 
- `sudo firewall-cmd --zone=public --add-rich-rule='rule family="ipv4" source address="x.x.x.x" drop'`
+To add a new zone, we can use the `--new-zone` option with firewall-cmd. For example, to add a zone named `secure` to our firewall, we can run the following command:
 
-This command adds a rule to the public zone that blocks all incoming traffic from the IP address x.x.x.x.
+`sudo firewall-cmd --permanent --new-zone=secure`
 
-### Service Rules
+The `--permanent` option ensures that the change is saved and will persist after a reboot. 
 
-Service rules, on the other hand, apply to a specific service. To add a rule for a service, follow these steps:
+To remove a zone, use the `--delete-zone` option:
 
-Step 1: List the current rules for the service by running `sudo firewall-cmd --zone=<zone_name> --list-all`.
+`sudo firewall-cmd --permanent --delete-zone=secure`
 
-Step 2: To add a rule, use the `--add-service` option followed by the name of the service. For example, if we want to block all incoming HTTP traffic, we can use the following command:
+### Assigning Interfaces to Zones
 
-`sudo firewall-cmd --zone=public --add-service=http`
+Now that we have added a new zone, we need to assign an interface to it. This is done using the `--zone` and `--change-zone` options. For example, if we want to assign the `eth0` interface to our `secure` zone, we can run:
 
-This command adds a rule to the public zone that blocks all incoming HTTP traffic.
+`sudo firewall-cmd --zone=secure --change-interface=eth0`
 
-## Saving and Persisting Changes
+### Adding Rules to Zones
 
-To ensure that our firewall rules persist upon system reboot, we need to save them. To save our changes, follow these steps:
+Once we have our zones set up and interfaces assigned, we can add rules to allow or deny traffic in our desired zone. This is done using the `--add-rich-rule` option and specifying the zone we want to add the rule to. For example, to allow incoming SSH connections in our `secure` zone, we can run the following command:
 
-Step 1: List the current runtime rules using `sudo firewall-cmd --runtime-to-permanent`.
+`sudo firewall-cmd --zone=secure --add-rich-rule='rule family="ipv4" source address="192.168.1.2" port port="22" protocol="tcp" accept'`
 
-Step 2: To make the changes permanent, either reload the firewall or restart the system.
+This command adds a rich rule that allows incoming SSH connections from the IP `192.168.1.2` on port 22 using TCP protocol.
 
-By default, all changes made using the `--add-*` and `--remove-*` options are applied at runtime. To make these changes permanent, use the `--permanent` option.
+To block a specific IP address in our `public` zone, we can use the `drop` action instead:
+
+`sudo firewall-cmd --zone=public --add-rich-rule='rule family="ipv4" source address="125.253.112.36" drop'`
+
+### Listing Zones and Rules
+
+To list all the configured zones in our firewall, we can use the `--list-all-zones` option:
+
+`firewall-cmd --list-all-zones`
+
+To list the rules in a specific zone, we can use the `--list-rich-rules` option:
+
+`firewall-cmd --zone=secure --list-rich-rules`
+
+### Managing Default Policies for Zones
+
+As mentioned earlier, each zone has its own default policy, but we can change this using the `--set-default` option. For example, if we want to set the default policy for our `public` zone to `ACCEPT`, we can run the following command:
+
+`sudo firewall-cmd --zone=public --set-default=accept`
+
+This will allow all incoming connections in the `public` zone by default.
+
+## Making Changes Permanent
+
+Firewalld allows temporary changes that are not saved after a reboot. To make a change permanent, use the `--permanent` option when adding or modifying rules. For example,
+
+`sudo firewall-cmd --permanent --zone=secure --add-rich-rule='rule family="ipv4" source address="192.168.1.2" port port="22" protocol="tcp" accept'`
+
+This change will be saved and applied every time the firewall service is started.
+
+## Reload and Restart firewall-cmd
+
+Any changes made to the firewall-cmd configuration will only take effect after the service is reloaded or restarted. To do this, use the `reload` or `restart` options respectively:
+
+`sudo firewall-cmd --reload`<br>
+`sudo firewall-cmd --restart`
 
 ## Conclusion
 
-Congratulations! You have now learned how to restrict network access using firewall-cmd/firewall. We covered essential concepts such as firewall-cmd, firewall rules, network zones, services, and how to save and persist changes. By mastering this skill, you will be well-prepared for the Red Hat Certified Systems Administrator Exam 200. Keep practicing and mastering these concepts, and you'll be on your way to becoming a certified Red Hat Systems Administrator. Good luck! 
+Congratulations, you have successfully learned how to restrict network access using firewall-cmd/firewall. By utilizing zones, rules, and policies, you can control incoming and outgoing network traffic and secure your system. Be sure to regularly review your firewall configurations and make changes as needed to keep your system protected.

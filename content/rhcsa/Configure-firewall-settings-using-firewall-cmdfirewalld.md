@@ -1,123 +1,110 @@
 +++
 title = "Configure firewall settings using firewall-cmd/firewalld"
-date = "2024-02-16T10:37:21-05:00"
+date = "2024-02-16T11:52:38-05:00"
 author = "root"
 cover = ""
-tags = ["system,", "network", "firewall", "--add-service=ssh", "configuration", "users", "linux.", "system"]
-keywords = ["command:", "systemctl", "`firewall-cmd`", "networkmanager", "configuration,", "command", "firewall", "`systemctl`"]
+tags = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
+keywords = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
 description = ""
 showFullContent = false
 readingTime = true
 hideComments = false
 color = "" #color from the theme settings
 +++
-:
 
-# Red Hat Certified Systems Administrator Exam 200 Objective: Configure Firewall Settings using firewall-cmd/firewalld
 
-In this tutorial, we will explain the steps to configure firewall settings using firewall-cmd/firewalld on a Red Hat Enterprise Linux system. This is one of the objectives on the Red Hat Certified Systems Administrator Exam 200, and it is important for system administrators to have a strong understanding of firewall configuration in order to ensure the security of their systems.
+# Introduction
+In this tutorial, we will be discussing how to configure firewall settings using `firewall-cmd` and `firewalld` on a Red Hat system. Firewall is a critical component of network security as it acts as a protective barrier between your system and the external network. As a Red Hat Certified Systems Administrator, it is important to have a thorough understanding of how to configure firewall settings to ensure the security of your system.
 
-## Introduction to Firewall-cmd and Firewalld
+# Prerequisites
+Before we begin, make sure you have the following prerequisites:
+- A Red Hat system with `firewall-cmd` and `firewalld` installed.
+- Basic knowledge of the Linux command line.
+- Root access or sudo privileges to make changes to the firewall settings.
+- A basic understanding of firewall concepts and protocols.
 
-Firewall-cmd is a command-line interface for the firewalld daemon, which is a firewall management tool for Linux. It allows users to configure and manage firewall rules easily, making it a convenient tool for system administrators.
+# Understanding firewall-cmd and firewalld
+## Firewall-cmd
+Firewall-cmd is a command line interface tool that allows you to manage firewall settings for your system. It is the preferred method for managing the firewall configuration on Red Hat systems. Firewall-cmd operates by communicating with the firewalld daemon, which manages the firewall rules and settings.
 
-Some key features of firewall-cmd/firewalld include:
+## Firewalld
+Firewalld is a dynamic firewall management tool that simplifies the process of managing firewall rules. It comes pre-installed on Red Hat systems and runs as a daemon. One of the main advantages of using firewalld is that it allows for easy management of firewall rules without having to restart the entire firewall service.
 
-- Support for both IPv4 and IPv6 traffic
-- Zoned-based configuration for more granular control
-- Integration with NetworkManager
-- Support for dynamic firewall rules that are automatically activated when ports are opened
+# Configuring Firewall Settings
+Now, let's dive into how we can configure firewall settings using `firewall-cmd` and `firewalld`.
 
-## Step 1: Checking the Firewall Status
-
-Before we begin configuring the firewall, it is important to check its status to ensure that we are starting from a clean slate. To do this, we can use the `systemctl` command to check the status of the firewalld service:
-
+## 1. Check Firewall Status
+Before making any changes, it is important to check the current status of your firewall. To do this, run the following command:
 ```
-systemctl status firewalld
+sudo firewall-cmd --state
 ```
+This will show the current status of your firewall, which can be either `running` or `not running`.
 
-If the service is not running, we can start it using the following command:
+## 2. Viewing Firewall Zones
+Firewalld divides the network into different zones, with each zone having its own set of rules. By default, firewalld has the following zones:
+- public: Used for public networks, such as the internet.
+- internal: Used for internal networks, such as corporate networks.
+- dmz: Used for demilitarized zones, such as publicly accessible servers.
 
+To view all the available zones, use the following command:
 ```
-systemctl start firewalld
-```
-
-## Step 2: Understanding Firewall Zones
-
-Firewalld uses zones to define the level of security for different network connections. A zone specifies which network interfaces are trusted and which are not, and allows for different firewall rules to be applied to each zone. By default, firewalld comes with the following predefined zones:
-
-- `drop`: all incoming connections are dropped without notification
-- `block`: all incoming connections are rejected with an ICMP host unreachable message
-- `public`: for use with public networks
-- `external`: for use with external networks
-- `internal`: for use with internal networks
-- `dmz`: for use with demilitarized zones
-- `work`: for use with work networks
-- `home`: for use with home networks
-- `trusted`: for use with trusted networks
-
-It is important to choose the appropriate zone based on the type of network connection you are configuring. For example, if you are setting up a firewall for a server connected to a public network, it is recommended to use the public zone.
-
-## Step 3: View Current Zones and Active Zones
-
-To view the current zones on your system, use the `firewall-cmd` command with the `--list-all-zones` option:
-
-```
-firewall-cmd --list-all-zones
+sudo firewall-cmd --get-zones
 ```
 
-This will list all the available zones on your system and their associated interfaces.
+## 3. Applying Firewall Settings to Zones
+Once you have identified the desired zone, you can apply firewall settings to it. This can be done in two ways:
+- Permanent: Changes are saved and applied whenever the firewall service is started.
+- Immediate: Changes are applied immediately but will not persist after a system reboot.
 
-To view the active zones, use the `--get-active-zones` option:
-
+To apply firewall settings permanently, use the `--permanent` flag, followed by the desired rule and the zone you want to apply it to. For example:
 ```
-firewall-cmd --get-active-zones
-```
-
-This will show which zones are currently active and the interfaces assigned to them.
-
-## Step 4: Changing the Default Zone
-
-The default zone is the zone assigned to all network connections that are not explicitly assigned to a specific zone. To change the default zone, use the `--set-default-zone` option followed by the name of the zone you want to set as default. For example, to set the home zone as the default zone, use the following command:
-
-```
-firewall-cmd --set-default-zone=home
+sudo firewall-cmd --permanent --zone=public --add-service=http
 ```
 
-## Step 5: Adding Services to Zones
-
-Firewalld allows you to specify which services are allowed or blocked for each zone. Services are predefined groupings of ports and protocols that can be easily managed by firewalld. To add a service to a zone, use the `--add-service` option followed by the name of the service and the zone you want to add it to. For example, to add the SSH service to the public zone, use the following command:
-
+To apply firewall settings immediately, use the `--zone` flag with the desired rule and the zone you want to apply it to. For example:
 ```
-firewall-cmd --add-service=ssh --zone=public
+sudo firewall-cmd --zone=public --add-service=https
 ```
 
-You can also remove services from zones using the `--remove-service` option.
-
-## Step 6: Opening Ports for Specific Services
-
-In addition to using services, you can also open specific ports for services using the `--add-port` option. This allows for more granular control over which ports are allowed or blocked for each zone. For example, to open port 80 for HTTP traffic on the public zone, use the following command:
-
+## 4. Enabling and Disabling Firewall Zones
+To enable a firewall zone, use the `--set-default-zone` flag with the desired zone. For example:
 ```
-firewall-cmd --add-port=80/tcp --zone=public
+sudo firewall-cmd --set-default-zone=public
 ```
 
-You can use the `--permanent` option to make these changes persistent, meaning they will be applied after the system is restarted.
-
-## Step 7: Saving Changes and Reloading the Firewall
-
-After making changes to the firewall configuration, it is important to save them so that they will be applied the next time the firewall is started. To do this, use the `--runtime-to-permanent` option to make the changes permanent:
-
+To disable a firewall zone, use the `--permanent` flag with the `--zone` flag, followed by the desired zone and the `--remove-zone` flag. For example:
 ```
-firewall-cmd --runtime-to-permanent
+sudo firewall-cmd --permanent --zone=dmz --remove-zone=demilitarized
 ```
 
-It is also possible to reload the firewall configuration without restarting the firewalld service using the following command:
-
+## 5. Viewing Active Firewalls Rules
+To view the currently active firewall rules, use the `list` command. This will display all the active rules organized by zone. For example:
 ```
-firewall-cmd --reload
+sudo firewall-cmd --list-all
 ```
 
-## Conclusion
+## 6. Adding and Removing Firewall Rules
+Firewall rules can be added using the `--add-rule` flag, followed by the desired rule and the zone you want to apply it to. For example:
+```
+sudo firewall-cmd --add-rule="rule family=ipv4 source address=10.0.0.0/24 accept" --zone=internal
+```
 
-In this tutorial, we have covered the steps to configure firewall settings using firewall-cmd/firewalld on a Red Hat Enterprise Linux system. By understanding the role of zones and how to add services and open ports, you should now be able to effectively configure a firewall to secure your system. This knowledge will be valuable for the Red Hat Certified Systems Administrator Exam 200 and for effectively managing your systems in the future.
+Similarly, you can remove a rule using the `--remove-rule` flag. For example:
+```
+sudo firewall-cmd --remove-rule="rule family=ipv4 source address=10.0.0.0/24 accept" --zone=internal
+```
+
+## 7. Troubleshooting Firewall Settings
+If you encounter any issues with your firewall settings, the `--panic-on` command can be used to temporarily disable the firewall to troubleshoot the issue. For example:
+```
+sudo firewall-cmd --panic-on
+```
+
+## 8. Restarting the Firewall Daemon
+After making changes to your firewall settings, it is important to restart the firewall daemon for the changes to take effect. To do this, use the `reload` command. For example:
+```
+sudo firewall-cmd --reload
+```
+
+# Conclusion
+By now, you should have a good understanding of how to configure firewall settings using `firewall-cmd` and `firewalld` on a Red Hat system. By following these steps and understanding the various commands and flags, you can effectively manage your system's firewall to ensure the security of your network. Remember to always check the status of your firewall before making any changes and to restart the firewall daemon after making changes for them to take effect. 

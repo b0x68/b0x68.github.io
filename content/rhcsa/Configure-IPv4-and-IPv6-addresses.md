@@ -1,10 +1,10 @@
 +++
 title = "Configure IPv4 and IPv6 addresses"
-date = "2024-02-16T10:35:54-05:00"
+date = "2024-02-16T11:51:12-05:00"
 author = "root"
 cover = ""
-tags = ["network", "system,", "/etc/sysconfig/network-scripts/ifcfg-ethx", "log", "configurations:**", "service", "command", "configurations:"]
-keywords = ["configurations:", "system,", "/etc/sysconfig/network-scripts/ifcfg-ethx", "file.", "files", ""bootproto"", "network,", "file"]
+tags = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
+keywords = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
 description = ""
 showFullContent = false
 readingTime = true
@@ -13,79 +13,105 @@ color = "" #color from the theme settings
 +++
 
 
-**Welcome to our tutorial on how to configure IPv4 and IPv6 addresses! In this tutorial, we will cover everything you need to know to successfully complete the Red Hat Certified Systems Administrator Exam 200 Objective on configuring IPv4 and IPv6 addresses. Let's get started!**
+# Introduction to Configuring IPv4 and IPv6 Addresses
 
-**Table of Contents:**
-1. Introduction to IPv4 and IPv6
-2. Understanding IP Addresses
-3. Configuring IPv4 Addresses
-4. Configuring IPv6 Addresses
-5. Troubleshooting IPv4 and IPv6 Configurations
-6. Conclusion
+In today's world, communication between devices over a network is essential for smooth functioning of various systems. The Internet Protocol (IP) is the backbone of this communication, and every device on a network requires a unique IP address to identify and communicate with each other.
 
-**1. Introduction to IPv4 and IPv6:**
+A Red Hat Certified Systems Administrator (RHCSA) must have a thorough understanding of configuring both IPv4 and IPv6 addresses, as it is one of the critical objectives of the RHCSA Exam 200. In this tutorial, we will cover the basics of IPv4 and IPv6 addresses, and walk you through the steps to configure them on a Red Hat Enterprise Linux system.
 
-Before we delve into the process of configuring IPv4 and IPv6 addresses, it is important to have a basic understanding of what they are and how they differ.
+## Understanding IPv4 and IPv6 Addresses
 
-Internet Protocol version 4 (IPv4) is the most commonly used protocol for assigning unique identifiers to devices connected to the internet. It uses 32-bit addresses, allowing for approximately 4.3 billion unique combinations. However, due to the rapid growth of internet usage, the number of available IPv4 addresses is quickly dwindling.
+IPv4 is the most commonly used IP version and uses a 32-bit address scheme, which allows for approximately 4.3 billion unique addresses. While this may seem like a large number, it is not enough to accommodate the growing number of network devices, leading to the development of IPv6. IPv6 uses a 128-bit address scheme, allowing for trillions of unique addresses, thus ensuring the continuous growth of network devices.
 
-In order to address this issue, Internet Protocol version 6 (IPv6) was introduced. IPv6 uses 128-bit addresses, providing for a significantly larger number of unique combinations (approximately 3.4×10^38). This ensures that there will be enough unique addresses for all devices connected to the internet.
+However, the basic structure and format of both IPv4 and IPv6 addresses are similar. An IPv4 address is a string of four numbers separated by periods, while an IPv6 address is a combination of hexadecimal values and colons. An example of an IPv4 address is 192.168.1.1, and an IPv6 address is 2001:cdba:0000:0000:0000:0000:3257:9652.
 
-**2. Understanding IP Addresses:**
+Before we dive into the steps of configuring IPv4 and IPv6 addresses, we must understand some core concepts:
 
-An IP address is a numerical label assigned to each device connected to a network. It serves as a unique identifier for communication between devices on a network. IP addresses are divided into two types: public and private.
+- **Network Address** - The first address in a network address range that identifies the network itself.
+- **Host Address** - The last address in a network address range that identifies a specific network device.
+- **Subnet Mask** - A 32-bit number used to divide an IP address into network and host addresses.
+- **Default Gateway** - A network device that serves as a gateway for data to be sent to other networks.
+- **DNS Server** - A network device that maintains a database of domain names and their corresponding IP addresses, enabling domain name resolution.
 
-- Public IP addresses: These are unique addresses that are assigned to devices connected directly to the internet. They allow devices to communicate with each other across the internet.
-- Private IP addresses: These are addresses assigned to devices connected to a private network, such as a home or office network. They are not accessible from the internet and are used for internal communication within the network.
+## Configuring IPv4 and IPv6 Addresses on a Red Hat Enterprise Linux System
 
-IP addresses are typically written in a 32-bit numerical format, separated by periods. For example: 192.168.1.1.
+To configure IPv4 and IPv6 addresses on a Red Hat Enterprise Linux system, follow the steps outlined below:
 
-**3. Configuring IPv4 Addresses:**
+### Step 1: Identify Network Interfaces
 
-Configuring IPv4 addresses involves assigning unique addresses to devices connected to a network. This can be done manually or via an automated process using Dynamic Host Configuration Protocol (DHCP).
+The first step is to identify the network interfaces on your system. Network interfaces are used to connect a device to a network. To view the network interfaces, use the command `ip a`.
 
-To manually assign a static IPv4 address on a Red Hat system, follow these steps:
+```
+$ ip a
+```
 
-1. Log in to the system as a root user.
-2. Open the network configuration file located at /etc/sysconfig/network-scripts/ifcfg-ethX (where X is the interface name).
-3. Locate the line that reads "BOOTPROTO" and change its value to "static".
-4. Add the following lines to the file:
-    IPADDR=<desired IP address>
-    NETMASK=<desired subnet mask>
-    GATEWAY=<desired default gateway>
-5. Save the file and exit.
-6. Restart the network service using the command: "systemctl restart network".
-7. Test the configuration by pinging the assigned IP address.
+This command will display a list of all the network interfaces on your system, along with their IP addresses and other details. Note down the names of the interfaces you wish to configure.
 
-**4. Configuring IPv6 Addresses:**
+### Step 2: Configure IPv4 Address
 
-Configuring IPv6 addresses is a similar process to configuring IPv4 addresses. However, there are some key differences to keep in mind.
+To configure an IPv4 address, we will use the `nmcli` command-line tool, which manages the NetworkManager services. Follow the steps below to configure an IPv4 address:
 
-Firstly, IPv6 addresses are written in a 128-bit format, separated by colons. For example: 2001:0db8:85a3:0000:0000:8a2e:0370:7334.
+1. Use the `nmcli` command with the `con show` option to view the available connections.
 
-To manually assign a static IPv6 address on a Red Hat system, follow these steps:
+```
+$ nmcli con show
+```
 
-1. Log in to the system as a root user.
-2. Open the network configuration file located at /etc/sysconfig/network-scripts/ifcfg-ethX (where X is the interface name).
-3. Locate the line that reads "IPV6INIT" and change its value to "yes".
-4. Add the following line to the file:
-    IPV6ADDR=<desired IPv6 address>
-5. Save the file and exit.
-6. Restart the network service using the command: "systemctl restart network".
-7. Test the configuration by pinging the assigned IPv6 address.
+2. Identify the connection you wish to configure and make a note of its UUID.
+3. Use the `nmcli` command with the `con mod` option to modify the connection. You will need to specify the name or UUID of the connection, the configuration option to modify, and the new value. For example, to set the IPv4 address of the eth0 interface to 192.168.1.100 with a subnet mask of 255.255.255.0, use the following command:
 
-It is also possible to configure IPv6 addresses using DHCP, as with IPv4 addresses. This can be done by modifying the "BOOTPROTO" line to "dhcp6" in the network configuration file.
+```
+$ nmcli con mod eth0 ipv4.addresses 192.168.1.100/24
+```
 
-**5. Troubleshooting IPv4 and IPv6 Configurations:**
+4. Finally, activate the connection with the `up` option.
 
-After configuring IPv4 and IPv6 addresses, it is important to test the configurations to ensure successful communication between devices on the network. In case of any issues, the following steps can help troubleshoot the configurations:
+```
+$ nmcli con up eth0
+```
 
-- Verify the IP addresses assigned to each device and make sure they are in the same subnet.
-- Check the network configuration files for any syntax errors.
-- Ensure that the network service is running.
-- Check for any firewalls that may be blocking communication.
-- Use the "ping" command to test connectivity between devices.
+### Step 3: Configure IPv6 Address
 
-**6. Conclusion:**
+To configure an IPv6 address, follow the same steps as for configuring an IPv4 address, but use the `ipv6` option instead. For example, to set the IPv6 address of the eth0 interface to 2001:cdba:0000:0000:0000:0000:3257:9652 with a subnet mask of 64, use the following command:
 
-In this tutorial, we have covered everything you need to know about configuring IPv4 and IPv6 addresses. We have discussed the differences between the two protocols, how to manually assign addresses, and how to troubleshoot any potential issues. Make sure to practice these steps on a Red Hat system to gain a better understanding and prepare for the Red Hat Certified Systems Administrator Exam 200. Good luck!
+```
+$ nmcli con mod eth0 ipv6.addresses 2001:cdba:0000:0000:0000:0000:3257:9652/64
+```
+
+### Step 4: Configure Default Gateway
+
+To configure a default gateway, use the `nmcli` command with the `con mod` option, and specify the default gateway IP address using the `ipv4.gateway` option. For example, to set the default gateway to 192.168.1.1, use the following command:
+
+```
+$ nmcli con mod eth0 ipv4.gateway 192.168.1.1
+```
+
+Note that you can configure multiple default gateways by adding additional IP addresses separated by a comma.
+
+### Step 5: Configure DNS Server
+
+To configure a DNS server, use the `nmcli` command with the `con mod` option, and specify the DNS server IP address using the `ipv4.dns` option. For example, to set the DNS server to 8.8.8.8, use the following command:
+
+```
+$ nmcli con mod eth0 ipv4.dns 8.8.8.8
+```
+
+Note that you can configure multiple DNS servers by adding additional IP addresses separated by a comma.
+
+### Step 6: Verify Configuration
+
+To verify the configuration, use the `nmcli` command with the `con show` option again. It should display the updated values for the corresponding connection.
+
+```
+$ nmcli con show
+```
+
+Additionally, you can also use the `ip a` command to check the IP addresses of the configured interfaces.
+
+```
+$ ip a
+```
+
+## Conclusion
+
+In this tutorial, we covered the basics of IPv4 and IPv6 addresses and walked through the steps to configure them on a Red Hat Enterprise Linux system. As a RHCSA, it is crucial to have a thorough understanding of this topic to ensure efficient communication between devices on a network. By following the steps outlined in this tutorial, you will be well-equipped to configure IPv4 and IPv6 addresses on your system. Good luck on your RHCSA 200 exam!
