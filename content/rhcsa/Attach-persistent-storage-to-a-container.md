@@ -3,8 +3,8 @@ title = "Attach persistent storage to a container"
 date = "2024-02-16T10:40:09-05:00"
 author = "root"
 cover = ""
-tags = ["container"", "container:", ""persistentvolumeclaim":", ""volumemounts":", "command", ""containers":", "container", ""myimage","]
-keywords = [""/mount/path",", "--image=myimage", ""volumes":", "volume", ""image":", "container.", "systems", ""myimage","]
+tags = ["container", "container", "persistentvolumeclaim", "volumemounts", "command", "containers", "container", "myimage"]
+keywords = ["/mount/path", "--image=myimage", "volume", "image", "container", "systems", "myimage"]
 description = ""
 showFullContent = false
 readingTime = true
