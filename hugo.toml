@@ -40,7 +40,8 @@ paginate = 5
 
   # set post to show the last updated
   # If you use git, you can set `enableGitInfo` to `true` and then post will automatically get the last updated
-  showLastUpdated = false
+  showLastUpdated = true
+  enableGitInfo = true
 
   # set a custom favicon (default is a `themeColor` square)
   # favicon = "favicon.ico"
@@ -90,9 +91,9 @@ paginate = 5
         name = "About"
         url = "/about"
       [[menus.main]]
-        identifier = "techcontent"
-        name = "Technical Content"
-        url = "/techcontent"
+        identifier = "rhcsa"
+        name = "RHCSA"
+        url = "/rhcsa"
 
   [markup.goldmark]
     [markup.goldmark.extensions]
