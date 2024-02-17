@@ -91,6 +91,10 @@ paginate = 5
         name = "About"
         url = "/about"
       [[menus.main]]
+        identifier = "tech"
+        name = "Tech"
+        url = "/tech"
+      [[menus.main]]
         identifier = "RHCSA"
         name = "RHCSA"
         url = "/rhcsa"
