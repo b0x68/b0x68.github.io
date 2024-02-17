@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Preserve system journals :: b0x68</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Tutorial: How to Preserve System Journals on a Red Hat Certified System Administrator Exam As a Red Hat Certified System Administrator, one of the key skills you are required to possess is the ability to preserve system journals. System journals contain important information and logs about the system&amp;rsquo;s activities, which can be crucial in troubleshooting and identifying system issues. In this tutorial, we will explore in great depth how to preserve system journals on a Red Hat Certified System Administrator Exam." />
+<meta name="keywords" content="RHCSA, Red Hat, System Administrator, Linux, Sysadmin, Tutorial, Exam 200" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="http://b0x68.github.io/rhcsa/preserve-system-journals/" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+
+
+
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="http://b0x68.github.io/styles.css">
+
+
+
+
+
+
+
+  <link rel="shortcut icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+  <link rel="apple-touch-icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Preserve system journals">
+<meta property="og:description" content="Tutorial: How to Preserve System Journals on a Red Hat Certified System Administrator Exam As a Red Hat Certified System Administrator, one of the key skills you are required to possess is the ability to preserve system journals. System journals contain important information and logs about the system&amp;rsquo;s activities, which can be crucial in troubleshooting and identifying system issues. In this tutorial, we will explore in great depth how to preserve system journals on a Red Hat Certified System Administrator Exam." />
+<meta property="og:url" content="http://b0x68.github.io/rhcsa/preserve-system-journals/" />
+<meta property="og:site_name" content="b0x68" />
+
+  
+  
+  <meta property="og:image" content="http://b0x68.github.io">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2024-02-16 11:47:08 -0500 EST" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+<body class="green">
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+  <div class="header__inner">
+    <div class="header__logo" style="margin-top: 10px;margin-left: 0px;margin-right: 0px;margin-bottom: 10px;">
+      <a href="/about">
+  <div class="logo">
+    b0x68
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/rhcsa">RHCSA</a></li>
+        
+      
+        
+          <li><a href="/tech">Tech</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js"></script>
+<div id="search"></div>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#search", showSubResults: true });
+    });
+</script>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        <li><a href="/about" >About</a></li>
+      
+    
+      
+        <li><a href="/rhcsa" >RHCSA</a></li>
+      
+    
+      
+        <li><a href="/tech" >Tech</a></li>
+      
+    
+  </ul>
+</nav>
+
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="http://b0x68.github.io/rhcsa/preserve-system-journals/">Preserve system journals</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2024-02-16[Updated::2024-02-16]</time><span class="post-author">root</span><span class="post-reading-time">4 min read (740 words)</span></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="http://b0x68.github.io/tags/rhcsa/">RHCSA</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/red-hat/">Red Hat</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/system-administrator/">System Administrator</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/linux/">Linux</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/sysadmin/">Sysadmin</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/tutorial/">Tutorial</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/exam-200/">Exam 200</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="tutorial-how-to-preserve-system-journals-on-a-red-hat-certified-system-administrator-exam">Tutorial: How to Preserve System Journals on a Red Hat Certified System Administrator Exam<a href="#tutorial-how-to-preserve-system-journals-on-a-red-hat-certified-system-administrator-exam" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>As a Red Hat Certified System Administrator, one of the key skills you are required to possess is the ability to preserve system journals. System journals contain important information and logs about the system&rsquo;s activities, which can be crucial in troubleshooting and identifying system issues. In this tutorial, we will explore in great depth how to preserve system journals on a Red Hat Certified System Administrator Exam.</p>
+<h2 id="step-1-understanding-the-importance-of-system-journals">Step 1: Understanding the Importance of System Journals<a href="#step-1-understanding-the-importance-of-system-journals" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>System journals are a collection of log files that record various system activities, including system events, user activities, software updates, and more. These logs are essential in monitoring and troubleshooting the system&rsquo;s performance and identifying any issues that may arise.</p>
+<p>Preserving system journals is crucial as it ensures that the data recorded in these logs is not lost. This data can be critical in diagnosing and resolving system problems, and without it, the troubleshooting process can become much more challenging.</p>
+<h2 id="step-2-identifying-the-different-types-of-system-journals">Step 2: Identifying the Different Types of System Journals<a href="#step-2-identifying-the-different-types-of-system-journals" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>There are two main types of system journals that you may encounter on the Red Hat Certified System Administrator Exam: the systemd journal and the rsyslog journal.</p>
+<p>The <strong>systemd journal</strong> is the default logging system on Red Hat Enterprise Linux (RHEL) 7 and above. It collects and stores system logs in binary format in /run/log/journal. This type of journal is managed by the <code>journalctl</code> command.</p>
+<p>The <strong>rsyslog journal</strong> is the legacy logging system that is still used in RHEL 6 and some older versions. It collects and stores logs in plain text format in /var/log directory. This type of journal is managed by the <code>rsyslogd</code> service.</p>
+<h2 id="step-3-configuring-systemd-journal-preserving-on-rhel-7-and-above">Step 3: Configuring Systemd Journal Preserving on RHEL 7 and above<a href="#step-3-configuring-systemd-journal-preserving-on-rhel-7-and-above" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>To preserve systemd journals on RHEL 7 and above, you need to configure the journal&rsquo;s retention policy. This policy defines how long the system logs will be preserved before being automatically deleted.</p>
+<ol>
+<li>
+<p>To configure the retention policy, open the /etc/systemd/journald.conf file with a text editor.</p>
+</li>
+<li>
+<p>Locate the <code>[Journal]</code> section and add the following line: <code>MaxRetentionSec=&lt;duration&gt;</code></p>
+</li>
+<li>
+<p>Replace <code>&lt;duration&gt;</code> with the desired retention period in seconds. For example, to preserve the logs for 1 year, you would input <code>MaxRetentionSec=31536000</code> (60 seconds x 60 minutes x 24 hours x 365 days).</p>
+</li>
+<li>
+<p>Save the changes and exit the text editor.</p>
+</li>
+<li>
+<p>Reload the systemd journal configuration by running the command <code>systemctl restart systemd-journald</code>.</p>
+</li>
+<li>
+<p>Test the retention policy by creating a test log and checking if it is still present after the specified duration.</p>
+</li>
+</ol>
+<h2 id="step-4-configuring-rsyslog-journal-preserving-on-rhel-6-and-older-versions">Step 4: Configuring Rsyslog Journal Preserving on RHEL 6 and older versions<a href="#step-4-configuring-rsyslog-journal-preserving-on-rhel-6-and-older-versions" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>To preserve rsyslog journals on RHEL 6 and older versions, you will need to configure the rsyslogd service to store logs in a separate directory. This will ensure that the logs are not deleted when the /var/log directory is rotated.</p>
+<ol>
+<li>
+<p>Create a new directory to store the preserved logs. For example, <code>/var/log/preserved</code>.</p>
+</li>
+<li>
+<p>Open the <code>/etc/rsyslog.conf</code> file with a text editor.</p>
+</li>
+<li>
+<p>Locate the <code>$WorkDirectory</code> line and edit it to point to the new directory you created in the previous step. For example, <code>$WorkDirectory /var/log/preserved</code>.</p>
+</li>
+<li>
+<p>Locate the <code>$ActionFileDefaultTemplate</code> line and add <code>DefaultFile</code> at the end. This will ensure that logs are stored in the specified directory with the correct file name.</p>
+</li>
+<li>
+<p>Save the changes and exit the text editor.</p>
+</li>
+<li>
+<p>Reload the rsyslogd service by running the command <code>service rsyslog restart</code>.</p>
+</li>
+<li>
+<p>Test the configuration by creating a test log and checking if it is present in the new directory.</p>
+</li>
+</ol>
+<h2 id="step-5-other-tips-for-preserving-system-journals">Step 5: Other Tips for Preserving System Journals<a href="#step-5-other-tips-for-preserving-system-journals" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Here are a few additional tips to keep in mind when preserving system journals on a Red Hat Certified System Administrator Exam:</p>
+<ul>
+<li>Regularly back up the system logs to a separate location to ensure they are not lost in case of system failure.</li>
+<li>Adjust the log rotation frequency to ensure that logs are not deleted before the retention period.</li>
+<li>Use the <code>journalctl</code> or <code>rsyslogd</code> commands to view and manage the system logs.</li>
+<li>Familiarize yourself with the various log files and their contents to better understand the system&rsquo;s activities.</li>
+</ul>
+<h2 id="conclusion">Conclusion<a href="#conclusion" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Preserving system journals is an essential skill for any Red Hat Certified System Administrator. In this tutorial, we have explored how to configure the retention policy for systemd and rsyslog journals, as well as some additional tips to keep in mind. By following these steps, you will be well prepared to preserve system journals on the Red Hat Certified System Administrator Exam.</p>
+
+      </div></div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2024 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

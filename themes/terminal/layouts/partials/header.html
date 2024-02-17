@@ -1,7 +1,7 @@
 <header class="header">
     {{ template "_internal/google_analytics.html" . }}
   <div class="header__inner">
-    <div class="header__logo">
+    <div class="header__logo" style="margin-top: 10px;margin-left: 0px;margin-right: 0px;margin-bottom: 10px;">
       {{ partial "logo.html" . }}
     </div>
     {{ if len $.Site.Menus }}
@@ -11,6 +11,14 @@
       {{ partial "language-menu.html" . }}
     {{ end }}
   </div>
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js"></script>
+<div id="search"></div>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#search", showSubResults: true });
+    });
+</script>
   {{ if len $.Site.Menus }}
     {{ partial "menu.html" . }}
   {{ end }}

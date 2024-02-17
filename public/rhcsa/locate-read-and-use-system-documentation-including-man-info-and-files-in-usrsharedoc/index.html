@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Locate, read, and use system documentation including man, info, and files in /usr/share/doc :: b0x68</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Introduction:
+Welcome to the tutorial for the Red Hat Certified Systems Administrator Exam 200 Objective on locating, reading, and using system documentation. This is an important skill for Linux administrators as it allows them to effectively troubleshoot and manage their systems. In this tutorial, we will cover the various tools and resources available for accessing system documentation, including man pages, info pages, and files in the /usr/share/doc directory.
+Accessing Man Pages:" />
+<meta name="keywords" content="RHCSA, Red Hat, System Administrator, Linux, Sysadmin, Tutorial, Exam 200" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="http://b0x68.github.io/rhcsa/locate-read-and-use-system-documentation-including-man-info-and-files-in-usrsharedoc/" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+
+
+
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="http://b0x68.github.io/styles.css">
+
+
+
+
+
+
+
+  <link rel="shortcut icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+  <link rel="apple-touch-icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Locate, read, and use system documentation including man, info, and files in /usr/share/doc">
+<meta property="og:description" content="Introduction:
+Welcome to the tutorial for the Red Hat Certified Systems Administrator Exam 200 Objective on locating, reading, and using system documentation. This is an important skill for Linux administrators as it allows them to effectively troubleshoot and manage their systems. In this tutorial, we will cover the various tools and resources available for accessing system documentation, including man pages, info pages, and files in the /usr/share/doc directory.
+Accessing Man Pages:" />
+<meta property="og:url" content="http://b0x68.github.io/rhcsa/locate-read-and-use-system-documentation-including-man-info-and-files-in-usrsharedoc/" />
+<meta property="og:site_name" content="b0x68" />
+
+  
+  
+  <meta property="og:image" content="http://b0x68.github.io">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2024-02-16 11:45:12 -0500 EST" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+<body class="green">
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+  <div class="header__inner">
+    <div class="header__logo" style="margin-top: 10px;margin-left: 0px;margin-right: 0px;margin-bottom: 10px;">
+      <a href="/about">
+  <div class="logo">
+    b0x68
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/rhcsa">RHCSA</a></li>
+        
+      
+        
+          <li><a href="/tech">Tech</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js"></script>
+<div id="search"></div>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#search", showSubResults: true });
+    });
+</script>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        <li><a href="/about" >About</a></li>
+      
+    
+      
+        <li><a href="/rhcsa" >RHCSA</a></li>
+      
+    
+      
+        <li><a href="/tech" >Tech</a></li>
+      
+    
+  </ul>
+</nav>
+
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="http://b0x68.github.io/rhcsa/locate-read-and-use-system-documentation-including-man-info-and-files-in-usrsharedoc/">Locate, read, and use system documentation including man, info, and files in /usr/share/doc</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2024-02-16[Updated::2024-02-16]</time><span class="post-author">root</span><span class="post-reading-time">3 min read (631 words)</span></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="http://b0x68.github.io/tags/rhcsa/">RHCSA</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/red-hat/">Red Hat</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/system-administrator/">System Administrator</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/linux/">Linux</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/sysadmin/">Sysadmin</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/tutorial/">Tutorial</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/exam-200/">Exam 200</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <p><strong>Introduction:</strong><br>
+Welcome to the tutorial for the Red Hat Certified Systems Administrator Exam 200 Objective on locating, reading, and using system documentation. This is an important skill for Linux administrators as it allows them to effectively troubleshoot and manage their systems. In this tutorial, we will cover the various tools and resources available for accessing system documentation, including man pages, info pages, and files in the /usr/share/doc directory.</p>
+<p><strong>Accessing Man Pages:</strong><br>
+The most common tool for accessing system documentation is the man command. Man pages, short for manual pages, provide detailed documentation on various commands, utilities, and system functions. To view a man page, simply type the command &ldquo;man&rdquo; followed by the name of the command or function you want to learn about.</p>
+<p>For example, to view the man page for the &ldquo;ls&rdquo; command, you would type:<br>
+<code>man ls</code></p>
+<p>The man page will open in your terminal, allowing you to scroll through it using the arrow keys. You can also use the &ldquo;page up&rdquo; and &ldquo;page down&rdquo; keys to navigate through longer man pages.</p>
+<p><strong>Understanding Man Page Sections:</strong><br>
+Man pages are divided into different sections to make it easier to find the information you need. The following are the most common sections you will come across:</p>
+<ul>
+<li>Section 1: User Commands - provides documentation on commands available to all users.</li>
+<li>Section 5: File Formats and Conventions - documents file formats and configuration conventions.</li>
+<li>Section 8: System Administration Commands - documents commands typically used by system administrators.</li>
+</ul>
+<p>You can specify the section you want to view by adding the section number after the command name. For example:<br>
+<code>man 5 passwd</code></p>
+<p>This will show the man page for the &ldquo;passwd&rdquo; command under section 5, which covers file formats and conventions.</p>
+<p><strong>Navigating Man Pages:</strong><br>
+Man pages are typically organized in a specific way, making it easier to find the information you need. Here are some tips for navigating through man pages:</p>
+<ul>
+<li>Use the &ldquo;forward slash (/)&rdquo; key to search for a specific term in the man page.</li>
+<li>Use the &ldquo;n&rdquo; key to move to the next instance of the search term.</li>
+<li>Use the &ldquo;g&rdquo; key to go to the top of the man page.</li>
+<li>Use the &ldquo;G&rdquo; key to go to the bottom of the man page.</li>
+<li>Use the &ldquo;q&rdquo; key to quit the man page and return to your terminal.</li>
+</ul>
+<p><strong>Accessing Info Pages:</strong><br>
+Another tool for accessing system documentation is the info command. Info pages provide more in-depth documentation compared to man pages and are typically used for more complex commands or functions.</p>
+<p>To view an info page, type the command &ldquo;info&rdquo; followed by the name of the command or function. For example:<br>
+<code>info tar</code></p>
+<p>The info page will open in a separate window, with a hierarchical structure that you can navigate using the arrow keys. Press the &ldquo;q&rdquo; key to return to your terminal.</p>
+<p><strong>Accessing Documentation Files:</strong><br>
+The /usr/share/doc directory contains documentation files for various packages and applications installed on your system. These files are usually in plain text format and can provide additional information on how to use or troubleshoot a particular package.</p>
+<p>To access these files, navigate to the /usr/share/doc directory and use the &ldquo;ls&rdquo; command to view the available files. You can then use the &ldquo;cat&rdquo; command to view the contents of a specific file. For example:<br>
+<code>cat /usr/share/doc/coreutils/README</code></p>
+<p>This will display the contents of the README file for the coreutils package.</p>
+<p><strong>Conclusion:</strong><br>
+In this tutorial, we have covered the various tools and resources for accessing system documentation, including man pages, info pages, and files in the /usr/share/doc directory. Being able to locate, read, and use system documentation is a crucial skill for Linux administrators, and we hope this tutorial has helped you understand the process in great depth. Best of luck on your Red Hat Certified Systems Administrator Exam!</p>
+
+      </div></div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2024 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

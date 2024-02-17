@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Processing output of shell commands within a script :: b0x68</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Processing Output of Shell Commands within a Script - Red Hat Certified Systems Administrator 200 Objective In this tutorial, we will be discussing the objective of processing output of shell commands within a script for the Red Hat Certified Systems Administrator Exam 200.
+Shell commands are small programs that perform specific tasks within the Linux operating system. These tasks can range from managing files and directories, to manipulating data and performing system tasks." />
+<meta name="keywords" content="RHCSA, Red Hat, System Administrator, Linux, Sysadmin, Tutorial, Exam 200" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="http://b0x68.github.io/rhcsa/processing-output-of-shell-commands-within-a-script/" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+
+
+
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="http://b0x68.github.io/styles.css">
+
+
+
+
+
+
+
+  <link rel="shortcut icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+  <link rel="apple-touch-icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Processing output of shell commands within a script">
+<meta property="og:description" content="Processing Output of Shell Commands within a Script - Red Hat Certified Systems Administrator 200 Objective In this tutorial, we will be discussing the objective of processing output of shell commands within a script for the Red Hat Certified Systems Administrator Exam 200.
+Shell commands are small programs that perform specific tasks within the Linux operating system. These tasks can range from managing files and directories, to manipulating data and performing system tasks." />
+<meta property="og:url" content="http://b0x68.github.io/rhcsa/processing-output-of-shell-commands-within-a-script/" />
+<meta property="og:site_name" content="b0x68" />
+
+  
+  
+  <meta property="og:image" content="http://b0x68.github.io">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2024-02-16 11:45:55 -0500 EST" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+<body class="green">
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+  <div class="header__inner">
+    <div class="header__logo" style="margin-top: 10px;margin-left: 0px;margin-right: 0px;margin-bottom: 10px;">
+      <a href="/about">
+  <div class="logo">
+    b0x68
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/rhcsa">RHCSA</a></li>
+        
+      
+        
+          <li><a href="/tech">Tech</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js"></script>
+<div id="search"></div>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#search", showSubResults: true });
+    });
+</script>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        <li><a href="/about" >About</a></li>
+      
+    
+      
+        <li><a href="/rhcsa" >RHCSA</a></li>
+      
+    
+      
+        <li><a href="/tech" >Tech</a></li>
+      
+    
+  </ul>
+</nav>
+
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="http://b0x68.github.io/rhcsa/processing-output-of-shell-commands-within-a-script/">Processing output of shell commands within a script</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2024-02-16[Updated::2024-02-16]</time><span class="post-author">root</span><span class="post-reading-time">4 min read (742 words)</span></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="http://b0x68.github.io/tags/rhcsa/">RHCSA</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/red-hat/">Red Hat</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/system-administrator/">System Administrator</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/linux/">Linux</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/sysadmin/">Sysadmin</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/tutorial/">Tutorial</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/exam-200/">Exam 200</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="processing-output-of-shell-commands-within-a-script---red-hat-certified-systems-administrator-200-objective">Processing Output of Shell Commands within a Script - Red Hat Certified Systems Administrator 200 Objective<a href="#processing-output-of-shell-commands-within-a-script---red-hat-certified-systems-administrator-200-objective" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>In this tutorial, we will be discussing the objective of processing output of shell commands within a script for the Red Hat Certified Systems Administrator Exam 200.</p>
+<p>Shell commands are small programs that perform specific tasks within the Linux operating system. These tasks can range from managing files and directories, to manipulating data and performing system tasks. By incorporating shell commands in a script, we can automate routine tasks and make our work more efficient.</p>
+<h2 id="understanding-shell-scripting">Understanding Shell Scripting<a href="#understanding-shell-scripting" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Before we dive into processing output of shell commands, it is important to understand the basics of shell scripting. A shell script is a set of commands and instructions written in a programming language called Bash. Bash is the default shell used in most Linux operating systems and is responsible for interpreting and executing the script.</p>
+<p>Shell scripts can be created using any text editor and must have the &ldquo;.sh&rdquo; extension. To execute a shell script, we must first make it executable using the command &ldquo;chmod +x &lt;script_name&gt;&rdquo; and then run it using &ldquo;./&lt;script_name&gt;&rdquo;.</p>
+<p>Now, let&rsquo;s move on to the main objective of this tutorial - processing output of shell commands within a script.</p>
+<h2 id="processing-output-of-shell-commands">Processing Output of Shell Commands<a href="#processing-output-of-shell-commands" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>When we execute a shell command, it usually displays its output on the terminal. This output can be a single line or multiple lines of text. In order to process this output within a script, we need to capture it and store it in a variable.</p>
+<h3 id="storing-output-in-a-variable">Storing Output in a Variable<a href="#storing-output-in-a-variable" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>To capture the output of a shell command, we use the syntax:</p>
+<p>&lt;variable_name&gt;=<command></p>
+<p>For example, if we want to store the output of the &ldquo;ls&rdquo; command in a variable named &ldquo;files&rdquo;, we would write:</p>
+<pre tabindex="0"><code>files=$(ls)
+</code></pre><p>The parentheses around the command are used to tell the shell to run the command and store its output in the variable. Now, we can use this variable in our script to process the output further.</p>
+<h3 id="displaying-output">Displaying Output<a href="#displaying-output" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>We can use the &ldquo;echo&rdquo; command to display the output stored in a variable. For our example, we can write:</p>
+<pre tabindex="0"><code>echo &#34;The contents of the current directory are: $files&#34;
+</code></pre><p>This will display the output of the &ldquo;ls&rdquo; command in a user-friendly manner.</p>
+<h3 id="processing-the-output">Processing the Output<a href="#processing-the-output" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>Now that we have captured and displayed the output of a shell command, we can use it to perform further tasks within our script. For example, we can use the output to search for a specific file or folder, perform operations on the files, or create a report containing the output. The possibilities are endless and will depend on the specific task you are trying to automate with the script.</p>
+<h2 id="examples">Examples<a href="#examples" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>To help better understand the concept of processing output of shell commands within a script, let&rsquo;s go through a few examples.</p>
+<h3 id="example-1-checking-for-available-disk-space">Example 1: Checking for Available Disk Space<a href="#example-1-checking-for-available-disk-space" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>In this example, we will write a script that checks for available disk space and displays the results.</p>
+<pre tabindex="0"><code>#!/bin/bash
+# Script to check available disk space
+
+# Store the output of the &#34;df&#34; command in a variable
+disk_usage=$(df)
+
+# Display the output
+echo &#34;Current Disk Usage: $disk_usage&#34;
+</code></pre><p>When this script is executed, it will show the output of the &ldquo;df&rdquo; command, which displays the amount of used and available disk space. You can further improve this script by adding conditions and performing specific actions depending on the available disk space.</p>
+<h3 id="example-2-creating-a-list-of-installed-packages">Example 2: Creating a List of Installed Packages<a href="#example-2-creating-a-list-of-installed-packages" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>In this example, we will create a script that lists all the installed packages in our system and saves it to a file for later reference.</p>
+<pre tabindex="0"><code>#!/bin/bash
+# Script to list installed packages
+
+# Store the output of the &#34;yum list installed&#34; command in a variable
+package_list=$(yum list installed)
+
+# Display the output
+echo &#34;Installed Packages: $package_list&#34;
+
+# Save the output to a file
+echo &#34;$package_list&#34; &gt; installed_packages.txt
+</code></pre><p>This script will display the output of the &ldquo;yum list installed&rdquo; command and save it to a file named &ldquo;installed_packages.txt&rdquo;.</p>
+<h2 id="conclusion">Conclusion<a href="#conclusion" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>In this tutorial, we have discussed the objective of processing output of shell commands within a script for the Red Hat Certified Systems Administrator Exam 200. We learned how to capture and store the output of a shell command in a variable, display the output, and use it to perform further tasks within a script. By mastering this skill, we can create powerful and efficient scripts to automate various tasks in our Linux systems.</p>
+
+      </div></div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2024 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

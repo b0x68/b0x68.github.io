@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Process script inputs ($1, $2, etc.) :: b0x68</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Introduction: The Red Hat Certified Systems Administrator (RHCSA) exam is a performance-based certification that demonstrates your ability to handle system administration tasks on Red Hat Enterprise Linux systems. One critical objective of the exam is &amp;ldquo;Process script inputs ($1, $2, etc.)&amp;rdquo;. This tutorial will provide a detailed explanation of this objective and help you prepare for success on your exam.
+What is meant by &amp;ldquo;Process script inputs ($1, $2, etc." />
+<meta name="keywords" content="RHCSA, Red Hat, System Administrator, Linux, Sysadmin, Tutorial, Exam 200" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="http://b0x68.github.io/rhcsa/process-script-inputs-1-2-etc./" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+
+
+
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="http://b0x68.github.io/styles.css">
+
+
+
+
+
+
+
+  <link rel="shortcut icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+  <link rel="apple-touch-icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Process script inputs ($1, $2, etc.)">
+<meta property="og:description" content="Introduction: The Red Hat Certified Systems Administrator (RHCSA) exam is a performance-based certification that demonstrates your ability to handle system administration tasks on Red Hat Enterprise Linux systems. One critical objective of the exam is &amp;ldquo;Process script inputs ($1, $2, etc.)&amp;rdquo;. This tutorial will provide a detailed explanation of this objective and help you prepare for success on your exam.
+What is meant by &amp;ldquo;Process script inputs ($1, $2, etc." />
+<meta property="og:url" content="http://b0x68.github.io/rhcsa/process-script-inputs-1-2-etc./" />
+<meta property="og:site_name" content="b0x68" />
+
+  
+  
+  <meta property="og:image" content="http://b0x68.github.io">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2024-02-16 11:45:45 -0500 EST" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+<body class="green">
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+  <div class="header__inner">
+    <div class="header__logo" style="margin-top: 10px;margin-left: 0px;margin-right: 0px;margin-bottom: 10px;">
+      <a href="/about">
+  <div class="logo">
+    b0x68
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/rhcsa">RHCSA</a></li>
+        
+      
+        
+          <li><a href="/tech">Tech</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js"></script>
+<div id="search"></div>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#search", showSubResults: true });
+    });
+</script>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        <li><a href="/about" >About</a></li>
+      
+    
+      
+        <li><a href="/rhcsa" >RHCSA</a></li>
+      
+    
+      
+        <li><a href="/tech" >Tech</a></li>
+      
+    
+  </ul>
+</nav>
+
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="http://b0x68.github.io/rhcsa/process-script-inputs-1-2-etc./">Process script inputs ($1, $2, etc.)</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2024-02-16[Updated::2024-02-16]</time><span class="post-author">root</span><span class="post-reading-time">4 min read (653 words)</span></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="http://b0x68.github.io/tags/rhcsa/">RHCSA</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/red-hat/">Red Hat</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/system-administrator/">System Administrator</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/linux/">Linux</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/sysadmin/">Sysadmin</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/tutorial/">Tutorial</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/exam-200/">Exam 200</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="heading"><a href="#heading" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<h1 id="heading-1"><a href="#heading-1" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<h1 id="introduction">Introduction:<a href="#introduction" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>The Red Hat Certified Systems Administrator (RHCSA) exam is a performance-based certification that demonstrates your ability to handle system administration tasks on Red Hat Enterprise Linux systems. One critical objective of the exam is &ldquo;Process script inputs ($1, $2, etc.)&rdquo;. This tutorial will provide a detailed explanation of this objective and help you prepare for success on your exam.</p>
+<h1 id="what-is-meant-by-process-script-inputs-1-2-etc">What is meant by &ldquo;Process script inputs ($1, $2, etc.)&rdquo;?<a href="#what-is-meant-by-process-script-inputs-1-2-etc" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>Before diving into the details of this objective, let&rsquo;s understand what is meant by &ldquo;process script inputs&rdquo;. In simple terms, it refers to taking arguments from the command line and using them within a script. Typically, these arguments are designated as $1, $2, and so on, depending on the number of arguments passed. These inputs are then used by the script to perform certain actions and achieve a specific purpose.</p>
+<h1 id="how-to-process-script-inputs">How to process script inputs?<a href="#how-to-process-script-inputs" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>There are a few essential steps to follow in order to process script inputs successfully. Let&rsquo;s explore them in detail.</p>
+<h1 id="step-1-creating-a-shell-script">Step 1: Creating a shell script<a href="#step-1-creating-a-shell-script" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>To start with, we need to have a shell script on which we can work. Let&rsquo;s create a basic shell script using any text editor of your choice. Remember to use the .sh extension for your file name to signify that it is a shell script. For this tutorial, we will use the name &ldquo;test_script.sh&rdquo;.</p>
+<h1 id="step-2-setting-up-the-script-inputs">Step 2: Setting up the script inputs<a href="#step-2-setting-up-the-script-inputs" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>In your shell script, you can designate variables to represent the command-line arguments using the following syntax:<br>
+$1, $2, $3, and so on, depending on the number of arguments you expect to receive. These variables are known as &ldquo;positional parameters&rdquo; and are used to store and access the command-line arguments passed to the script.</p>
+<h1 id="step-3-working-with-the-script-inputs">Step 3: Working with the script inputs<a href="#step-3-working-with-the-script-inputs" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>Now, let&rsquo;s use these positional parameters to perform certain actions in our script. Remember, the value of $1 represents the first argument, $2 represents the second argument, and so on. You can use these variables within your script wherever you need to access or manipulate the command-line arguments.</p>
+<h1 id="step-4-passing-arguments-when-running-the-script">Step 4: Passing arguments when running the script<a href="#step-4-passing-arguments-when-running-the-script" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>To test your script, you need to pass arguments to your script when running it from the command line. To do so, you need to specify the arguments after the script name. For example, if you want to pass two arguments to the script, your command should look like:</p>
+<pre tabindex="0"><code>bash test_script.sh argument_1 argument_2
+</code></pre><p>The script will then execute and use the passed arguments to perform the specified actions.</p>
+<h1 id="example">Example:<a href="#example" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>Let&rsquo;s look at an example to understand this better. We will create a simple script that takes two numbers from the command line and adds them together.</p>
+<pre tabindex="0"><code># !/bin/bash
+
+#Script to add two numbers using script inputs
+
+#Setting up the inputs
+num1=$1
+num2=$2
+
+#Performing the addition
+sum=$((num1 + num2))
+
+#Displaying the result
+echo &#34;The sum of $1 and $2 is $sum&#34;
+</code></pre><p>Now, if we pass two numbers, let&rsquo;s say 10 and 15 as arguments when running the script, the output will be:</p>
+<pre tabindex="0"><code>The sum of 10 and 15 is 25
+</code></pre><h1 id="best-practices">Best practices:<a href="#best-practices" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>Before concluding, there are a few best practices you should keep in mind while working with script inputs:</p>
+<ul>
+<li>Always validate the inputs received from the command line to ensure they are in the expected format.</li>
+<li>Use quotes around the positional parameters when referring to them in your script to avoid any errors caused by spaces or special characters in the arguments.</li>
+<li>Include a help or usage section in your script to provide guidance on how to use the script and what arguments to pass.</li>
+</ul>
+<h1 id="conclusion">Conclusion:<a href="#conclusion" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>In this tutorial, we provided a comprehensive explanation of the &ldquo;Process script inputs ($1, $2, etc.)&rdquo; objective of the RHCSA exam. We covered the steps involved in processing script inputs and provided an example to help you understand it better. Remember to practice this concept and its best practices to ensure success on your exam. Good luck!</p>
+
+      </div></div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2024 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

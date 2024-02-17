@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Extend existing logical volumes :: b0x68</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Red Hat Certified Systems Administrator: &amp;ldquo;Extend existing logical volumes&amp;rdquo; Exam Objective The objective for this part of the Red Hat Certified Systems Administrator exam is to demonstrate your knowledge and skills in extending existing logical volumes in a Red Hat Enterprise Linux environment. Logical volumes are one way to manage storage in a Linux system by combining multiple physical volumes into a single abstract volume. This allows for more flexibility in managing storage space and resizing volumes as needed." />
+<meta name="keywords" content="RHCSA, Red Hat, System Administrator, Linux, Sysadmin, Tutorial, Exam 200" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="http://b0x68.github.io/rhcsa/extend-existing-logical-volumes/" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+
+
+
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="http://b0x68.github.io/styles.css">
+
+
+
+
+
+
+
+  <link rel="shortcut icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+  <link rel="apple-touch-icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Extend existing logical volumes">
+<meta property="og:description" content="Red Hat Certified Systems Administrator: &amp;ldquo;Extend existing logical volumes&amp;rdquo; Exam Objective The objective for this part of the Red Hat Certified Systems Administrator exam is to demonstrate your knowledge and skills in extending existing logical volumes in a Red Hat Enterprise Linux environment. Logical volumes are one way to manage storage in a Linux system by combining multiple physical volumes into a single abstract volume. This allows for more flexibility in managing storage space and resizing volumes as needed." />
+<meta property="og:url" content="http://b0x68.github.io/rhcsa/extend-existing-logical-volumes/" />
+<meta property="og:site_name" content="b0x68" />
+
+  
+  
+  <meta property="og:image" content="http://b0x68.github.io">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2024-02-16 11:49:17 -0500 EST" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+<body class="green">
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+  <div class="header__inner">
+    <div class="header__logo" style="margin-top: 10px;margin-left: 0px;margin-right: 0px;margin-bottom: 10px;">
+      <a href="/about">
+  <div class="logo">
+    b0x68
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/rhcsa">RHCSA</a></li>
+        
+      
+        
+          <li><a href="/tech">Tech</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js"></script>
+<div id="search"></div>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#search", showSubResults: true });
+    });
+</script>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        <li><a href="/about" >About</a></li>
+      
+    
+      
+        <li><a href="/rhcsa" >RHCSA</a></li>
+      
+    
+      
+        <li><a href="/tech" >Tech</a></li>
+      
+    
+  </ul>
+</nav>
+
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="http://b0x68.github.io/rhcsa/extend-existing-logical-volumes/">Extend existing logical volumes</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2024-02-16[Updated::2024-02-16]</time><span class="post-author">root</span><span class="post-reading-time">4 min read (746 words)</span></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="http://b0x68.github.io/tags/rhcsa/">RHCSA</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/red-hat/">Red Hat</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/system-administrator/">System Administrator</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/linux/">Linux</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/sysadmin/">Sysadmin</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/tutorial/">Tutorial</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/exam-200/">Exam 200</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="red-hat-certified-systems-administrator-extend-existing-logical-volumes-exam-objective">Red Hat Certified Systems Administrator: &ldquo;Extend existing logical volumes&rdquo; Exam Objective<a href="#red-hat-certified-systems-administrator-extend-existing-logical-volumes-exam-objective" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>The objective for this part of the Red Hat Certified Systems Administrator exam is to demonstrate your knowledge and skills in extending existing logical volumes in a Red Hat Enterprise Linux environment. Logical volumes are one way to manage storage in a Linux system by combining multiple physical volumes into a single abstract volume. This allows for more flexibility in managing storage space and resizing volumes as needed.</p>
+<p>In this tutorial, we will cover the steps and commands necessary to extend an existing logical volume in a Red Hat Enterprise Linux system, including preparation, resizing, and verification.</p>
+<h2 id="prerequisites">Prerequisites<a href="#prerequisites" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Before attempting to extend a logical volume, it is important to make sure your system meets the following prerequisites:</p>
+<ul>
+<li>You are logged in as a user with root or sudo privileges</li>
+<li>The logical volume you want to extend must have free space available in its volume group</li>
+<li>Any data on the logical volume should be backed up in case of any issues</li>
+</ul>
+<h2 id="step-1-checking-volume-group-and-logical-volume-information">Step 1: Checking Volume Group and Logical Volume Information<a href="#step-1-checking-volume-group-and-logical-volume-information" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>The first step is to gather information about the volume group and logical volume that you want to extend. This can be done using the <code>lvdisplay</code> command, which will display detailed information about all logical volumes on the system.</p>
+<pre tabindex="0"><code>lvdisplay
+</code></pre><p>You will get an output similar to the following:</p>
+<pre tabindex="0"><code>--- Logical volume ---
+LV Path                /dev/sys/volume1
+LV Name                volume1
+VG Name                sys
+LV Size                10.00 GiB
+Current LE             2560
+Segments               1
+Allocation             inherit
+Read ahead sectors     auto
+- currently set to     256
+Block device           253:3
+
+--- Volume group ---
+VG Name                sys
+System ID
+Format                 lvm2
+Metadata Areas         2
+Metadata Sequence No  11
+VG Access              read/write
+VG Status              resizable
+MAX LV                 0
+Cur LV                 5
+Open LV                5
+Max PV                 0
+Cur PV                 2
+Act PV                 2
+VG Size                127.99 GiB
+PE Size                4.00 MiB
+Total PE               32766
+Alloc PE / Size        27366 / &lt;106.99 GiB
+Free  PE / Size        5400 / 21.00 GiB
+VG UUID                abcdefgh-ijkl-mnop-1234-567890123456
+</code></pre><p>Note the information under the &ldquo;Logical volume&rdquo; and &ldquo;Volume group&rdquo; sections. In this example, we can see that the volume group named &ldquo;sys&rdquo; has 21.00 GiB of free space available, while the logical volume named &ldquo;volume1&rdquo; has a size of 10.00 GiB and is located within the &ldquo;sys&rdquo; volume group.</p>
+<h2 id="step-2-preparing-the-volume-group">Step 2: Preparing the Volume Group<a href="#step-2-preparing-the-volume-group" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Before we can resize the logical volume, we need to extend the volume group to include the unallocated free space. This can be done using the <code>vgextend</code> command, followed by the volume group name and the device name of the new physical volume.</p>
+<pre tabindex="0"><code>vgextend sys /dev/sdb
+</code></pre><p>This will add the new physical volume to the &ldquo;sys&rdquo; volume group, making the additional space available for use.</p>
+<h2 id="step-3-extending-the-logical-volume">Step 3: Extending the Logical Volume<a href="#step-3-extending-the-logical-volume" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Now that the volume group has been extended, we can proceed to extend the logical volume. This is done using the <code>lvextend</code> command, followed by the name of the logical volume and the size to which you want to extend it.</p>
+<pre tabindex="0"><code>lvextend -L +5G /dev/sys/volume1
+</code></pre><p>In this example, we are increasing the size of the logical volume named &ldquo;volume1&rdquo; by 5 GB. You can also use absolute values for the size, such as &ldquo;20G&rdquo; for a 20 GB extension.</p>
+<h2 id="step-4-resizing-the-file-system">Step 4: Resizing the File System<a href="#step-4-resizing-the-file-system" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Once the logical volume has been extended, we need to make sure the file system on it is also extended to use the additional space. This can be done using the <code>resize2fs</code> command for ext4 file systems, or <code>xfs_growfs</code> for XFS file systems.</p>
+<pre tabindex="0"><code># For ext4 file systems
+resize2fs /dev/sys/volume1
+
+# For XFS file systems
+xfs_growfs /dev/sys/volume1
+</code></pre><p>This will resize the file system on the logical volume to match its new size, making the additional space available for use.</p>
+<h2 id="step-5-verifying-the-logical-volume-extension">Step 5: Verifying the Logical Volume Extension<a href="#step-5-verifying-the-logical-volume-extension" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>To verify that the logical volume has been successfully extended, you can use the <code>lvdisplay</code> command again and compare the size to the previous output.</p>
+<pre tabindex="0"><code>lvdisplay
+</code></pre><p>You should see that the size of the logical volume has been increased to the value you specified in the previous step.</p>
+<h2 id="conclusion">Conclusion<a href="#conclusion" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>In this tutorial, we have covered the steps and commands necessary to extend an existing logical volume in a Red Hat Enterprise Linux system. By following these steps, you should now have a better understanding of how to manage storage in your Linux environment and be prepared for the &ldquo;Extend existing logical volumes&rdquo; objective on the Red Hat Certified Systems Administrator exam.</p>
+
+      </div></div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2024 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

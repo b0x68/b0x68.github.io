@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Read-Write Access on b0x68</title>
+    <link>http://b0x68.github.io/tags/read-write-access/</link>
+    <description>Recent content in Read-Write Access on b0x68</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 11 Feb 2024 19:46:32 -0500</lastBuildDate><atom:link href="http://b0x68.github.io/tags/read-write-access/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>File and Directory Permissions</title>
+      <link>http://b0x68.github.io/rhcsa/file-and-directory-permissions/</link>
+      <pubDate>Sun, 11 Feb 2024 19:46:32 -0500</pubDate>
+      
+      <guid>http://b0x68.github.io/rhcsa/file-and-directory-permissions/</guid>
+      <description>How to Manage Standard ugo/rwx Permissions in Red Hat Linux Welcome to this tutorial on managing standard ugo/rwx permissions in Red Hat Linux. In this guide, we&amp;rsquo;ll explore how to list, set, and change permissions effectively, which is a crucial skill for the Red Hat Certified Systems Administrator Exam 200.
+Introduction Understanding and managing file permissions is essential for any Linux administrator. Permissions control access to files and directories, ensuring security and data integrity on the system.</description>
+      <content>&lt;h2 id=&#34;how-to-manage-standard-ugorwx-permissions-in-red-hat-linux&#34;&gt;How to Manage Standard ugo/rwx Permissions in Red Hat Linux&lt;/h2&gt;
+&lt;p&gt;Welcome to this tutorial on managing standard ugo/rwx permissions in Red Hat Linux. In this guide, we&amp;rsquo;ll explore how to list, set, and change permissions effectively, which is a crucial skill for the Red Hat Certified Systems Administrator Exam 200.&lt;/p&gt;
+&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;Understanding and managing file permissions is essential for any Linux administrator. Permissions control access to files and directories, ensuring security and data integrity on the system. The standard permissions model in Linux uses the &lt;strong&gt;ugo/rwx&lt;/strong&gt; notation, where:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;u&lt;/strong&gt; stands for the user who owns the file.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;g&lt;/strong&gt; stands for the group associated with the file.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;o&lt;/strong&gt; stands for others, or everyone else.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;r&lt;/strong&gt; indicates read permission.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;w&lt;/strong&gt; indicates write permission.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;x&lt;/strong&gt; indicates execute permission.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;listing-permissions&#34;&gt;Listing Permissions&lt;/h3&gt;
+&lt;p&gt;To list permissions for files and directories in Linux, you can use the &lt;code&gt;ls&lt;/code&gt; command with the &lt;code&gt;-l&lt;/code&gt; option. Open a terminal and type:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ls -l /path/to/file_or_directory
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This command will display detailed information about the specified file or directory, including its permissions.&lt;/p&gt;
+&lt;h3 id=&#34;setting-permissions&#34;&gt;Setting Permissions&lt;/h3&gt;
+&lt;p&gt;To set permissions explicitly, you can use the &lt;code&gt;chmod&lt;/code&gt; command followed by the permission mode and the file or directory you want to modify. Here&amp;rsquo;s the basic syntax:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;chmod &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;permissions&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt; /path/to/file_or_directory
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;For example, to give the owner read, write, and execute permissions on a file, you would use:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;chmod u+rwx file.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To give read and execute permissions to the group, you would use:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;chmod g+rx file.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And to remove write permission for others, you would use:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;chmod o-w file.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;changing-permissions&#34;&gt;Changing Permissions&lt;/h3&gt;
+&lt;p&gt;You can also modify permissions using symbolic notation, which allows you to add or remove specific permissions without affecting the others. The symbolic notation uses the symbols &lt;strong&gt;+&lt;/strong&gt; to add permissions, &lt;strong&gt;-&lt;/strong&gt; to remove permissions, and &lt;strong&gt;=&lt;/strong&gt; to set permissions explicitly.&lt;/p&gt;
+&lt;p&gt;For example, to add execute permission for the owner without affecting other permissions, you would use:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;chmod u+x file.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To remove write permission for both the user and the group, you would use:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;chmod ug-w file.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And to set permissions explicitly for all users, you would use:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;chmod a&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;rwx file.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;Managing standard ugo/rwx permissions is a fundamental skill for any Linux administrator. By understanding how to list, set, and change permissions effectively, you can ensure the security and integrity of your system files and directories. Practice these commands regularly to become proficient, and you&amp;rsquo;ll be well-prepared for the Red Hat Certified Systems Administrator Exam 200.&lt;/p&gt;
+&lt;p&gt;Happy administering! 🐧✨&lt;/p&gt;
+</content>
+    </item>
+    
+  </channel>
+</rss>

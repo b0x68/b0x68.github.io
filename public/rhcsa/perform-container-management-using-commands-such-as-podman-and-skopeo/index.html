@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Perform container management using commands such as podman and skopeo :: b0x68</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="How to Perform Container Management using Podman and Skopeo In this tutorial, we will guide you through the process of performing container management using commands such as podman and skopeo. This is a required skill for the Red Hat Certified Systems Administrator Exam (EX200), Objective 200.
+Introduction to Podman and Skopeo Podman and Skopeo are two important tools used in Linux systems for container management. Podman is a daemonless container engine that is used to manage containers, pods, and images." />
+<meta name="keywords" content="RHCSA, Red Hat, System Administrator, Linux, Sysadmin, Tutorial, Exam 200" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="http://b0x68.github.io/rhcsa/perform-container-management-using-commands-such-as-podman-and-skopeo/" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+
+
+
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="http://b0x68.github.io/styles.css">
+
+
+
+
+
+
+
+  <link rel="shortcut icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+  <link rel="apple-touch-icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Perform container management using commands such as podman and skopeo">
+<meta property="og:description" content="How to Perform Container Management using Podman and Skopeo In this tutorial, we will guide you through the process of performing container management using commands such as podman and skopeo. This is a required skill for the Red Hat Certified Systems Administrator Exam (EX200), Objective 200.
+Introduction to Podman and Skopeo Podman and Skopeo are two important tools used in Linux systems for container management. Podman is a daemonless container engine that is used to manage containers, pods, and images." />
+<meta property="og:url" content="http://b0x68.github.io/rhcsa/perform-container-management-using-commands-such-as-podman-and-skopeo/" />
+<meta property="og:site_name" content="b0x68" />
+
+  
+  
+  <meta property="og:image" content="http://b0x68.github.io">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2024-02-16 11:54:26 -0500 EST" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+<body class="green">
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+  <div class="header__inner">
+    <div class="header__logo" style="margin-top: 10px;margin-left: 0px;margin-right: 0px;margin-bottom: 10px;">
+      <a href="/about">
+  <div class="logo">
+    b0x68
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/rhcsa">RHCSA</a></li>
+        
+      
+        
+          <li><a href="/tech">Tech</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js"></script>
+<div id="search"></div>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#search", showSubResults: true });
+    });
+</script>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        <li><a href="/about" >About</a></li>
+      
+    
+      
+        <li><a href="/rhcsa" >RHCSA</a></li>
+      
+    
+      
+        <li><a href="/tech" >Tech</a></li>
+      
+    
+  </ul>
+</nav>
+
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="http://b0x68.github.io/rhcsa/perform-container-management-using-commands-such-as-podman-and-skopeo/">Perform container management using commands such as podman and skopeo</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2024-02-16[Updated::2024-02-16]</time><span class="post-author">root</span><span class="post-reading-time">3 min read (596 words)</span></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="http://b0x68.github.io/tags/rhcsa/">RHCSA</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/red-hat/">Red Hat</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/system-administrator/">System Administrator</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/linux/">Linux</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/sysadmin/">Sysadmin</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/tutorial/">Tutorial</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/exam-200/">Exam 200</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="how-to-perform-container-management-using-podman-and-skopeo">How to Perform Container Management using Podman and Skopeo<a href="#how-to-perform-container-management-using-podman-and-skopeo" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>In this tutorial, we will guide you through the process of performing container management using commands such as podman and skopeo. This is a required skill for the Red Hat Certified Systems Administrator Exam (EX200), Objective 200.</p>
+<h2 id="introduction-to-podman-and-skopeo">Introduction to Podman and Skopeo<a href="#introduction-to-podman-and-skopeo" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Podman and Skopeo are two important tools used in Linux systems for container management. Podman is a daemonless container engine that is used to manage containers, pods, and images. Skopeo, on the other hand, is a command-line utility used for working with remote container registries.</p>
+<h2 id="requirements">Requirements<a href="#requirements" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Before we dive into the tutorial, make sure you have the following requirements:</p>
+<ul>
+<li>A Linux system with Podman and Skopeo installed</li>
+<li>Basic knowledge of the Linux command line</li>
+</ul>
+<h2 id="step-1-starting-the-podman-service">Step 1: Starting the Podman Service<a href="#step-1-starting-the-podman-service" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>The first step in managing containers using Podman is to start the Podman service. This can be done by running the following command in the terminal:</p>
+<p><code>sudo systemctl start podman</code></p>
+<p>This will start the Podman service and allow you to manage containers on your system.</p>
+<h2 id="step-2-pulling-an-image-using-skopeo">Step 2: Pulling an Image using Skopeo<a href="#step-2-pulling-an-image-using-skopeo" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Before we can create containers, we need to pull an image from a container registry. Skopeo allows us to do this easily by providing the following command:</p>
+<p><code>skopeo copy &lt;source&gt; &lt;destination&gt;</code></p>
+<p>Where <code>&lt;source&gt;</code> is the location of the image in the registry and <code>&lt;destination&gt;</code> is the location where the image will be stored on your system. For example, to pull the latest CentOS image from Docker Hub, we can use the following command:</p>
+<p><code>skopeo copy docker://docker.io/centos:latest dir:///home/images</code></p>
+<p>This will pull the image from Docker Hub and save it in the specified directory.</p>
+<h2 id="step-3-creating-a-container-with-podman">Step 3: Creating a Container with Podman<a href="#step-3-creating-a-container-with-podman" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Now that we have an image, we can use Podman to create a container from it. The basic syntax for creating a container is as follows:</p>
+<p><code>podman run &lt;options&gt; &lt;image&gt; &lt;command&gt;</code></p>
+<p>Where <code>&lt;options&gt;</code> are the various configurations for the container, <code>&lt;image&gt;</code> is the image used to create the container, and <code>&lt;command&gt;</code> is the command that the container will run. For example, to create a CentOS container and run a bash shell inside it, we can use the following command:</p>
+<p><code>podman run -it centos bash</code></p>
+<p>This will create a container named &ldquo;centos&rdquo; and open a bash shell inside it, allowing us to interact with the container.</p>
+<h2 id="step-4-managing-containers-with-podman">Step 4: Managing Containers with Podman<a href="#step-4-managing-containers-with-podman" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Once a container is created, it can be managed using various Podman commands. Some of the useful commands are:</p>
+<ul>
+<li><code>podman ps</code>: lists all running containers</li>
+<li><code>podman start &lt;container&gt;</code>: starts a stopped container</li>
+<li><code>podman stop &lt;container&gt;</code>: stops a running container</li>
+<li><code>podman rename &lt;oldname&gt; &lt;newname&gt;</code>: renames a container</li>
+<li><code>podman rm &lt;container&gt;</code>: removes a container</li>
+</ul>
+<p>For a full list of Podman commands, you can refer to the official documentation.</p>
+<h2 id="step-5-managing-images-with-skopeo">Step 5: Managing Images with Skopeo<a href="#step-5-managing-images-with-skopeo" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Similarly, we can also use Skopeo to manage images on our system. Some useful commands for managing images are:</p>
+<ul>
+<li><code>skopeo inspect &lt;image&gt;</code>: shows details about the image</li>
+<li><code>skopeo delete &lt;image&gt;</code>: deletes the image from your system</li>
+</ul>
+<p>Again, for a full list of Skopeo commands, refer to the official documentation.</p>
+<h2 id="conclusion">Conclusion<a href="#conclusion" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>In this tutorial, we have covered the basics of container management using Podman and Skopeo. By following these steps, you should now be able to start, stop, and manage containers on your Linux system using these tools. For more in-depth knowledge, we recommend further reading from the official documentation and practicing on your own system.</p>
+<p>We hope this tutorial has been helpful in preparing you for the Red Hat Certified Systems Administrator Exam, Objective 200. Good luck on your certification journey!</p>
+
+      </div></div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2024 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

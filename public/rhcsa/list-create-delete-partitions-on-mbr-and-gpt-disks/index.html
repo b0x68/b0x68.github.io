@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>List, create, delete partitions on MBR and GPT disks :: b0x68</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Tutorial: Managing Partitions on MBR and GPT Disks for Red Hat Certified Systems Administrator Exam In this tutorial, we will cover the objective of managing partitions on MBR and GPT disks for the Red Hat Certified Systems Administrator Exam. Managing partitions is a crucial aspect of system administration, as it allows for efficient storage allocation and organization. We will cover the basics of MBR and GPT disks, and then dive into the process of creating, deleting, and listing partitions on these types of disks." />
+<meta name="keywords" content="RHCSA, Red Hat, System Administrator, Linux, Sysadmin, Tutorial, Exam 200" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="http://b0x68.github.io/rhcsa/list-create-delete-partitions-on-mbr-and-gpt-disks/" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+
+
+
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="http://b0x68.github.io/styles.css">
+
+
+
+
+
+
+
+  <link rel="shortcut icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+  <link rel="apple-touch-icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="List, create, delete partitions on MBR and GPT disks">
+<meta property="og:description" content="Tutorial: Managing Partitions on MBR and GPT Disks for Red Hat Certified Systems Administrator Exam In this tutorial, we will cover the objective of managing partitions on MBR and GPT disks for the Red Hat Certified Systems Administrator Exam. Managing partitions is a crucial aspect of system administration, as it allows for efficient storage allocation and organization. We will cover the basics of MBR and GPT disks, and then dive into the process of creating, deleting, and listing partitions on these types of disks." />
+<meta property="og:url" content="http://b0x68.github.io/rhcsa/list-create-delete-partitions-on-mbr-and-gpt-disks/" />
+<meta property="og:site_name" content="b0x68" />
+
+  
+  
+  <meta property="og:image" content="http://b0x68.github.io">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2024-02-16 11:47:44 -0500 EST" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+<body class="green">
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+  <div class="header__inner">
+    <div class="header__logo" style="margin-top: 10px;margin-left: 0px;margin-right: 0px;margin-bottom: 10px;">
+      <a href="/about">
+  <div class="logo">
+    b0x68
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/rhcsa">RHCSA</a></li>
+        
+      
+        
+          <li><a href="/tech">Tech</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js"></script>
+<div id="search"></div>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#search", showSubResults: true });
+    });
+</script>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        <li><a href="/about" >About</a></li>
+      
+    
+      
+        <li><a href="/rhcsa" >RHCSA</a></li>
+      
+    
+      
+        <li><a href="/tech" >Tech</a></li>
+      
+    
+  </ul>
+</nav>
+
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="http://b0x68.github.io/rhcsa/list-create-delete-partitions-on-mbr-and-gpt-disks/">List, create, delete partitions on MBR and GPT disks</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2024-02-16[Updated::2024-02-16]</time><span class="post-author">root</span><span class="post-reading-time">5 min read (967 words)</span></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="http://b0x68.github.io/tags/rhcsa/">RHCSA</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/red-hat/">Red Hat</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/system-administrator/">System Administrator</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/linux/">Linux</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/sysadmin/">Sysadmin</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/tutorial/">Tutorial</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/exam-200/">Exam 200</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="tutorial-managing-partitions-on-mbr-and-gpt-disks-for-red-hat-certified-systems-administrator-exam">Tutorial: Managing Partitions on MBR and GPT Disks for Red Hat Certified Systems Administrator Exam<a href="#tutorial-managing-partitions-on-mbr-and-gpt-disks-for-red-hat-certified-systems-administrator-exam" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>In this tutorial, we will cover the objective of managing partitions on MBR and GPT disks for the Red Hat Certified Systems Administrator Exam. Managing partitions is a crucial aspect of system administration, as it allows for efficient storage allocation and organization. We will cover the basics of MBR and GPT disks, and then dive into the process of creating, deleting, and listing partitions on these types of disks.</p>
+<h2 id="understanding-mbr-and-gpt-disks">Understanding MBR and GPT Disks<a href="#understanding-mbr-and-gpt-disks" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>MBR (Master Boot Record) and GPT (GUID Partition Table) are two different partitioning schemes used on disks. MBR is the traditional partitioning system, while GPT is the newer and more advanced system.</p>
+<p>MBR partitions have been around for a long time and are widely supported by various operating systems. However, they have a limitation of only supporting up to 2TB of storage per disk. GPT, on the other hand, can support much larger storage capacities (up to 9.4 zettabytes) and has features like backup partition tables and better data protection.</p>
+<p>It is essential to note that the process of managing partitions on MBR and GPT disks is slightly different, so it is crucial to understand which type of disk you are working with.</p>
+<h2 id="creating-partitions">Creating Partitions<a href="#creating-partitions" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<h3 id="creating-partitions-on-mbr-disks">Creating Partitions on MBR Disks<a href="#creating-partitions-on-mbr-disks" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<ol>
+<li>
+<p>To create a partition on an MBR disk, we will use the <code>fdisk</code> command. This command is used to create, view, or manipulate partitions on Linux systems.</p>
+</li>
+<li>
+<p>First, list all disks on your system using the <code>fdisk -l</code> command. This will give you a list of all disks and their corresponding information, including their partition table type.</p>
+</li>
+<li>
+<p>Once you have identified the MBR disk you want to create a partition on, use the <code>fdisk</code> command with the disk&rsquo;s name as an argument. For example, <code>fdisk /dev/sda</code>.</p>
+</li>
+<li>
+<p>You will now be in the fdisk interactive mode, where you can use various commands to manage the disk&rsquo;s partitions. Press <code>n</code> to create a new partition.</p>
+</li>
+<li>
+<p>Next, you will be prompted to choose between creating a primary or extended partition. Primary partitions are used for bootable volumes and cannot be further divided, while extended partitions can be divided into multiple logical volumes.</p>
+</li>
+<li>
+<p>After selecting the partition type, you will be prompted to enter the first and last sector for the partition. The default values will use the entire disk, but you can specify a custom size.</p>
+</li>
+<li>
+<p>Once the partition is created, use the <code>p</code> command to print the partition table and make sure the new partition is listed.</p>
+</li>
+<li>
+<p>Finally, use the <code>w</code> command to write the changes to the disk and exit fdisk.</p>
+</li>
+</ol>
+<h3 id="creating-partitions-on-gpt-disks">Creating Partitions on GPT Disks<a href="#creating-partitions-on-gpt-disks" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<ol>
+<li>
+<p>To create a partition on a GPT disk, we will use the <code>gdisk</code> command. This command is the GPT equivalent of <code>fdisk</code> and has similar functionality.</p>
+</li>
+<li>
+<p>Use the <code>gdisk -l</code> command to list all disks on your system and identify the GPT disk you want to create a partition on.</p>
+</li>
+<li>
+<p>Once you have identified the disk, use the <code>gdisk</code> command with the disk&rsquo;s name as an argument. For example, <code>gdisk /dev/sda</code>.</p>
+</li>
+<li>
+<p>Similar to fdisk, you will now be in an interactive mode where you can use various commands to manage the disk&rsquo;s partitions. Use the <code>n</code> command to create a new partition.</p>
+</li>
+<li>
+<p>Next, you will be prompted to enter the first and last sector for the partition, or you can choose to use the entire disk&rsquo;s size.</p>
+</li>
+<li>
+<p>After creating the partition, you can use the <code>p</code> command to print the partition table to verify the new partition was created.</p>
+</li>
+<li>
+<p>Finally, use the <code>w</code> command to save the changes to the disk and exit gdisk.</p>
+</li>
+</ol>
+<h2 id="deleting-partitions">Deleting Partitions<a href="#deleting-partitions" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<h3 id="deleting-partitions-on-mbr-disks">Deleting Partitions on MBR Disks<a href="#deleting-partitions-on-mbr-disks" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<ol>
+<li>
+<p>To delete a partition on an MBR disk, use the <code>fdisk -l</code> command to list all disks and identify the MBR disk with the partition you want to delete.</p>
+</li>
+<li>
+<p>Use the <code>fdisk</code> command with the disk&rsquo;s name as an argument to enter the interactive mode.</p>
+</li>
+<li>
+<p>Use the <code>p</code> command to print the partition table and identify the partition you want to delete.</p>
+</li>
+<li>
+<p>Use the <code>d</code> command to delete the selected partition.</p>
+</li>
+<li>
+<p>Once you have deleted all desired partitions, use the <code>w</code> command to save the changes and exit fdisk.</p>
+</li>
+</ol>
+<h3 id="deleting-partitions-on-gpt-disks">Deleting Partitions on GPT Disks<a href="#deleting-partitions-on-gpt-disks" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<ol>
+<li>
+<p>Use the <code>gdisk -l</code> command to list all disks and identify the GPT disk with the partition you want to delete.</p>
+</li>
+<li>
+<p>Use the <code>gdisk</code> command with the disk&rsquo;s name as an argument to enter the interactive mode.</p>
+</li>
+<li>
+<p>Use the <code>p</code> command to print the partition table and identify the partition you want to delete.</p>
+</li>
+<li>
+<p>Use the <code>d</code> command to delete the selected partition.</p>
+</li>
+<li>
+<p>Once you have deleted all desired partitions, use the <code>w</code> command to save the changes and exit gdisk.</p>
+</li>
+</ol>
+<h2 id="listing-partitions">Listing Partitions<a href="#listing-partitions" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<h3 id="listing-partitions-on-mbr-disks">Listing Partitions on MBR Disks<a href="#listing-partitions-on-mbr-disks" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<ol>
+<li>
+<p>Use the <code>fdisk -l</code> command to list all disks and identify the MBR disk you want to list partitions for.</p>
+</li>
+<li>
+<p>Use the <code>fdisk</code> command with the disk&rsquo;s name as an argument to enter the interactive mode.</p>
+</li>
+<li>
+<p>Use the <code>p</code> command to print the partition table and list all partitions on the disk.</p>
+</li>
+</ol>
+<h3 id="listing-partitions-on-gpt-disks">Listing Partitions on GPT Disks<a href="#listing-partitions-on-gpt-disks" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<ol>
+<li>
+<p>Use the <code>gdisk -l</code> command to list all disks and identify the GPT disk you want to list partitions for.</p>
+</li>
+<li>
+<p>Use the <code>gdisk</code> command with the disk&rsquo;s name as an argument to enter the interactive mode.</p>
+</li>
+<li>
+<p>Use the <code>p</code> command to print the partition table and list all partitions on the disk.</p>
+</li>
+</ol>
+<p>In conclusion, managing partitions on MBR and GPT disks is essential for efficient storage management. Understanding the differences between these partitioning schemes and the commands to create, delete, and list partitions is crucial for the Red Hat Certified Systems Administrator Exam. We hope this tutorial has provided in-depth information and guidance on managing partitions on MBR and GPT disks. Happy partitioning!</p>
+
+      </div></div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2024 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

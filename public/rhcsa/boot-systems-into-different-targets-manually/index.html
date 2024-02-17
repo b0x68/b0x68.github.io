@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Boot systems into different targets manually :: b0x68</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Booting Systems into Different Targets Manually Boot targets are specific modes or levels in which a system can be booted into. Each boot target is designed for a specific purpose, such as booting a system into a graphical user interface (GUI) or a command-line interface. The ability to manually boot a system into different targets is an important skill for a Red Hat Certified Systems Administrator and is included as an objective in the Red Hat Certified Systems Administrator Exam 200." />
+<meta name="keywords" content="RHCSA, Red Hat, System Administrator, Linux, Sysadmin, Tutorial, Exam 200" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="http://b0x68.github.io/rhcsa/boot-systems-into-different-targets-manually/" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+
+
+
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="http://b0x68.github.io/styles.css">
+
+
+
+
+
+
+
+  <link rel="shortcut icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+  <link rel="apple-touch-icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Boot systems into different targets manually">
+<meta property="og:description" content="Booting Systems into Different Targets Manually Boot targets are specific modes or levels in which a system can be booted into. Each boot target is designed for a specific purpose, such as booting a system into a graphical user interface (GUI) or a command-line interface. The ability to manually boot a system into different targets is an important skill for a Red Hat Certified Systems Administrator and is included as an objective in the Red Hat Certified Systems Administrator Exam 200." />
+<meta property="og:url" content="http://b0x68.github.io/rhcsa/boot-systems-into-different-targets-manually/" />
+<meta property="og:site_name" content="b0x68" />
+
+  
+  
+  <meta property="og:image" content="http://b0x68.github.io">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2024-02-16 11:46:13 -0500 EST" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+<body class="green">
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+  <div class="header__inner">
+    <div class="header__logo" style="margin-top: 10px;margin-left: 0px;margin-right: 0px;margin-bottom: 10px;">
+      <a href="/about">
+  <div class="logo">
+    b0x68
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/rhcsa">RHCSA</a></li>
+        
+      
+        
+          <li><a href="/tech">Tech</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js"></script>
+<div id="search"></div>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#search", showSubResults: true });
+    });
+</script>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        <li><a href="/about" >About</a></li>
+      
+    
+      
+        <li><a href="/rhcsa" >RHCSA</a></li>
+      
+    
+      
+        <li><a href="/tech" >Tech</a></li>
+      
+    
+  </ul>
+</nav>
+
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="http://b0x68.github.io/rhcsa/boot-systems-into-different-targets-manually/">Boot systems into different targets manually</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2024-02-16[Updated::2024-02-16]</time><span class="post-author">root</span><span class="post-reading-time">4 min read (768 words)</span></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="http://b0x68.github.io/tags/rhcsa/">RHCSA</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/red-hat/">Red Hat</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/system-administrator/">System Administrator</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/linux/">Linux</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/sysadmin/">Sysadmin</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/tutorial/">Tutorial</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/exam-200/">Exam 200</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="booting-systems-into-different-targets-manually">Booting Systems into Different Targets Manually<a href="#booting-systems-into-different-targets-manually" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>Boot targets are specific modes or levels in which a system can be booted into. Each boot target is designed for a specific purpose, such as booting a system into a graphical user interface (GUI) or a command-line interface. The ability to manually boot a system into different targets is an important skill for a Red Hat Certified Systems Administrator and is included as an objective in the Red Hat Certified Systems Administrator Exam 200.</p>
+<p>In this tutorial, we will go in-depth on how to manually boot systems into different targets, covering the following topics:</p>
+<ol>
+<li>Understanding Boot Targets</li>
+<li>Accessing Boot Manager</li>
+<li>Selecting a Boot Target</li>
+<li>Verifying Boot Target Change</li>
+<li>Troubleshooting Boot Target Issues</li>
+</ol>
+<p>Let&rsquo;s get started!</p>
+<h2 id="understanding-boot-targets">Understanding Boot Targets<a href="#understanding-boot-targets" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>As mentioned earlier, boot targets are specific modes or levels in which a system can be booted into. The available boot targets may vary depending on the operating system and system configuration. For Red Hat Enterprise Linux, the common boot targets are:</p>
+<ul>
+<li>Graphical (GUI) - This target allows for booting into a desktop environment with a graphical user interface.</li>
+<li>Multi-user (Text mode) - This target boots the system into a command-line interface, also known as text mode.</li>
+<li>Rescue - This target is used for troubleshooting and repairing a system that is having issues with its primary boot targets.</li>
+<li>Network - This target is used to boot a system over the network, instead of using the local storage devices.</li>
+</ul>
+<p>Now that we understand the different boot targets, let&rsquo;s see how we can manually boot into them.</p>
+<h2 id="accessing-boot-manager">Accessing Boot Manager<a href="#accessing-boot-manager" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>The first step to manually booting a system into a different target is to access the boot manager. The steps to access the boot manager may vary depending on the system&rsquo;s hardware, but the most common method is to press a specific key (e.g. F12 or Esc) during the system&rsquo;s startup process.</p>
+<p>Once in the boot manager, select the device from which you want to boot the system. This can be a local storage device, such as a hard drive or a USB drive, or a network device.</p>
+<h2 id="selecting-a-boot-target">Selecting a Boot Target<a href="#selecting-a-boot-target" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>After selecting the boot device, the system will attempt to boot into the default boot target. To manually choose a different boot target, we need to interrupt the boot process by pressing a key (e.g. Tab or Esc). This will bring up the boot menu, which lists all available boot targets.</p>
+<p>Use the arrow keys to navigate the boot menu and highlight the desired boot target. Then, press Enter to confirm the selection. The system will then boot into the chosen target.</p>
+<h2 id="verifying-boot-target-change">Verifying Boot Target Change<a href="#verifying-boot-target-change" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Once the system has successfully booted into the selected target, it is important to verify the change. This can be done by checking the output of the &ldquo;runlevel&rdquo; command, which displays the current run level of the system. Each boot target corresponds to a specific run level, as shown below:</p>
+<ul>
+<li>Graphical (GUI) - Run level 5</li>
+<li>Multi-user (Text mode) - Run level 3</li>
+<li>Rescue - Run level 1 or S (single user mode)</li>
+<li>Network - Run level 2</li>
+</ul>
+<p>To verify the current boot target, type &ldquo;runlevel&rdquo; in the command line and press Enter. The output will display the current run level, which should correspond to the boot target we manually selected.</p>
+<h2 id="troubleshooting-boot-target-issues">Troubleshooting Boot Target Issues<a href="#troubleshooting-boot-target-issues" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>In some cases, you may encounter issues while trying to boot a system into a specific target manually. This can be due to various reasons, such as incorrect boot loader settings or missing files. To troubleshoot these issues, you can use the rescue target to boot into a minimal system and perform troubleshooting steps.</p>
+<p>One of the common issues with boot target changes is incorrect boot loader settings. If this is the case, you can use the rescue target to access the system&rsquo;s configuration files and make necessary changes to the boot loader.</p>
+<p>If the issue persists, you can also refer to Red Hat documentation or seek help from the Red Hat community for further troubleshooting steps.</p>
+<h2 id="conclusion">Conclusion<a href="#conclusion" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Being able to manually boot systems into different targets is a crucial skill for a Red Hat Certified Systems Administrator. In this tutorial, we covered the basics of boot targets, accessing the boot manager, selecting a boot target, verifying the change, and troubleshooting boot target issues.</p>
+<p>Remember to thoroughly understand the different boot targets for your operating system and constantly practice manually booting into them. This will not only prepare you for the Red Hat Certified Systems Administrator Exam 200 but also help in real-world scenarios where you may need to switch boot targets.</p>
+
+      </div></div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2024 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

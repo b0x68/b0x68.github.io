@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Restrict network access using firewall-cmd/firewall :: b0x68</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Tutorial: Restricting Network Access using firewall-cmd/firewall In this tutorial, we will be discussing the Red Hat Certified Systems Administrator Exam 200 Objective: &amp;ldquo;Restrict network access using firewall-cmd/firewall.&amp;rdquo; We will go through the process of setting up and using the firewall-cmd and firewall tools to restrict network access and secure your system.
+What is firewall-cmd/firewall? firewall-cmd and firewall are command line tools used to manage firewalls in Linux systems, specifically in Red Hat Enterprise Linux (RHEL)." />
+<meta name="keywords" content="RHCSA, Red Hat, System Administrator, Linux, Sysadmin, Tutorial, Exam 200" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="http://b0x68.github.io/rhcsa/restrict-network-access-using-firewall-cmdfirewall/" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+
+
+
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="http://b0x68.github.io/styles.css">
+
+
+
+
+
+
+
+  <link rel="shortcut icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+  <link rel="apple-touch-icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Restrict network access using firewall-cmd/firewall">
+<meta property="og:description" content="Tutorial: Restricting Network Access using firewall-cmd/firewall In this tutorial, we will be discussing the Red Hat Certified Systems Administrator Exam 200 Objective: &amp;ldquo;Restrict network access using firewall-cmd/firewall.&amp;rdquo; We will go through the process of setting up and using the firewall-cmd and firewall tools to restrict network access and secure your system.
+What is firewall-cmd/firewall? firewall-cmd and firewall are command line tools used to manage firewalls in Linux systems, specifically in Red Hat Enterprise Linux (RHEL)." />
+<meta property="og:url" content="http://b0x68.github.io/rhcsa/restrict-network-access-using-firewall-cmdfirewall/" />
+<meta property="og:site_name" content="b0x68" />
+
+  
+  
+  <meta property="og:image" content="http://b0x68.github.io">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2024-02-16 11:51:48 -0500 EST" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+<body class="green">
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+  <div class="header__inner">
+    <div class="header__logo" style="margin-top: 10px;margin-left: 0px;margin-right: 0px;margin-bottom: 10px;">
+      <a href="/about">
+  <div class="logo">
+    b0x68
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/rhcsa">RHCSA</a></li>
+        
+      
+        
+          <li><a href="/tech">Tech</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js"></script>
+<div id="search"></div>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#search", showSubResults: true });
+    });
+</script>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        <li><a href="/about" >About</a></li>
+      
+    
+      
+        <li><a href="/rhcsa" >RHCSA</a></li>
+      
+    
+      
+        <li><a href="/tech" >Tech</a></li>
+      
+    
+  </ul>
+</nav>
+
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="http://b0x68.github.io/rhcsa/restrict-network-access-using-firewall-cmdfirewall/">Restrict network access using firewall-cmd/firewall</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2024-02-16[Updated::2024-02-16]</time><span class="post-author">root</span><span class="post-reading-time">4 min read (841 words)</span></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="http://b0x68.github.io/tags/rhcsa/">RHCSA</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/red-hat/">Red Hat</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/system-administrator/">System Administrator</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/linux/">Linux</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/sysadmin/">Sysadmin</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/tutorial/">Tutorial</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/exam-200/">Exam 200</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="tutorial-restricting-network-access-using-firewall-cmdfirewall">Tutorial: Restricting Network Access using firewall-cmd/firewall<a href="#tutorial-restricting-network-access-using-firewall-cmdfirewall" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>In this tutorial, we will be discussing the Red Hat Certified Systems Administrator Exam 200 Objective: &ldquo;Restrict network access using firewall-cmd/firewall.&rdquo; We will go through the process of setting up and using the firewall-cmd and firewall tools to restrict network access and secure your system.</p>
+<h2 id="what-is-firewall-cmdfirewall">What is firewall-cmd/firewall?<a href="#what-is-firewall-cmdfirewall" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>firewall-cmd and firewall are command line tools used to manage firewalls in Linux systems, specifically in Red Hat Enterprise Linux (RHEL). These tools provide administrators with a flexible and powerful way to control network traffic and secure their system by defining rules and policies.</p>
+<h2 id="prerequisites">Prerequisites<a href="#prerequisites" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Before beginning this tutorial, you will need:</p>
+<ul>
+<li>A system running Red Hat Enterprise Linux</li>
+<li>root or sudo privileges</li>
+<li>Basic knowledge of command line interface (CLI)</li>
+</ul>
+<h2 id="setting-up-firewall-cmdfirewall">Setting Up firewall-cmd/firewall<a href="#setting-up-firewall-cmdfirewall" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<ol>
+<li>First, make sure you have the latest version of firewalld package installed on your system. You can check this by running the following command:</li>
+</ol>
+<p><code>firewall-cmd --version</code></p>
+<ol start="2">
+<li>If you don&rsquo;t have the package installed, run the following command to install it:</li>
+</ol>
+<p><code>sudo yum install firewalld</code></p>
+<ol start="3">
+<li>Once the package is installed, start the firewalld service and enable it to start on boot by running the following commands:</li>
+</ol>
+<p><code>sudo systemctl start firewalld</code><br><br>
+<code>sudo systemctl enable firewalld</code></p>
+<ol start="4">
+<li>Verify that the service is running by using the following command:</li>
+</ol>
+<p><code>firewall-cmd --state</code></p>
+<p>This should return a message stating that the service is running.</p>
+<h2 id="understanding-zones-and-default-policies">Understanding Zones and Default Policies<a href="#understanding-zones-and-default-policies" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>In firewalld, zones are predefined sets of rules that control how traffic is allowed or blocked in a specific network or interface. There are several built-in zones in firewalld, such as public, home, internal, and external. Each zone has its own set of rules and policies.</p>
+<p>Before we start adding rules, it&rsquo;s important to understand the default policies for the zones. By default, firewalld has its <code>default_zone</code> set to <code>public</code>, and the default policy for this zone is <code>DROP</code> (meaning all incoming connections are blocked). To check your default zone, run the following command:</p>
+<p><code>firewall-cmd --get-default-zone</code></p>
+<p>To check the default policy for your current default zone, run:</p>
+<p><code>firewall-cmd --zone=&lt;zone&gt; --get-default</code></p>
+<h2 id="managing-zones-and-rules">Managing Zones and Rules<a href="#managing-zones-and-rules" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Now that we have a basic understanding of zones and policies, let&rsquo;s dive into managing them using firewall-cmd and firewall tools.</p>
+<h3 id="adding-and-removing-zones">Adding and Removing Zones<a href="#adding-and-removing-zones" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>To add a new zone, we can use the <code>--new-zone</code> option with firewall-cmd. For example, to add a zone named <code>secure</code> to our firewall, we can run the following command:</p>
+<p><code>sudo firewall-cmd --permanent --new-zone=secure</code></p>
+<p>The <code>--permanent</code> option ensures that the change is saved and will persist after a reboot.</p>
+<p>To remove a zone, use the <code>--delete-zone</code> option:</p>
+<p><code>sudo firewall-cmd --permanent --delete-zone=secure</code></p>
+<h3 id="assigning-interfaces-to-zones">Assigning Interfaces to Zones<a href="#assigning-interfaces-to-zones" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>Now that we have added a new zone, we need to assign an interface to it. This is done using the <code>--zone</code> and <code>--change-zone</code> options. For example, if we want to assign the <code>eth0</code> interface to our <code>secure</code> zone, we can run:</p>
+<p><code>sudo firewall-cmd --zone=secure --change-interface=eth0</code></p>
+<h3 id="adding-rules-to-zones">Adding Rules to Zones<a href="#adding-rules-to-zones" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>Once we have our zones set up and interfaces assigned, we can add rules to allow or deny traffic in our desired zone. This is done using the <code>--add-rich-rule</code> option and specifying the zone we want to add the rule to. For example, to allow incoming SSH connections in our <code>secure</code> zone, we can run the following command:</p>
+<p><code>sudo firewall-cmd --zone=secure --add-rich-rule='rule family=&quot;ipv4&quot; source address=&quot;192.168.1.2&quot; port port=&quot;22&quot; protocol=&quot;tcp&quot; accept'</code></p>
+<p>This command adds a rich rule that allows incoming SSH connections from the IP <code>192.168.1.2</code> on port 22 using TCP protocol.</p>
+<p>To block a specific IP address in our <code>public</code> zone, we can use the <code>drop</code> action instead:</p>
+<p><code>sudo firewall-cmd --zone=public --add-rich-rule='rule family=&quot;ipv4&quot; source address=&quot;125.253.112.36&quot; drop'</code></p>
+<h3 id="listing-zones-and-rules">Listing Zones and Rules<a href="#listing-zones-and-rules" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>To list all the configured zones in our firewall, we can use the <code>--list-all-zones</code> option:</p>
+<p><code>firewall-cmd --list-all-zones</code></p>
+<p>To list the rules in a specific zone, we can use the <code>--list-rich-rules</code> option:</p>
+<p><code>firewall-cmd --zone=secure --list-rich-rules</code></p>
+<h3 id="managing-default-policies-for-zones">Managing Default Policies for Zones<a href="#managing-default-policies-for-zones" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>As mentioned earlier, each zone has its own default policy, but we can change this using the <code>--set-default</code> option. For example, if we want to set the default policy for our <code>public</code> zone to <code>ACCEPT</code>, we can run the following command:</p>
+<p><code>sudo firewall-cmd --zone=public --set-default=accept</code></p>
+<p>This will allow all incoming connections in the <code>public</code> zone by default.</p>
+<h2 id="making-changes-permanent">Making Changes Permanent<a href="#making-changes-permanent" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Firewalld allows temporary changes that are not saved after a reboot. To make a change permanent, use the <code>--permanent</code> option when adding or modifying rules. For example,</p>
+<p><code>sudo firewall-cmd --permanent --zone=secure --add-rich-rule='rule family=&quot;ipv4&quot; source address=&quot;192.168.1.2&quot; port port=&quot;22&quot; protocol=&quot;tcp&quot; accept'</code></p>
+<p>This change will be saved and applied every time the firewall service is started.</p>
+<h2 id="reload-and-restart-firewall-cmd">Reload and Restart firewall-cmd<a href="#reload-and-restart-firewall-cmd" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Any changes made to the firewall-cmd configuration will only take effect after the service is reloaded or restarted. To do this, use the <code>reload</code> or <code>restart</code> options respectively:</p>
+<p><code>sudo firewall-cmd --reload</code><br><br>
+<code>sudo firewall-cmd --restart</code></p>
+<h2 id="conclusion">Conclusion<a href="#conclusion" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Congratulations, you have successfully learned how to restrict network access using firewall-cmd/firewall. By utilizing zones, rules, and policies, you can control incoming and outgoing network traffic and secure your system. Be sure to regularly review your firewall configurations and make changes as needed to keep your system protected.</p>
+
+      </div></div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2024 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

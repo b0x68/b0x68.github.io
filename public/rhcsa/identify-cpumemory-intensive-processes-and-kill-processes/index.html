@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Identify CPU/memory intensive processes and kill processes :: b0x68</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Tutorial: Identifying and Killing CPU/Memory Intensive Processes in Red Hat Certified Systems Administrator Exam The Red Hat Certified Systems Administrator (RHCSA) Exam is a performance-based exam that measures the ability of a systems administrator to manage and maintain Red Hat Enterprise Linux systems. One of the objectives of this exam is to identify and kill CPU/memory intensive processes. In this tutorial, we will cover the steps needed to successfully accomplish this objective." />
+<meta name="keywords" content="RHCSA, Red Hat, System Administrator, Linux, Sysadmin, Tutorial, Exam 200" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="http://b0x68.github.io/rhcsa/identify-cpumemory-intensive-processes-and-kill-processes/" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+
+
+
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="http://b0x68.github.io/styles.css">
+
+
+
+
+
+
+
+  <link rel="shortcut icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+  <link rel="apple-touch-icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Identify CPU/memory intensive processes and kill processes">
+<meta property="og:description" content="Tutorial: Identifying and Killing CPU/Memory Intensive Processes in Red Hat Certified Systems Administrator Exam The Red Hat Certified Systems Administrator (RHCSA) Exam is a performance-based exam that measures the ability of a systems administrator to manage and maintain Red Hat Enterprise Linux systems. One of the objectives of this exam is to identify and kill CPU/memory intensive processes. In this tutorial, we will cover the steps needed to successfully accomplish this objective." />
+<meta property="og:url" content="http://b0x68.github.io/rhcsa/identify-cpumemory-intensive-processes-and-kill-processes/" />
+<meta property="og:site_name" content="b0x68" />
+
+  
+  
+  <meta property="og:image" content="http://b0x68.github.io">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2024-02-16 11:46:29 -0500 EST" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+<body class="green">
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+  <div class="header__inner">
+    <div class="header__logo" style="margin-top: 10px;margin-left: 0px;margin-right: 0px;margin-bottom: 10px;">
+      <a href="/about">
+  <div class="logo">
+    b0x68
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/rhcsa">RHCSA</a></li>
+        
+      
+        
+          <li><a href="/tech">Tech</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js"></script>
+<div id="search"></div>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#search", showSubResults: true });
+    });
+</script>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        <li><a href="/about" >About</a></li>
+      
+    
+      
+        <li><a href="/rhcsa" >RHCSA</a></li>
+      
+    
+      
+        <li><a href="/tech" >Tech</a></li>
+      
+    
+  </ul>
+</nav>
+
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="http://b0x68.github.io/rhcsa/identify-cpumemory-intensive-processes-and-kill-processes/">Identify CPU/memory intensive processes and kill processes</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2024-02-16[Updated::2024-02-16]</time><span class="post-author">root</span><span class="post-reading-time">3 min read (564 words)</span></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="http://b0x68.github.io/tags/rhcsa/">RHCSA</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/red-hat/">Red Hat</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/system-administrator/">System Administrator</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/linux/">Linux</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/sysadmin/">Sysadmin</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/tutorial/">Tutorial</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/exam-200/">Exam 200</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="tutorial-identifying-and-killing-cpumemory-intensive-processes-in-red-hat-certified-systems-administrator-exam">Tutorial: Identifying and Killing CPU/Memory Intensive Processes in Red Hat Certified Systems Administrator Exam<a href="#tutorial-identifying-and-killing-cpumemory-intensive-processes-in-red-hat-certified-systems-administrator-exam" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>The Red Hat Certified Systems Administrator (RHCSA) Exam is a performance-based exam that measures the ability of a systems administrator to manage and maintain Red Hat Enterprise Linux systems. One of the objectives of this exam is to identify and kill CPU/memory intensive processes. In this tutorial, we will cover the steps needed to successfully accomplish this objective.</p>
+<h2 id="understanding-cpumemory-intensive-processes">Understanding CPU/Memory Intensive Processes<a href="#understanding-cpumemory-intensive-processes" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Before we begin, it is important to have a clear understanding of what CPU/Memory intensive processes are. These are processes that consume a large amount of CPU or memory resources on a system. These processes can cause performance issues and slow down the system if left unchecked. As a systems administrator, it is crucial to be able to identify and address these processes.</p>
+<h2 id="step-by-step-guide">Step-by-Step Guide<a href="#step-by-step-guide" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<h3 id="step-1-listing-running-processes">Step 1: Listing Running Processes<a href="#step-1-listing-running-processes" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>The first step in identifying CPU/memory intensive processes is to list all the running processes on the system. This can be done by using the <code>ps</code> command:</p>
+<p><code>ps aux</code></p>
+<p>This command will display a list of all the processes running on the system, along with their associated process ID (PID), CPU and memory usage, and other information.</p>
+<h3 id="step-2-sorting-processes-by-resource-usage">Step 2: Sorting Processes by Resource Usage<a href="#step-2-sorting-processes-by-resource-usage" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>Since our objective is to identify CPU/memory intensive processes, we need to sort the output of the <code>ps</code> command by resource usage. This can be done using the <code>sort</code> command and specifying the <code>-r</code> flag to sort in reverse order:</p>
+<p><code>ps aux | sort -r</code></p>
+<p>This will display the processes with the highest resource usage at the top of the list.</p>
+<h3 id="step-3-identify-the-processes-consuming-high-resources">Step 3: Identify the Processes Consuming High Resources<a href="#step-3-identify-the-processes-consuming-high-resources" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>Look for processes that have a high value under the %CPU and %MEM columns. These are likely to be the processes causing performance issues on the system.</p>
+<h3 id="step-4-killing-processes">Step 4: Killing Processes<a href="#step-4-killing-processes" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>Once you have identified the processes consuming high resources, you can kill them using the <code>kill</code> command. The <code>kill</code> command sends a signal to the process to terminate. The signal used to terminate a process is 15 (SIGTERM) by default. This will allow the process to perform any necessary cleanup tasks before exiting.</p>
+<p>To kill a process, you need to know its PID. This can be found in the output of the <code>ps</code> command from earlier. To kill a process with PID 1234, you would use the following command:</p>
+<p><code>kill 1234</code></p>
+<p>If the process does not terminate after using the <code>kill</code> command, you can use the <code>-9</code> flag to send a SIGKILL signal, which terminates the process immediately. However, this should only be used as a last resort as it does not allow the process to perform any cleanup tasks.</p>
+<p><code>kill -9 1234</code></p>
+<h3 id="step-5-verifying-process-termination">Step 5: Verifying Process Termination<a href="#step-5-verifying-process-termination" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>After killing a process, it is important to verify that it has been successfully terminated. This can be done by using the <code>ps</code> command again and checking if the process is still listed. If the process is no longer listed, it has been successfully terminated.</p>
+<h2 id="conclusion">Conclusion<a href="#conclusion" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>In this tutorial, we have covered the steps needed to identify and kill CPU/memory intensive processes. As a systems administrator, it is important to regularly monitor and manage these processes to ensure optimal system performance. By following the steps outlined in this tutorial, you will be able to successfully complete this objective in the Red Hat Certified Systems Administrator Exam.</p>
+
+      </div></div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2024 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

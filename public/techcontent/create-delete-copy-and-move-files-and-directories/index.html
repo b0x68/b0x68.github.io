@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Create Delete Copy and Move Files and Directories :: b0x68</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Essential skills required to manage files and directories in enterprise Linux" />
+<meta name="keywords" content="Red Hat Linux, File management, System administration, Command line interface, File manipulation, Directory manipulation, Red Hat Certified Systems Administrator Exam 200, Hugo tutorial" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="http://b0x68.github.io/techcontent/create-delete-copy-and-move-files-and-directories/" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+
+
+
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="http://b0x68.github.io/styles.css">
+
+
+
+
+
+
+
+  <link rel="shortcut icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+  <link rel="apple-touch-icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Create Delete Copy and Move Files and Directories">
+<meta property="og:description" content="Essential skills required to manage files and directories in enterprise Linux" />
+<meta property="og:url" content="http://b0x68.github.io/techcontent/create-delete-copy-and-move-files-and-directories/" />
+<meta property="og:site_name" content="b0x68" />
+
+  
+  
+  <meta property="og:image" content="http://b0x68.github.io/make.jpg">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2024-02-10 13:36:18 -0500 EST" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+<body class="green">
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/about">
+  <div class="logo">
+    b0x68
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/rhcsa">RHCSA</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/about" >About</a></li>
+        
+      
+        
+          <li><a href="/rhcsa" >RHCSA</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="http://b0x68.github.io/techcontent/create-delete-copy-and-move-files-and-directories/">Create Delete Copy and Move Files and Directories</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2024-02-10[Updated::2024-02-10]</time><span class="post-author">root</span><span class="post-reading-time">2 min read (336 words)</span></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="http://b0x68.github.io/tags/red-hat/">Red Hat</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/linux/">Linux</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/file-management/">File Management</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/system-administration/">System Administration</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/hugo-tutorial/">Hugo Tutorial</a>&nbsp;
+      
+    </span>
+  
+  
+  <img src="http://b0x68.github.io/make.jpg"
+    class="post-cover"
+    alt="Create Delete Copy and Move Files and Directories"
+    title="Cover Image" />
+
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="how-to-manage-files-and-directories-in-red-hat-linux">How to Manage Files and Directories in Red Hat Linux<a href="#how-to-manage-files-and-directories-in-red-hat-linux" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>In this tutorial, we&rsquo;ll cover the essential skills required to manage files and directories in Red Hat Linux. This knowledge is crucial for the Red Hat Certified Systems Administrator Exam 200 objective of creating, deleting, copying, and moving files and directories.</p>
+<h2 id="prerequisites">Prerequisites<a href="#prerequisites" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Before we begin, make sure you have access to a Red Hat Linux system. You should also have basic knowledge of navigating the Linux command line interface.</p>
+<h2 id="creating-files-and-directories">Creating Files and Directories<a href="#creating-files-and-directories" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>To create a file in Red Hat Linux, you can use the <code>touch</code> command followed by the filename. For example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>touch myfile.txt
+</span></span></code></pre></div><p>To create a directory, you can use the <code>mkdir</code> command followed by the directory name. For example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir mydirectory
+</span></span></code></pre></div><h2 id="deleting-files-and-directories">Deleting Files and Directories<a href="#deleting-files-and-directories" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>To delete a file, you can use the <code>rm</code> command followed by the filename. Be cautious when using this command, as it permanently deletes the file.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rm myfile.txt
+</span></span></code></pre></div><p>To delete an empty directory, you can use the <code>rmdir</code> command followed by the directory name.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rmdir mydirectory
+</span></span></code></pre></div><p>If you want to delete a directory along with its contents recursively, you can use the <code>rm</code> command with the <code>-r</code> option.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rm -r mydirectory
+</span></span></code></pre></div><h2 id="copying-files-and-directories">Copying Files and Directories<a href="#copying-files-and-directories" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>To copy a file, you can use the <code>cp</code> command followed by the source filename and the destination filename.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cp myfile.txt newfile.txt
+</span></span></code></pre></div><p>To copy a directory and its contents recursively, you can use the <code>cp</code> command with the <code>-r</code> option.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cp -r mydirectory newdirectory
+</span></span></code></pre></div><h2 id="moving-files-and-directories">Moving Files and Directories<a href="#moving-files-and-directories" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>To move a file, you can use the <code>mv</code> command followed by the source filename and the destination filename.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mv myfile.txt /path/to/destination/
+</span></span></code></pre></div><p>To move a directory, you can use the <code>mv</code> command followed by the source directory name and the destination directory name.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mv mydirectory /path/to/destination/
+</span></span></code></pre></div><h2 id="conclusion">Conclusion<a href="#conclusion" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>By mastering these commands, you can efficiently manage files and directories in Red Hat Linux. Practice these skills regularly to become proficient and prepare for the Red Hat Certified Systems Administrator Exam 200 objective. Happy Linux administration! 🐧</p>
+
+      </div></div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2024 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

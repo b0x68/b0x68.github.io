@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Configure key-based authentication for SSH :: b0x68</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Introduction In this tutorial, we will explain in great depth the objective of &amp;ldquo;Configure key-based authentication for SSH&amp;rdquo; for the Red Hat Certified Systems Administrator Exam 200. SSH (Secure Shell) is a widely used protocol for remotely accessing and managing systems. By configuring key-based authentication for SSH, we can enhance the security of remote access to our systems by using public and private keys instead of traditional password authentication.
+Prerequisites Before we begin, you should have a basic understanding of SSH and its configuration." />
+<meta name="keywords" content="RHCSA, Red Hat, System Administrator, Linux, Sysadmin, Tutorial, Exam 200" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="http://b0x68.github.io/rhcsa/configure-key-based-authentication-for-ssh/" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+
+
+
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="http://b0x68.github.io/styles.css">
+
+
+
+
+
+
+
+  <link rel="shortcut icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+  <link rel="apple-touch-icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Configure key-based authentication for SSH">
+<meta property="og:description" content="Introduction In this tutorial, we will explain in great depth the objective of &amp;ldquo;Configure key-based authentication for SSH&amp;rdquo; for the Red Hat Certified Systems Administrator Exam 200. SSH (Secure Shell) is a widely used protocol for remotely accessing and managing systems. By configuring key-based authentication for SSH, we can enhance the security of remote access to our systems by using public and private keys instead of traditional password authentication.
+Prerequisites Before we begin, you should have a basic understanding of SSH and its configuration." />
+<meta property="og:url" content="http://b0x68.github.io/rhcsa/configure-key-based-authentication-for-ssh/" />
+<meta property="og:site_name" content="b0x68" />
+
+  
+  
+  <meta property="og:image" content="http://b0x68.github.io">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2024-02-16 11:52:58 -0500 EST" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+<body class="green">
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+  <div class="header__inner">
+    <div class="header__logo" style="margin-top: 10px;margin-left: 0px;margin-right: 0px;margin-bottom: 10px;">
+      <a href="/about">
+  <div class="logo">
+    b0x68
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/rhcsa">RHCSA</a></li>
+        
+      
+        
+          <li><a href="/tech">Tech</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js"></script>
+<div id="search"></div>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#search", showSubResults: true });
+    });
+</script>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        <li><a href="/about" >About</a></li>
+      
+    
+      
+        <li><a href="/rhcsa" >RHCSA</a></li>
+      
+    
+      
+        <li><a href="/tech" >Tech</a></li>
+      
+    
+  </ul>
+</nav>
+
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="http://b0x68.github.io/rhcsa/configure-key-based-authentication-for-ssh/">Configure key-based authentication for SSH</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2024-02-16[Updated::2024-02-16]</time><span class="post-author">root</span><span class="post-reading-time">3 min read (627 words)</span></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="http://b0x68.github.io/tags/rhcsa/">RHCSA</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/red-hat/">Red Hat</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/system-administrator/">System Administrator</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/linux/">Linux</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/sysadmin/">Sysadmin</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/tutorial/">Tutorial</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/exam-200/">Exam 200</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <h2 id="introduction">Introduction<a href="#introduction" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>In this tutorial, we will explain in great depth the objective of &ldquo;Configure key-based authentication for SSH&rdquo; for the Red Hat Certified Systems Administrator Exam 200. SSH (Secure Shell) is a widely used protocol for remotely accessing and managing systems. By configuring key-based authentication for SSH, we can enhance the security of remote access to our systems by using public and private keys instead of traditional password authentication.</p>
+<h2 id="prerequisites">Prerequisites<a href="#prerequisites" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Before we begin, you should have a basic understanding of SSH and its configuration. You should also have a Red Hat Enterprise Linux (RHEL) system with SSH installed, as well as a user with root privileges to perform the necessary configurations.</p>
+<h2 id="step-1-generating-the-public-and-private-keys">Step 1: Generating the public and private keys<a href="#step-1-generating-the-public-and-private-keys" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>The first step in configuring key-based authentication for SSH is to generate the necessary public and private keys. These keys will be used instead of passwords to authenticate remote users.</p>
+<p>1.1. Log into your RHEL system with root privileges.</p>
+<p>1.2. Navigate to the <code>.ssh</code> directory in the home directory of the user you want to use for SSH access.</p>
+<p>1.3. If the <code>.ssh</code> directory does not exist, create it by using the <code>mkdir</code> command:</p>
+<pre tabindex="0"><code>mkdir .ssh
+</code></pre><p>1.4. Change the permissions of the <code>.ssh</code> directory to be accessible only by the user:</p>
+<pre tabindex="0"><code>chmod 700 .ssh
+</code></pre><p>1.5. Navigate to the <code>.ssh</code> directory and generate the key pair using the <code>ssh-keygen</code> command:</p>
+<pre tabindex="0"><code>cd .ssh
+ssh-keygen
+</code></pre><p>1.6. The <code>ssh-keygen</code> command will prompt you for the location to save the keys and ask you to enter a passphrase (optional). Press Enter to use the default location and leave the passphrase blank if you don&rsquo;t want to use one.</p>
+<p>1.7. Once the keys have been generated, you will see two files: <code>id_rsa</code> (private key) and <code>id_rsa.pub</code> (public key).</p>
+<h2 id="step-2-configuring-the-server-for-key-based-authentication">Step 2: Configuring the server for key-based authentication<a href="#step-2-configuring-the-server-for-key-based-authentication" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>The next step is to configure the server to accept the public key for remote authentication.</p>
+<p>2.1. Navigate to the <code>/etc/ssh</code> directory and open the <code>sshd_config</code> file in a text editor:</p>
+<pre tabindex="0"><code>cd /etc/ssh
+vi sshd_config
+</code></pre><p>2.2. Look for the following line in the <code>sshd_config</code> file and make sure it is uncommented:</p>
+<pre tabindex="0"><code>PubkeyAuthentication yes
+</code></pre><p>2.3. If the line is commented out, remove the <code>#</code> symbol at the beginning of the line.</p>
+<p>2.4. Save and close the <code>sshd_config</code> file.</p>
+<p>2.5. Restart the SSH service for the changes to take effect:</p>
+<pre tabindex="0"><code>systemctl restart sshd
+</code></pre><h2 id="step-3-configuring-the-client-for-key-based-authentication">Step 3: Configuring the client for key-based authentication<a href="#step-3-configuring-the-client-for-key-based-authentication" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Now, we need to configure the client system to use the private key for remote authentication.</p>
+<p>3.1. Log into the client system with the user you want to use for remote SSH access.</p>
+<p>3.2. Navigate to the <code>.ssh</code> directory in the user&rsquo;s home directory.</p>
+<p>3.3. Create a file called <code>config</code> using a text editor and add the following lines:</p>
+<pre tabindex="0"><code>Host &lt;server_hostname&gt;
+User &lt;remote_username&gt;
+IdentityFile ~/.ssh/id_rsa
+</code></pre><p>3.4. Replace <code>&lt;server_hostname&gt;</code> with the hostname or IP address of the server, and <code>&lt;remote_username&gt;</code> with the username used on the server for remote access.</p>
+<p>3.5. Save the <code>config</code> file and close the text editor.</p>
+<h2 id="step-4-testing-the-configuration">Step 4: Testing the configuration<a href="#step-4-testing-the-configuration" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>To test our configuration, we will try to log into the server using SSH with the configured user:</p>
+<pre tabindex="0"><code>ssh &lt;server_hostname&gt;
+</code></pre><p>If everything is configured correctly, SSH will use the private key to authenticate the user and allow remote access without requiring a password. If you have set a passphrase for the private key, you will be prompted to enter it.</p>
+<h2 id="conclusion">Conclusion<a href="#conclusion" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>In this tutorial, we have explained in depth how to configure key-based authentication for SSH, which is a critical security measure for remote access to systems. By using public and private keys instead of passwords, we can enhance the security of our systems and protect them from potential attacks. Remember to always keep your private key secure and do not share it with anyone.</p>
+
+      </div></div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2024 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

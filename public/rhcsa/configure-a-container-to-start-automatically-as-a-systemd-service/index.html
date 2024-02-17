@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Configure a container to start automatically as a systemd service :: b0x68</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Red Hat Certified Systems Administrator Exam 200 Objective: &amp;ldquo;Configure a container to start automatically as a systemd service&amp;rdquo; In today&amp;rsquo;s world of ever-growing virtualization and cloud computing, containerization has become a popular approach for deploying and managing applications. And with the rise of container orchestration tools like Kubernetes, the demand for professionals who can configure and manage containers is increasing rapidly. As a Red Hat Certified Systems Administrator, it is important to have a good understanding of containerization and its tools." />
+<meta name="keywords" content="RHCSA, Red Hat, System Administrator, Linux, Sysadmin, Tutorial, Exam 200" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="http://b0x68.github.io/rhcsa/configure-a-container-to-start-automatically-as-a-systemd-service/" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+
+
+
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="http://b0x68.github.io/styles.css">
+
+
+
+
+
+
+
+  <link rel="shortcut icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+  <link rel="apple-touch-icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Configure a container to start automatically as a systemd service">
+<meta property="og:description" content="Red Hat Certified Systems Administrator Exam 200 Objective: &amp;ldquo;Configure a container to start automatically as a systemd service&amp;rdquo; In today&amp;rsquo;s world of ever-growing virtualization and cloud computing, containerization has become a popular approach for deploying and managing applications. And with the rise of container orchestration tools like Kubernetes, the demand for professionals who can configure and manage containers is increasing rapidly. As a Red Hat Certified Systems Administrator, it is important to have a good understanding of containerization and its tools." />
+<meta property="og:url" content="http://b0x68.github.io/rhcsa/configure-a-container-to-start-automatically-as-a-systemd-service/" />
+<meta property="og:site_name" content="b0x68" />
+
+  
+  
+  <meta property="og:image" content="http://b0x68.github.io">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2024-02-16 11:55:10 -0500 EST" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+<body class="green">
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+  <div class="header__inner">
+    <div class="header__logo" style="margin-top: 10px;margin-left: 0px;margin-right: 0px;margin-bottom: 10px;">
+      <a href="/about">
+  <div class="logo">
+    b0x68
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/rhcsa">RHCSA</a></li>
+        
+      
+        
+          <li><a href="/tech">Tech</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js"></script>
+<div id="search"></div>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#search", showSubResults: true });
+    });
+</script>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        <li><a href="/about" >About</a></li>
+      
+    
+      
+        <li><a href="/rhcsa" >RHCSA</a></li>
+      
+    
+      
+        <li><a href="/tech" >Tech</a></li>
+      
+    
+  </ul>
+</nav>
+
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="http://b0x68.github.io/rhcsa/configure-a-container-to-start-automatically-as-a-systemd-service/">Configure a container to start automatically as a systemd service</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2024-02-16[Updated::2024-02-16]</time><span class="post-author">root</span><span class="post-reading-time">5 min read (888 words)</span></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="http://b0x68.github.io/tags/rhcsa/">RHCSA</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/red-hat/">Red Hat</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/system-administrator/">System Administrator</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/linux/">Linux</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/sysadmin/">Sysadmin</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/tutorial/">Tutorial</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/exam-200/">Exam 200</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="red-hat-certified-systems-administrator-exam-200-objective-configure-a-container-to-start-automatically-as-a-systemd-service">Red Hat Certified Systems Administrator Exam 200 Objective: &ldquo;Configure a container to start automatically as a systemd service&rdquo;<a href="#red-hat-certified-systems-administrator-exam-200-objective-configure-a-container-to-start-automatically-as-a-systemd-service" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>In today&rsquo;s world of ever-growing virtualization and cloud computing, containerization has become a popular approach for deploying and managing applications. And with the rise of container orchestration tools like Kubernetes, the demand for professionals who can configure and manage containers is increasing rapidly. As a Red Hat Certified Systems Administrator, it is important to have a good understanding of containerization and its tools. In this tutorial, we will go in-depth to explore how to configure a container to start automatically as a systemd service.</p>
+<h2 id="what-is-systemd">What is systemd?<a href="#what-is-systemd" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Systemd is an init system and service manager for Linux operating systems. It is designed to provide a more powerful and efficient way of starting and managing services compared to the traditional init system. Systemd is responsible for starting, stopping, and supervising system services, including containers. It is also responsible for managing system resources, such as power management, logging, and device management.</p>
+<h2 id="what-is-a-container">What is a container?<a href="#what-is-a-container" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Containers are lightweight, standalone, and executable packages that encapsulate a piece of software and all its dependencies. They are designed to run isolated applications on a single host machine without requiring a virtual machine. Containers offer a faster, more portable, and efficient way of deploying applications, making them a popular choice among developers and system administrators.</p>
+<h2 id="setting-up-a-container-to-start-as-a-systemd-service">Setting up a container to start as a systemd service<a href="#setting-up-a-container-to-start-as-a-systemd-service" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Before we dive into configuring a container to start automatically as a systemd service, let&rsquo;s first make sure we have the necessary prerequisites in place:</p>
+<ul>
+<li>A Linux operating system with systemd installed (In this tutorial, we will be using Red Hat Enterprise Linux)</li>
+<li>Docker or Podman (container engines)</li>
+<li>A container image to use (In our example, we will be using a web application container image)</li>
+</ul>
+<p>Once we have all the necessary prerequisites, we can move on to the steps to configure a container to start as a systemd service.</p>
+<h3 id="step-1-create-a-container-image">Step 1: Create a container image<a href="#step-1-create-a-container-image" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>The first step is to create a container image for our web application. If you already have a container image, you can skip this step. Otherwise, we will use the following command to create a basic web application using the &ldquo;index.html&rdquo; file:</p>
+<p><code>mkdir html_files</code></p>
+<p><code>vi html_files/index.html</code> (Add some basic HTML code here, like &ldquo;Hello from my web application!&rdquo;)</p>
+<p><code>docker build -t mywebapp:1.0 .</code></p>
+<h3 id="step-2-create-a-systemd-unit-file">Step 2: Create a systemd unit file<a href="#step-2-create-a-systemd-unit-file" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>A systemd unit file is a configuration file that describes how a systemd service should be managed. We will create a unit file in the &ldquo;/etc/systemd/system&rdquo; directory with the name &ldquo;mywebapp.service.&rdquo; We can use any text editor to create the file, but for simplicity, we will use the &ldquo;vi&rdquo; editor:</p>
+<p><code>sudo vi /etc/systemd/system/mywebapp.service</code></p>
+<p>Within this file, we need to provide some information, like the service name, description, recommended resources to be used, and command-line options. We will use the following template for our unit file:</p>
+<pre tabindex="0"><code>[Unit]
+Description= My Web Application Service
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker run -p 80:80 mywebapp:1.0
+Restart=always
+
+[Install]
+WantedBy=multi-user.target 
+</code></pre><p>Now, let&rsquo;s break down the different sections of this unit file:</p>
+<ul>
+<li><code>[Unit]</code>: This section provides general information about the service, like the name and description.</li>
+<li><code>Requires</code>: This option specifies that our service depends on the docker service, and it will not start until the docker service has started successfully.</li>
+<li><code>After</code>: This option sets the order in which services are started. In this case, we want our service to start after the docker service has started.</li>
+<li><code>[Service]</code>:</li>
+<li><code>ExecStart</code>: This is the main command that will be executed to start our container. In this case, we are using Docker to run our container and expose port 80 for our web application. Make sure to use the appropriate command for the container engine you are using.</li>
+<li><code>Restart</code>: This option specifies that the service should be restarted if it fails for any reason.</li>
+<li><code>[Install]</code>: This section specifies where the service should be located in the multi-user target, which is responsible for starting services during boot time.</li>
+</ul>
+<h3 id="step-3-start-the-service-and-verify-its-status">Step 3: Start the service and verify its status<a href="#step-3-start-the-service-and-verify-its-status" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>Now that we have our unit file configured, we can start our service using the following command:</p>
+<p><code>sudo systemctl start mywebapp</code></p>
+<p>We can also verify the status of our service using the following command:</p>
+<p><code>sudo systemctl status mywebapp</code></p>
+<p>If the service has started successfully, we should see a &ldquo;active (running)&rdquo; status. If there are any errors, the status will show as &ldquo;failed,&rdquo; and we can check the logs for more information.</p>
+<h3 id="step-4-enable-the-service-to-start-on-boot">Step 4: Enable the service to start on boot<a href="#step-4-enable-the-service-to-start-on-boot" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>If we want our service to start automatically every time the system boots, we can enable it using the following command:</p>
+<p><code>sudo systemctl enable mywebapp</code></p>
+<p>Now, the next time our system boots, the service will start automatically, and we won&rsquo;t have to start it manually.</p>
+<h2 id="conclusion">Conclusion<a href="#conclusion" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>In this tutorial, we went in-depth into configuring a container to start automatically as a systemd service. We started by understanding what systemd and containers are and their importance in today&rsquo;s world of virtualization. Then, we walked through the steps to create a unit file and start our container service. By the end of this tutorial, we should have a clear understanding of how to configure a container to start automatically as a systemd service, which is an essential skill for any Red Hat Certified Systems Administrator.</p>
+
+      </div></div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2024 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

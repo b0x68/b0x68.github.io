@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Create and remove physical volumes :: b0x68</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Red Hat Certified Systems Administrator Exam 200 Objective: &amp;ldquo;Create and remove physical volumes&amp;rdquo; Tutorial Introduction A physical volume (PV) is a partition or a disk on a physical hard drive that is used by the Linux Logical Volume Manager (LVM). It is the first step in setting up LVM and plays a crucial role in managing storage on Red Hat Enterprise Linux systems. This tutorial will provide a step-by-step guide on how to create and remove physical volumes, which is one of the objectives for the Red Hat Certified Systems Administrator Exam (EX200)." />
+<meta name="keywords" content="RHCSA, Red Hat, System Administrator, Linux, Sysadmin, Tutorial, Exam 200" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="http://b0x68.github.io/rhcsa/create-and-remove-physical-volumes/" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+
+
+
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="http://b0x68.github.io/styles.css">
+
+
+
+
+
+
+
+  <link rel="shortcut icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+  <link rel="apple-touch-icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Create and remove physical volumes">
+<meta property="og:description" content="Red Hat Certified Systems Administrator Exam 200 Objective: &amp;ldquo;Create and remove physical volumes&amp;rdquo; Tutorial Introduction A physical volume (PV) is a partition or a disk on a physical hard drive that is used by the Linux Logical Volume Manager (LVM). It is the first step in setting up LVM and plays a crucial role in managing storage on Red Hat Enterprise Linux systems. This tutorial will provide a step-by-step guide on how to create and remove physical volumes, which is one of the objectives for the Red Hat Certified Systems Administrator Exam (EX200)." />
+<meta property="og:url" content="http://b0x68.github.io/rhcsa/create-and-remove-physical-volumes/" />
+<meta property="og:site_name" content="b0x68" />
+
+  
+  
+  <meta property="og:image" content="http://b0x68.github.io">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2024-02-16 11:47:53 -0500 EST" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+<body class="green">
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+  <div class="header__inner">
+    <div class="header__logo" style="margin-top: 10px;margin-left: 0px;margin-right: 0px;margin-bottom: 10px;">
+      <a href="/about">
+  <div class="logo">
+    b0x68
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/rhcsa">RHCSA</a></li>
+        
+      
+        
+          <li><a href="/tech">Tech</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js"></script>
+<div id="search"></div>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#search", showSubResults: true });
+    });
+</script>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        <li><a href="/about" >About</a></li>
+      
+    
+      
+        <li><a href="/rhcsa" >RHCSA</a></li>
+      
+    
+      
+        <li><a href="/tech" >Tech</a></li>
+      
+    
+  </ul>
+</nav>
+
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="http://b0x68.github.io/rhcsa/create-and-remove-physical-volumes/">Create and remove physical volumes</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2024-02-16[Updated::2024-02-16]</time><span class="post-author">root</span><span class="post-reading-time">3 min read (611 words)</span></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="http://b0x68.github.io/tags/rhcsa/">RHCSA</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/red-hat/">Red Hat</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/system-administrator/">System Administrator</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/linux/">Linux</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/sysadmin/">Sysadmin</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/tutorial/">Tutorial</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/exam-200/">Exam 200</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="red-hat-certified-systems-administrator-exam-200-objective-create-and-remove-physical-volumes-tutorial">Red Hat Certified Systems Administrator Exam 200 Objective: &ldquo;Create and remove physical volumes&rdquo; Tutorial<a href="#red-hat-certified-systems-administrator-exam-200-objective-create-and-remove-physical-volumes-tutorial" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<h2 id="introduction">Introduction<a href="#introduction" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>A physical volume (PV) is a partition or a disk on a physical hard drive that is used by the Linux Logical Volume Manager (LVM). It is the first step in setting up LVM and plays a crucial role in managing storage on Red Hat Enterprise Linux systems. This tutorial will provide a step-by-step guide on how to create and remove physical volumes, which is one of the objectives for the Red Hat Certified Systems Administrator Exam (EX200).</p>
+<h2 id="prerequisites">Prerequisites<a href="#prerequisites" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Before we begin, make sure you have a basic understanding of Linux commands and have access to a Red Hat Enterprise Linux system. Additionally, it is recommended to have some knowledge of LVM concepts such as logical volumes and volume groups.</p>
+<h2 id="step-1-checking-existing-physical-volumes">Step 1: Checking existing physical volumes<a href="#step-1-checking-existing-physical-volumes" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>First, we need to check if there are any existing physical volumes on our system. This can be done by running the <code>pvs</code> command, which will display a list of all physical volumes and their attributes, such as size and mount point.</p>
+<pre tabindex="0"><code>$ pvs
+</code></pre><p>If there are no existing physical volumes, the output will be blank.</p>
+<h2 id="step-2-creating-a-physical-volume">Step 2: Creating a physical volume<a href="#step-2-creating-a-physical-volume" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>To create a physical volume, we first need to identify the drive or partition we want to use. This can be done by using the <code>fdisk -l</code> command, which lists all available drives and their partitions.</p>
+<pre tabindex="0"><code>$ fdisk -l
+</code></pre><p>Once we have identified the drive or partition, we can use the <code>pvcreate</code> command to create the physical volume.</p>
+<pre tabindex="0"><code>$ pvcreate /dev/sdb
+</code></pre><p>This will initialize the drive or partition as a physical volume and assign a unique identifier (PV UUID) to it.</p>
+<h2 id="step-3-displaying-the-newly-created-physical-volumes">Step 3: Displaying the newly created physical volumes<a href="#step-3-displaying-the-newly-created-physical-volumes" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>To verify that the physical volume has been successfully created, we can use the <code>pvs</code> command again.</p>
+<pre tabindex="0"><code>$ pvs
+</code></pre><p>The output should now show the new physical volume along with its attributes.</p>
+<h2 id="step-4-adding-a-physical-volume-to-a-volume-group">Step 4: Adding a physical volume to a volume group<a href="#step-4-adding-a-physical-volume-to-a-volume-group" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>The next step is to add the physical volume to a volume group (VG). A volume group is a collection of physical volumes that are managed together.</p>
+<p>To add our new physical volume to an existing volume group, we can use the <code>vgextend</code> command.</p>
+<pre tabindex="0"><code>$ vgextend vg0 /dev/sdb
+</code></pre><p>This will add our new physical volume to the <code>vg0</code> volume group. If we wanted to create a new volume group with only our new physical volume, we could use the <code>vgcreate</code> command instead.</p>
+<h2 id="step-5-displaying-the-volume-groups">Step 5: Displaying the volume groups<a href="#step-5-displaying-the-volume-groups" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>To verify that the physical volume has been added to the volume group, we can use the <code>vgs</code> command. This will display a list of all volume groups and their attributes.</p>
+<pre tabindex="0"><code>$ vgs
+</code></pre><p>Our new physical volume should now be listed as part of the volume group we specified.</p>
+<h2 id="step-6-removing-a-physical-volume">Step 6: Removing a physical volume<a href="#step-6-removing-a-physical-volume" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>If we want to remove a physical volume from a volume group, we can use the <code>pvremove</code> command. This will remove the physical volume from the specified volume group and all the data on the physical volume will be lost.</p>
+<pre tabindex="0"><code>$ pvremove /dev/sdb
+</code></pre><h2 id="step-7-removing-a-volume-group">Step 7: Removing a volume group<a href="#step-7-removing-a-volume-group" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>To remove a volume group, we can use the <code>vgremove</code> command. This will remove the specified volume group and all associated logical volumes and physical volumes.</p>
+<pre tabindex="0"><code>$ vgremove vg0
+</code></pre><h2 id="conclusion">Conclusion<a href="#conclusion" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>In this tutorial, we have covered the basics of creating and removing physical volumes. This is an essential skill for any Red Hat Certified Systems Administrator, as it is a crucial step in managing storage using LVM. Now, you are ready to confidently tackle this objective in the Red Hat Certified Systems Administrator Exam (EX200).</p>
+
+      </div></div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2024 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

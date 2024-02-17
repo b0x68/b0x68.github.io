@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Configure autofs :: b0x68</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Red Hat Certified Systems Administrator Exam Objective: Configure autofs Introduction Autofs is a service in Linux that automatically mounts file systems on demand, rather than having them permanently mounted. This allows administrators to efficiently manage file systems that are only needed occasionally, saving resources and streamlining the system. In this tutorial, we will go in-depth on how to properly configure autofs for the Red Hat Certified Systems Administrator exam.
+Prerequisites Before we begin, make sure you have the following:" />
+<meta name="keywords" content="RHCSA, Red Hat, System Administrator, Linux, Sysadmin, Tutorial, Exam 200" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="http://b0x68.github.io/rhcsa/configure-autofs/" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+
+
+
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="http://b0x68.github.io/styles.css">
+
+
+
+
+
+
+
+  <link rel="shortcut icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+  <link rel="apple-touch-icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Configure autofs">
+<meta property="og:description" content="Red Hat Certified Systems Administrator Exam Objective: Configure autofs Introduction Autofs is a service in Linux that automatically mounts file systems on demand, rather than having them permanently mounted. This allows administrators to efficiently manage file systems that are only needed occasionally, saving resources and streamlining the system. In this tutorial, we will go in-depth on how to properly configure autofs for the Red Hat Certified Systems Administrator exam.
+Prerequisites Before we begin, make sure you have the following:" />
+<meta property="og:url" content="http://b0x68.github.io/rhcsa/configure-autofs/" />
+<meta property="og:site_name" content="b0x68" />
+
+  
+  
+  <meta property="og:image" content="http://b0x68.github.io">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2024-02-16 11:49:07 -0500 EST" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+<body class="green">
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+  <div class="header__inner">
+    <div class="header__logo" style="margin-top: 10px;margin-left: 0px;margin-right: 0px;margin-bottom: 10px;">
+      <a href="/about">
+  <div class="logo">
+    b0x68
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/rhcsa">RHCSA</a></li>
+        
+      
+        
+          <li><a href="/tech">Tech</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js"></script>
+<div id="search"></div>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#search", showSubResults: true });
+    });
+</script>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        <li><a href="/about" >About</a></li>
+      
+    
+      
+        <li><a href="/rhcsa" >RHCSA</a></li>
+      
+    
+      
+        <li><a href="/tech" >Tech</a></li>
+      
+    
+  </ul>
+</nav>
+
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="http://b0x68.github.io/rhcsa/configure-autofs/">Configure autofs</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2024-02-16[Updated::2024-02-16]</time><span class="post-author">root</span><span class="post-reading-time">4 min read (684 words)</span></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="http://b0x68.github.io/tags/rhcsa/">RHCSA</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/red-hat/">Red Hat</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/system-administrator/">System Administrator</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/linux/">Linux</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/sysadmin/">Sysadmin</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/tutorial/">Tutorial</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/exam-200/">Exam 200</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="red-hat-certified-systems-administrator-exam-objective-configure-autofs">Red Hat Certified Systems Administrator Exam Objective: Configure autofs<a href="#red-hat-certified-systems-administrator-exam-objective-configure-autofs" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<h2 id="introduction">Introduction<a href="#introduction" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Autofs is a service in Linux that automatically mounts file systems on demand, rather than having them permanently mounted. This allows administrators to efficiently manage file systems that are only needed occasionally, saving resources and streamlining the system. In this tutorial, we will go in-depth on how to properly configure autofs for the Red Hat Certified Systems Administrator exam.</p>
+<h2 id="prerequisites">Prerequisites<a href="#prerequisites" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Before we begin, make sure you have the following:</p>
+<ul>
+<li>A Red Hat Linux system</li>
+<li>Root access privileges</li>
+<li>Familiarity with basic Linux commands</li>
+</ul>
+<h2 id="step-1-install-autofs">Step 1: Install Autofs<a href="#step-1-install-autofs" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>The first step is to install the autofs package. This can be done using the <code>yum</code> package manager.</p>
+<pre tabindex="0"><code>sudo yum install autofs
+</code></pre><p>This will also install any required dependencies.</p>
+<h2 id="step-2-configure-autofs">Step 2: Configure Autofs<a href="#step-2-configure-autofs" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Next, we will need to configure autofs to suit our specific needs. The configuration file for autofs is located at <code>/etc/auto.master</code> and it is recommended to make a backup of this file before making any changes.</p>
+<pre tabindex="0"><code>sudo cp /etc/auto.master /etc/auto.master.bak
+</code></pre><p>Open the <code>auto.master</code> file in a text editor and you will see the default configuration:</p>
+<pre tabindex="0"><code># Sample auto.master file
+# This is an example auto.master file that has
+# the most common entries and entries that will
+# help the system boot.
+#
+# Note that for each mountpoint you should create
+# an appropriate entry in /etc/fstab and add the
+# &#34;nobootwait&#34; option to disable mounts at boot time,
+# for example:
+#
+# /usr	mnt	myserver:/export/usr--&amp;amp;_netdev,nobootwait
+#
+# Include central master map if it can be found using
+# nsswitch sources.
+#
+# Note that if there are entries for /net or /misc (as
+# above) in the included master map any keys that are
+# the same will not be seen as the first read key seen
+# takes precedence.
+#
+#+auto.master
+
+/misc	/etc/auto.misc
+/net	-hosts
++auto.master
+</code></pre><p>Here, we can see the default mount points <code>/misc</code> and <code>/net</code>. We can add our own mount points by adding a new line in the following format:</p>
+<pre tabindex="0"><code>Mount_Point  Configuration_File  Options  AutoFS_Map
+</code></pre><ul>
+<li><code>Mount_Point</code> is the directory where the file system will be mounted.</li>
+<li><code>Configuration_File</code> is the location of the configuration file for the specific file system.</li>
+<li><code>Options</code> are any options you want to add for the mount, such as <code>ro</code> for read-only or <code>rw</code> for read-write.</li>
+<li><code>AutoFS_Map</code> is the name of the autofs map that contains the mount information.</li>
+</ul>
+<p>For example, if we want to mount an NFS file system from the server <code>nfsserver.example.com</code> to the directory <code>/mnt/nfs</code> with read-write access, we would add the following line:</p>
+<pre tabindex="0"><code>/mnt/nfs  -fstype=nfs,rw  nfsserver.example.com:/export/nfs
+</code></pre><p>Save the changes and close the file.</p>
+<h2 id="step-3-create-autofs-maps">Step 3: Create Autofs Maps<a href="#step-3-create-autofs-maps" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Autofs maps are files that contain the information on how to mount a specific file system. They are located in the <code>/etc</code> directory and end with the extension <code>.map</code>. We can create these files manually or use a utility like <code>automake</code>. For this tutorial, we will use <code>automake</code>.</p>
+<pre tabindex="0"><code>sudo automake -c
+</code></pre><p>This will create a new map file called <code>auto.master</code> in the current directory.</p>
+<p>Next, we need to specify the mount points and configuration files for the file systems we want to mount. In our example, we want to mount an NFS file system, so we will add the following line to our <code>auto.master</code> file:</p>
+<pre tabindex="0"><code>/mnt/nfs  -fstype=nfs,rw  nfsserver.example.com:/export/nfs
+</code></pre><p>Save the file and exit.</p>
+<h2 id="step-4-restart-autofs">Step 4: Restart Autofs<a href="#step-4-restart-autofs" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>After making any changes to the autofs configuration or maps, we need to restart the service for the changes to take effect.</p>
+<pre tabindex="0"><code>sudo systemctl restart autofs
+</code></pre><h2 id="step-5-testing">Step 5: Testing<a href="#step-5-testing" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>To test if our autofs configuration is working correctly, we can try to access the mounted file system. In this example, we will try to access the NFS file system that we configured in the previous steps.</p>
+<pre tabindex="0"><code>cd /mnt/nfs
+ls
+</code></pre><p>If the file system is mounted successfully, you should see the contents of the NFS file system listed.</p>
+<h2 id="conclusion">Conclusion<a href="#conclusion" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Congratulations! You have successfully configured autofs on your Red Hat Linux system. Remember to practice this skill before taking the Red Hat Certified Systems Administrator exam to ensure you are comfortable with the process and can perform it confidently.</p>
+
+      </div></div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2024 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

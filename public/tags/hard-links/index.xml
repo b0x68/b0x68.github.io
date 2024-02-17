@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hard Links on b0x68</title>
+    <link>http://b0x68.github.io/tags/hard-links/</link>
+    <description>Recent content in Hard Links on b0x68</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 11 Feb 2024 18:20:20 -0500</lastBuildDate><atom:link href="http://b0x68.github.io/tags/hard-links/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Create Hard and Soft Links</title>
+      <link>http://b0x68.github.io/rhcsa/create-hard-and-soft-links/</link>
+      <pubDate>Sun, 11 Feb 2024 18:20:20 -0500</pubDate>
+      
+      <guid>http://b0x68.github.io/rhcsa/create-hard-and-soft-links/</guid>
+      <description>How to Create Hard and Soft Links in Red Hat Certified Systems Administrator Exam 200 In this tutorial, we&amp;rsquo;ll dig a bit into creating hard and soft links, an important objective for the Red Hat Certified Systems Administrator Exam 200. Links are powerful tools in Linux systems, allowing you to reference files and directories in different locations, providing flexibility and organization to your file system. Let&amp;rsquo;s explore how to create both hard and soft links.</description>
+      <content>&lt;h1 id=&#34;how-to-create-hard-and-soft-links-in-red-hat-certified-systems-administrator-exam-200&#34;&gt;How to Create Hard and Soft Links in Red Hat Certified Systems Administrator Exam 200&lt;/h1&gt;
+&lt;p&gt;In this tutorial, we&amp;rsquo;ll dig a bit into creating hard and soft links, an important objective for the Red Hat Certified Systems Administrator Exam 200. Links are powerful tools in Linux systems, allowing you to reference files and directories in different locations, providing flexibility and organization to your file system. Let&amp;rsquo;s explore how to create both hard and soft links.&lt;/p&gt;
+&lt;h2 id=&#34;understanding-hard-links&#34;&gt;Understanding Hard Links&lt;/h2&gt;
+&lt;p&gt;A hard link is essentially another name for a file or directory. It points directly to the inode of the original file, meaning it shares the same data blocks on the disk. This implies that changes to either the original file or the hard link will affect both, as they essentially point to the same underlying data.&lt;/p&gt;
+&lt;p&gt;To create a hard link, use the &lt;code&gt;ln&lt;/code&gt; command followed by the path of the original file and the desired name for the hard link:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ln /path/to/original_file /path/to/hard_link
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;For example:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ln /home/user/document.txt /home/user/hardlink.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Here, &lt;code&gt;document.txt&lt;/code&gt; is the original file, and &lt;code&gt;hardlink.txt&lt;/code&gt; is the hard link.&lt;/p&gt;
+&lt;h2 id=&#34;exploring-soft-links-symbolic-links&#34;&gt;Exploring Soft Links (Symbolic Links)&lt;/h2&gt;
+&lt;p&gt;A soft link, also known as a symbolic link or symlink, is a reference to the original file or directory. Unlike a hard link, a symbolic link does not directly point to the data on the disk but instead contains the path to the target file or directory.&lt;/p&gt;
+&lt;p&gt;Creating a symbolic link is similar to creating a hard link, but you use the &lt;code&gt;-s&lt;/code&gt; option with the &lt;code&gt;ln&lt;/code&gt; command:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ln -s /path/to/original_file /path/to/symbolic_link
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;For example:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ln -s /home/user/document.txt /home/user/symlink.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Here, &lt;code&gt;document.txt&lt;/code&gt; is the original file, and &lt;code&gt;symlink.txt&lt;/code&gt; is the symbolic link.&lt;/p&gt;
+&lt;h2 id=&#34;verifying-links&#34;&gt;Verifying Links&lt;/h2&gt;
+&lt;p&gt;To verify the creation of links, you can use the &lt;code&gt;ls&lt;/code&gt; command with the &lt;code&gt;-l&lt;/code&gt; option, which displays detailed information about files and directories:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ls -l /path/to/directory
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This command will list the files and directories within the specified directory along with their permissions, owners, sizes, and links.&lt;/p&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Creating hard and soft links is a fundamental skill for any Linux administrator. Hard links provide efficient file management by creating multiple references to the same data, while symbolic links offer flexibility and portability in referencing files and directories across the system.&lt;/p&gt;
+&lt;p&gt;By mastering the creation of hard and soft links, you&amp;rsquo;re equipped to efficiently manage your file system, which is crucial for success in the Red Hat Certified Systems Administrator Exam 200. Practice creating links on your system to solidify your understanding of this concept.&lt;/p&gt;
+</content>
+    </item>
+    
+  </channel>
+</rss>

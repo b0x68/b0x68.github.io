@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Run a service inside a container :: b0x68</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Tutorial: Running a Service Inside a Container In this tutorial, we will be discussing how to run a service inside a container as part of the Red Hat Certified Systems Administrator Exam.
+Prerequisites Familiarity with Linux and containers A basic understanding of system administration A machine with Red Hat Enterprise Linux installed Introduction A container is a lightweight and portable environment that allows you to run applications and services independently from the host system." />
+<meta name="keywords" content="RHCSA, Red Hat, System Administrator, Linux, Sysadmin, Tutorial, Exam 200" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="http://b0x68.github.io/rhcsa/run-a-service-inside-a-container/" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+
+
+
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="http://b0x68.github.io/styles.css">
+
+
+
+
+
+
+
+  <link rel="shortcut icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+  <link rel="apple-touch-icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Run a service inside a container">
+<meta property="og:description" content="Tutorial: Running a Service Inside a Container In this tutorial, we will be discussing how to run a service inside a container as part of the Red Hat Certified Systems Administrator Exam.
+Prerequisites Familiarity with Linux and containers A basic understanding of system administration A machine with Red Hat Enterprise Linux installed Introduction A container is a lightweight and portable environment that allows you to run applications and services independently from the host system." />
+<meta property="og:url" content="http://b0x68.github.io/rhcsa/run-a-service-inside-a-container/" />
+<meta property="og:site_name" content="b0x68" />
+
+  
+  
+  <meta property="og:image" content="http://b0x68.github.io">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2024-02-16 11:54:58 -0500 EST" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+<body class="green">
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+  <div class="header__inner">
+    <div class="header__logo" style="margin-top: 10px;margin-left: 0px;margin-right: 0px;margin-bottom: 10px;">
+      <a href="/about">
+  <div class="logo">
+    b0x68
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/rhcsa">RHCSA</a></li>
+        
+      
+        
+          <li><a href="/tech">Tech</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js"></script>
+<div id="search"></div>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#search", showSubResults: true });
+    });
+</script>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        <li><a href="/about" >About</a></li>
+      
+    
+      
+        <li><a href="/rhcsa" >RHCSA</a></li>
+      
+    
+      
+        <li><a href="/tech" >Tech</a></li>
+      
+    
+  </ul>
+</nav>
+
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="http://b0x68.github.io/rhcsa/run-a-service-inside-a-container/">Run a service inside a container</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2024-02-16[Updated::2024-02-16]</time><span class="post-author">root</span><span class="post-reading-time">4 min read (785 words)</span></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="http://b0x68.github.io/tags/rhcsa/">RHCSA</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/red-hat/">Red Hat</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/system-administrator/">System Administrator</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/linux/">Linux</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/sysadmin/">Sysadmin</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/tutorial/">Tutorial</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/exam-200/">Exam 200</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="tutorial-running-a-service-inside-a-container">Tutorial: Running a Service Inside a Container<a href="#tutorial-running-a-service-inside-a-container" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>In this tutorial, we will be discussing how to run a service inside a container as part of the Red Hat Certified Systems Administrator Exam.</p>
+<h2 id="prerequisites">Prerequisites<a href="#prerequisites" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<ul>
+<li>Familiarity with Linux and containers</li>
+<li>A basic understanding of system administration</li>
+<li>A machine with Red Hat Enterprise Linux installed</li>
+</ul>
+<h2 id="introduction">Introduction<a href="#introduction" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>A container is a lightweight and portable environment that allows you to run applications and services independently from the host system. Running a service inside a container offers numerous benefits such as better resource allocation, isolated environments, and simplified deployment processes.</p>
+<p>To successfully complete this objective, we will cover the following steps:</p>
+<ol>
+<li>Setting up a container runtime environment</li>
+<li>Creating a container image</li>
+<li>Running a service inside the container</li>
+<li>Persistence and networking configurations</li>
+</ol>
+<h2 id="step-1-setting-up-a-container-runtime-environment">Step 1: Setting up a Container Runtime Environment<a href="#step-1-setting-up-a-container-runtime-environment" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Before we can run a service inside a container, we first need to set up a container runtime environment. In this tutorial, we will be using Docker as our container runtime. To install Docker, follow these steps:</p>
+<ol>
+<li>Connect to your Red Hat Enterprise Linux machine using SSH or open a terminal if you are accessing it locally.</li>
+<li>Update the package manager by running the command <code>sudo yum update</code></li>
+<li>Install Docker using the command <code>sudo yum install docker</code></li>
+<li>Start the Docker service with the command <code>sudo systemctl start docker</code></li>
+<li>Enable the Docker service to start on boot using the command <code>sudo systemctl enable docker</code></li>
+</ol>
+<p>Congratulations, you now have a container runtime environment set up on your machine.</p>
+<h2 id="step-2-creating-a-container-image">Step 2: Creating a Container Image<a href="#step-2-creating-a-container-image" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>A container image is a template from which containers are created. For the purpose of this tutorial, we will be using the Apache web server as our service inside the container. To create a container image, follow these steps:</p>
+<ol>
+<li>Create a new directory for your container project by running the command <code>mkdir container-project</code></li>
+<li>Change into the newly created directory using <code>cd container-project</code></li>
+<li>Create a Dockerfile using the command <code>touch Dockerfile</code></li>
+<li>Open the Dockerfile in your preferred text editor and add the following lines:</li>
+</ol>
+<pre tabindex="0"><code>FROM centos:latest
+MAINTAINER [Your Name]
+RUN yum update -y
+RUN yum install httpd -y
+CMD [&#34;/usr/sbin/httpd&#34;, &#34;-D&#34;, &#34;FOREGROUND&#34;]
+</code></pre><ol start="5">
+<li>Save and close the Dockerfile. This file specifies the base image, installs the Apache web server, and sets a command to run the web server in the foreground when the container is launched.</li>
+<li>Build the container image using the command <code>sudo docker build -t apache-webserver .</code> where <code>t</code> specifies the tag/label for the image and <code>.</code> indicates the current directory.</li>
+<li>Once the build is complete, verify that the image was created by running <code>sudo docker images</code>. You should see your newly created image with the tag <code>apache-webserver</code>.</li>
+</ol>
+<h2 id="step-3-running-a-service-inside-the-container">Step 3: Running a Service Inside the Container<a href="#step-3-running-a-service-inside-the-container" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Now that we have our container image ready, we can run our Apache web server inside a container using the following steps:</p>
+<ol>
+<li>Start a container based on our image using the command <code>sudo docker run -d -p 80:80 apache-webserver</code> where <code>-d</code> tells Docker to run the container in the background and <code>-p 80:80</code> maps Port 80 on the host machine to Port 80 in the container.</li>
+<li>Verify that the container is running by executing <code>sudo docker ps</code>. You should see your container with a unique container ID.</li>
+<li>Access the web server by entering the IP address of your Red Hat Enterprise Linux machine in a web browser. You should see the default Apache web server page.</li>
+</ol>
+<p>Congratulations, you have successfully run a service inside a container!</p>
+<h2 id="step-4-persistence-and-networking-configurations">Step 4: Persistence and Networking Configurations<a href="#step-4-persistence-and-networking-configurations" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>To make your service inside the container more robust and accessible, you can configure persistence and networking. To do this, follow these steps:</p>
+<ol>
+<li>To make changes to your web server, you can access the container by executing <code>docker exec -it [container ID] bash</code> where <code>[container ID]</code> is your unique container ID.</li>
+<li>You can also map a local directory to the container using the <code>-v</code> flag when running the container. This allows you to persist any changes made to your web server even when the container is restarted.</li>
+<li>To make your service accessible to other machines, you can use the <code>--network=host</code> flag when running the container. This will use the host&rsquo;s network interface and make your service accessible through the host&rsquo;s IP address.</li>
+</ol>
+<h2 id="conclusion">Conclusion<a href="#conclusion" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>In this tutorial, we have covered how to run a service inside a container as part of the Red Hat Certified Systems Administrator Exam. We have discussed the steps to set up a container runtime environment, create a container image, run a service inside the container, and configure persistence and networking. By following these steps, you should now have a good understanding of how to run a service inside a container and its benefits. Good luck on your exam!</p>
+
+      </div></div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2024 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Configure systems to boot into a specific target automatically :: b0x68</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Red Hat Certified Systems Administrator Exam 200 Objective: &amp;ldquo;Configure systems to boot into a specific target automatically&amp;rdquo; In this tutorial, we will explore the objective of configuring systems to boot into a specific target automatically. This is an important skill for any Red Hat Certified Systems Administrator, as it allows for efficient and automated system startup, reducing manual interventions and potential mistakes.
+Understanding System Targets Before we dive into the steps to configure automatic booting, let&amp;rsquo;s first understand what system targets are." />
+<meta name="keywords" content="RHCSA, Red Hat, System Administrator, Linux, Sysadmin, Tutorial, Exam 200" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="http://b0x68.github.io/rhcsa/configure-systems-to-boot-into-a-specific-target-automatically/" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+
+
+
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="http://b0x68.github.io/styles.css">
+
+
+
+
+
+
+
+  <link rel="shortcut icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+  <link rel="apple-touch-icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Configure systems to boot into a specific target automatically">
+<meta property="og:description" content="Red Hat Certified Systems Administrator Exam 200 Objective: &amp;ldquo;Configure systems to boot into a specific target automatically&amp;rdquo; In this tutorial, we will explore the objective of configuring systems to boot into a specific target automatically. This is an important skill for any Red Hat Certified Systems Administrator, as it allows for efficient and automated system startup, reducing manual interventions and potential mistakes.
+Understanding System Targets Before we dive into the steps to configure automatic booting, let&amp;rsquo;s first understand what system targets are." />
+<meta property="og:url" content="http://b0x68.github.io/rhcsa/configure-systems-to-boot-into-a-specific-target-automatically/" />
+<meta property="og:site_name" content="b0x68" />
+
+  
+  
+  <meta property="og:image" content="http://b0x68.github.io">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2024-02-16 11:49:59 -0500 EST" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+<body class="green">
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+  <div class="header__inner">
+    <div class="header__logo" style="margin-top: 10px;margin-left: 0px;margin-right: 0px;margin-bottom: 10px;">
+      <a href="/about">
+  <div class="logo">
+    b0x68
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/rhcsa">RHCSA</a></li>
+        
+      
+        
+          <li><a href="/tech">Tech</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js"></script>
+<div id="search"></div>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#search", showSubResults: true });
+    });
+</script>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        <li><a href="/about" >About</a></li>
+      
+    
+      
+        <li><a href="/rhcsa" >RHCSA</a></li>
+      
+    
+      
+        <li><a href="/tech" >Tech</a></li>
+      
+    
+  </ul>
+</nav>
+
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="http://b0x68.github.io/rhcsa/configure-systems-to-boot-into-a-specific-target-automatically/">Configure systems to boot into a specific target automatically</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2024-02-16[Updated::2024-02-16]</time><span class="post-author">root</span><span class="post-reading-time">3 min read (601 words)</span></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="http://b0x68.github.io/tags/rhcsa/">RHCSA</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/red-hat/">Red Hat</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/system-administrator/">System Administrator</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/linux/">Linux</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/sysadmin/">Sysadmin</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/tutorial/">Tutorial</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/exam-200/">Exam 200</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="red-hat-certified-systems-administrator-exam-200-objective-configure-systems-to-boot-into-a-specific-target-automatically">Red Hat Certified Systems Administrator Exam 200 Objective: &ldquo;Configure systems to boot into a specific target automatically&rdquo;<a href="#red-hat-certified-systems-administrator-exam-200-objective-configure-systems-to-boot-into-a-specific-target-automatically" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>In this tutorial, we will explore the objective of configuring systems to boot into a specific target automatically. This is an important skill for any Red Hat Certified Systems Administrator, as it allows for efficient and automated system startup, reducing manual interventions and potential mistakes.</p>
+<h2 id="understanding-system-targets">Understanding System Targets<a href="#understanding-system-targets" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Before we dive into the steps to configure automatic booting, let&rsquo;s first understand what system targets are. In Red Hat Enterprise Linux, a target is a predefined state of services and resources that a system must reach during the boot process or while the system is running. It can be thought of as a set of rules that define what services should be started, stopped or enabled during system startup or while the system is running.</p>
+<p>There are primarily two types of targets in Red Hat Enterprise Linux:</p>
+<ul>
+<li><strong>Multi-user.target:</strong> This is the default target for most system boots and is used for normal system operation. It starts a minimal set of services required for a functional system, such as networking, file systems, and system logging.</li>
+<li><strong>Graphical.target:</strong> This target is used for systems that have a graphical desktop environment installed. It starts all the services necessary for a functional graphical desktop session.</li>
+</ul>
+<h2 id="configuring-automatic-booting">Configuring Automatic Booting<a href="#configuring-automatic-booting" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Now that we understand system targets, let&rsquo;s go through the steps to configure automatic booting into a specific target.</p>
+<h3 id="step-1-identify-the-current-default-target">Step 1: Identify the Current Default Target<a href="#step-1-identify-the-current-default-target" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>The first step is to identify the current default target on your system. This can be done by running the following command in the terminal:</p>
+<pre tabindex="0"><code>systemctl get-default
+</code></pre><p>The output will show the current default target. It is usually set to <code>multi-user.target</code>, but if you have a graphical desktop environment installed, it might be set to <code>graphical.target</code>.</p>
+<h3 id="step-2-list-available-targets">Step 2: List Available Targets<a href="#step-2-list-available-targets" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>Next, we need to identify which other targets are available on our system. This can be done by running the following command:</p>
+<pre tabindex="0"><code>systemctl list-units --type=target --all
+</code></pre><p>This will show a list of all available targets, along with their status (whether they are enabled or disabled).</p>
+<h3 id="step-3-set-the-default-target">Step 3: Set the Default Target<a href="#step-3-set-the-default-target" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>To set the default target, we will use the <code>systemctl</code> command again. We can specify which target we want to set as the default using the <code>set-default</code> option. For example, if we want to change the default target to <code>graphical.target</code>, we would run the following command:</p>
+<pre tabindex="0"><code>systemctl set-default graphical.target
+</code></pre><h3 id="step-4-verify-the-changes">Step 4: Verify the Changes<a href="#step-4-verify-the-changes" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>To ensure that the changes have been applied successfully, we can once again use the <code>systemctl get-default</code> command. It should now show the new target as the default.</p>
+<h3 id="step-5-test-the-changes">Step 5: Test the Changes<a href="#step-5-test-the-changes" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>It&rsquo;s always a good practice to test any changes we make before implementing them in a production environment. To test the changes, we can reboot our system and see if it boots into the new default target automatically. To reboot, we can use the <code>reboot</code> command.</p>
+<p>Upon reboot, the system should automatically boot into the new default target that we have set.</p>
+<h2 id="conclusion">Conclusion<a href="#conclusion" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>In this tutorial, we learned about the Red Hat Certified Systems Administrator Exam 200 Objective of configuring systems to boot into a specific target automatically. We discussed what system targets are and the two types of targets available in Red Hat Enterprise Linux. We also went through the steps to configure automatic booting, including identifying the current default target, listing all available targets, setting the default target, and testing the changes. By following these steps, you should now have a better understanding of how to configure systems to boot into a specific target automatically.</p>
+
+      </div></div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2024 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

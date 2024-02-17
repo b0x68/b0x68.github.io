@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Start and stop services and configure services to start automatically at boot :: b0x68</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Tutorial: Starting and Stopping Services and Configuring Automatic Start on Boot Introduction The Red Hat Certified Systems Administrator (RHCSA) exam is a performance-based certification exam that focuses on the skills required to perform essential system administration tasks on Red Hat Enterprise Linux (RHEL) systems. Objective 200 of the exam specifically covers the topic of starting and stopping services, as well as configuring services to start automatically at boot. In this tutorial, we will provide a step-by-step guide on how to complete this objective in great depth." />
+<meta name="keywords" content="RHCSA, Red Hat, System Administrator, Linux, Sysadmin, Tutorial, Exam 200" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="http://b0x68.github.io/rhcsa/start-and-stop-services-and-configure-services-to-start-automatically-at-boot/" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+
+
+
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="http://b0x68.github.io/styles.css">
+
+
+
+
+
+
+
+  <link rel="shortcut icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+  <link rel="apple-touch-icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Start and stop services and configure services to start automatically at boot">
+<meta property="og:description" content="Tutorial: Starting and Stopping Services and Configuring Automatic Start on Boot Introduction The Red Hat Certified Systems Administrator (RHCSA) exam is a performance-based certification exam that focuses on the skills required to perform essential system administration tasks on Red Hat Enterprise Linux (RHEL) systems. Objective 200 of the exam specifically covers the topic of starting and stopping services, as well as configuring services to start automatically at boot. In this tutorial, we will provide a step-by-step guide on how to complete this objective in great depth." />
+<meta property="og:url" content="http://b0x68.github.io/rhcsa/start-and-stop-services-and-configure-services-to-start-automatically-at-boot/" />
+<meta property="og:site_name" content="b0x68" />
+
+  
+  
+  <meta property="og:image" content="http://b0x68.github.io">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2024-02-16 11:49:52 -0500 EST" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+<body class="green">
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+  <div class="header__inner">
+    <div class="header__logo" style="margin-top: 10px;margin-left: 0px;margin-right: 0px;margin-bottom: 10px;">
+      <a href="/about">
+  <div class="logo">
+    b0x68
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/rhcsa">RHCSA</a></li>
+        
+      
+        
+          <li><a href="/tech">Tech</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js"></script>
+<div id="search"></div>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#search", showSubResults: true });
+    });
+</script>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        <li><a href="/about" >About</a></li>
+      
+    
+      
+        <li><a href="/rhcsa" >RHCSA</a></li>
+      
+    
+      
+        <li><a href="/tech" >Tech</a></li>
+      
+    
+  </ul>
+</nav>
+
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="http://b0x68.github.io/rhcsa/start-and-stop-services-and-configure-services-to-start-automatically-at-boot/">Start and stop services and configure services to start automatically at boot</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2024-02-16[Updated::2024-02-16]</time><span class="post-author">root</span><span class="post-reading-time">3 min read (632 words)</span></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="http://b0x68.github.io/tags/rhcsa/">RHCSA</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/red-hat/">Red Hat</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/system-administrator/">System Administrator</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/linux/">Linux</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/sysadmin/">Sysadmin</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/tutorial/">Tutorial</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/exam-200/">Exam 200</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="tutorial-starting-and-stopping-services-and-configuring-automatic-start-on-boot">Tutorial: Starting and Stopping Services and Configuring Automatic Start on Boot<a href="#tutorial-starting-and-stopping-services-and-configuring-automatic-start-on-boot" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<h2 id="introduction">Introduction<a href="#introduction" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>The Red Hat Certified Systems Administrator (RHCSA) exam is a performance-based certification exam that focuses on the skills required to perform essential system administration tasks on Red Hat Enterprise Linux (RHEL) systems. Objective 200 of the exam specifically covers the topic of starting and stopping services, as well as configuring services to start automatically at boot. In this tutorial, we will provide a step-by-step guide on how to complete this objective in great depth.</p>
+<h2 id="understanding-services-and-daemons">Understanding Services and Daemons<a href="#understanding-services-and-daemons" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Before we dive into the specific tasks of starting and stopping services and configuring them for automatic start, it is important to have a basic understanding of what services and daemons are in a Linux system. Services, also known as system services or daemons, are background processes responsible for performing various tasks on a Linux system. These services can include network services, web servers, logging services, and many others.</p>
+<p>Daemons are similar to services in the sense that they are also background processes that perform various tasks. The main difference is that daemons are typically long-running processes that continuously operate in the background, while services are usually started and stopped on demand.</p>
+<h2 id="starting-and-stopping-services">Starting and Stopping Services<a href="#starting-and-stopping-services" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<h3 id="checking-for-active-services">Checking for Active Services<a href="#checking-for-active-services" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>Before starting or stopping any services, it is important to determine which services are currently active on your system. To do this, you can use the <code>systemctl</code> command, which is the primary tool used for managing services in RHEL systems. To check the status of all running services, use the following command:</p>
+<p><code>systemctl list-units --type=service --all</code></p>
+<p>This will output a list of all services on your system, along with their current status (active, inactive, or failed).</p>
+<h3 id="starting-a-service">Starting a Service<a href="#starting-a-service" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>To start a service on your system, you can use the <code>systemctl start</code> command, followed by the name of the service. For example, to start the Apache web server service, you would use the following command:</p>
+<p><code>systemctl start httpd</code></p>
+<p>This will start the service immediately and output a success message if successful.</p>
+<h3 id="stopping-a-service">Stopping a Service<a href="#stopping-a-service" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>Similarly, to stop a service, you can use the <code>systemctl stop</code> command, followed by the name of the service. For example, to stop the SSH service, you would use the following command:</p>
+<p><code>systemctl stop sshd</code></p>
+<p>This will stop the service immediately and output a success message if successful.</p>
+<h2 id="configuring-automatic-start-on-boot">Configuring Automatic Start on Boot<a href="#configuring-automatic-start-on-boot" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>In some cases, you may want a service to start automatically every time your system boots up. This can be achieved by configuring the service to start on boot, using the <code>systemctl enable</code> command.</p>
+<h3 id="enabling-automatic-start">Enabling Automatic Start<a href="#enabling-automatic-start" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>To enable automatic start for a service, simply use the <code>systemctl enable</code> command, followed by the name of the service. For example, to enable the MariaDB database service, you would use the following command:</p>
+<p><code>systemctl enable mariadb</code></p>
+<p>This will create a symbolic link for the service in the appropriate <code>/etc/systemd/system</code> directory, and the service will now start automatically on boot.</p>
+<h3 id="disabling-automatic-start">Disabling Automatic Start<a href="#disabling-automatic-start" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>If you no longer want a service to start automatically on boot, you can disable it using the <code>systemctl disable</code> command. For example, to disable the Nginx web server service, you would use the following command:</p>
+<p><code>systemctl disable nginx</code></p>
+<p>This will remove the symbolic link for the service in the <code>/etc/systemd/system</code> directory, and the service will no longer start automatically on boot.</p>
+<h2 id="conclusion">Conclusion<a href="#conclusion" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>In this tutorial, we have covered the basics of starting and stopping services in a Red Hat Enterprise Linux system, as well as configuring services for automatic start on boot. Remember, it is important to have a good understanding of the services and daemons on your system before attempting to manage them. By following the steps outlined in this tutorial, you should be well-prepared to complete Objective 200 of the RHCSA exam.</p>
+
+      </div></div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2024 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

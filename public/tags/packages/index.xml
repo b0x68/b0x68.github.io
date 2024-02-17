@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>packages on b0x68</title>
+    <link>http://b0x68.github.io/tags/packages/</link>
+    <description>Recent content in packages on b0x68</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 15 Feb 2024 14:54:05 -0500</lastBuildDate><atom:link href="http://b0x68.github.io/tags/packages/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Locate, read, and use system documentation including man, info, and files in /usr/share/doc</title>
+      <link>http://b0x68.github.io/rhcsa/locate-read-and-use-system-documentation-including-man-info-and-files-in-usrsharedoc/</link>
+      <pubDate>Thu, 15 Feb 2024 14:54:05 -0500</pubDate>
+      
+      <guid>http://b0x68.github.io/rhcsa/locate-read-and-use-system-documentation-including-man-info-and-files-in-usrsharedoc/</guid>
+      <description>Introduction to Locating and Using System Documentation on Red Hat As a Red Hat Certified Systems Administrator, it is essential to have a strong understanding of how to locate, read, and use system documentation. Having this knowledge will not only enhance your ability to effectively manage and troubleshoot Red Hat systems, but it will also aid in your preparations for the Red Hat Certified Systems Administrator Exam.
+In this tutorial, we will be diving into the 200 Objective on the Red Hat Certified Systems Administrator (RHCSA) Exam, which focuses on locating, reading, and using system documentation.</description>
+      <content>&lt;h1 id=&#34;introduction-to-locating-and-using-system-documentation-on-red-hat&#34;&gt;Introduction to Locating and Using System Documentation on Red Hat&lt;/h1&gt;
+&lt;p&gt;As a Red Hat Certified Systems Administrator, it is essential to have a strong understanding of how to locate, read, and use system documentation. Having this knowledge will not only enhance your ability to effectively manage and troubleshoot Red Hat systems, but it will also aid in your preparations for the Red Hat Certified Systems Administrator Exam.&lt;/p&gt;
+&lt;p&gt;In this tutorial, we will be diving into the 200 Objective on the Red Hat Certified Systems Administrator (RHCSA) Exam, which focuses on locating, reading, and using system documentation. We will cover the different types of documentation available, where to find them, and how to effectively utilize them to troubleshoot and manage Red Hat systems.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s get started!&lt;/p&gt;
+&lt;h2 id=&#34;understanding-system-documentation&#34;&gt;Understanding System Documentation&lt;/h2&gt;
+&lt;p&gt;System documentation refers to the collection of resources that provide information, instructions, and guidelines for using and troubleshooting a particular system. For Red Hat systems, this may include manuals, guides, release notes, and other reference materials.&lt;/p&gt;
+&lt;p&gt;There are three main types of system documentation that you will encounter when working with Red Hat systems:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Man Pages: These are short for &amp;ldquo;manual pages&amp;rdquo; and provide detailed descriptions and usage instructions for various commands and utilities on a Red Hat system.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Info Pages: Similar to man pages, info pages provide in-depth information and usage instructions for various commands and utilities. However, they often include more detailed examples and explanations than man pages.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Documentation Files: These are additional files and resources that can be found in the /usr/share/doc directory, providing supplementary information for various packages and commands on the system.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Knowing the different types of system documentation available to you will make it easier to determine which resource to use for specific tasks.&lt;/p&gt;
+&lt;h2 id=&#34;locating-system-documentation&#34;&gt;Locating System Documentation&lt;/h2&gt;
+&lt;p&gt;On Red Hat systems, system documentation is typically located in two main directories: /usr/share/man and /usr/share/info. Here&amp;rsquo;s a quick breakdown of what each directory contains:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;/usr/share/man: This directory contains all the man pages for various commands and utilities on the system.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;/usr/share/info: This directory contains all the info pages for various commands and utilities on the system.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Additionally, as mentioned earlier, you can find supplementary documentation files in the /usr/share/doc directory. Let&amp;rsquo;s take a closer look at how to access these resources.&lt;/p&gt;
+&lt;h3 id=&#34;man-pages&#34;&gt;Man Pages&lt;/h3&gt;
+&lt;p&gt;To view man pages, simply use the &lt;code&gt;man&lt;/code&gt; command followed by the name of the command or utility you want to learn more about. For example, to view the man page for the &lt;code&gt;ls&lt;/code&gt; command, you would enter the following command:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;man ls
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The man page for &lt;code&gt;ls&lt;/code&gt; will then be displayed, providing detailed information on the command&amp;rsquo;s usage, options, and examples.&lt;/p&gt;
+&lt;h3 id=&#34;info-pages&#34;&gt;Info Pages&lt;/h3&gt;
+&lt;p&gt;Using info pages is similar to man pages. You can access info pages using the &lt;code&gt;info&lt;/code&gt; command, followed by the name of the command or utility. For example, to view the info page for the &lt;code&gt;ls&lt;/code&gt; command, you would enter the following command:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;info ls
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The info page for &lt;code&gt;ls&lt;/code&gt; will then be displayed, providing extensive information and examples for the command&amp;rsquo;s usage.&lt;/p&gt;
+&lt;h3 id=&#34;documentation-files&#34;&gt;Documentation Files&lt;/h3&gt;
+&lt;p&gt;To access the supplementary documentation files in the /usr/share/doc directory, you can use the &lt;code&gt;ls&lt;/code&gt; command to list all the files and directories in that location. For example:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;ls /usr/share/doc
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This will print out a list of all the available documentation files and directories. You can then use the &lt;code&gt;cd&lt;/code&gt; command to navigate to a specific directory and use the &lt;code&gt;cat&lt;/code&gt; command to view its content. For example, if you want to read the release notes for the &lt;code&gt;httpd&lt;/code&gt; package, you can use the following commands:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cd /usr/share/doc/httpd
+cat README
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;using-system-documentation&#34;&gt;Using System Documentation&lt;/h2&gt;
+&lt;p&gt;Now that you know how to locate system documentation, let&amp;rsquo;s discuss how to effectively use it to manage and troubleshoot Red Hat systems.&lt;/p&gt;
+&lt;p&gt;Firstly, it&amp;rsquo;s essential to understand that system documentation is not just for beginners. Experienced administrators can also find valuable information and solutions to complex issues by using man pages, info pages, and documentation files.&lt;/p&gt;
+&lt;p&gt;When encountering an issue on your Red Hat system, consider consulting the relevant man or info pages to see if there is a specific command or utility that can help troubleshoot the problem. Additionally, you can also search through the documentation files in the /usr/share/doc directory for any relevant information or solutions.&lt;/p&gt;
+&lt;p&gt;It is also crucial to read through the release notes and documentation for any new packages or updates that you are installing on the system. This will ensure that you are aware of any changes and updates that may affect your system&amp;rsquo;s functionality.&lt;/p&gt;
+&lt;p&gt;Furthermore, it is beneficial to bookmark frequently used man and info pages for quick reference. This will save you time and effort when needing to look up information on commonly used commands.&lt;/p&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;In this tutorial, we discussed the 200 Objective on the Red Hat Certified Systems Administrator Exam, focusing on locating, reading, and using system documentation. We covered the different types of documentation available, where to find them, and how to effectively utilize them to troubleshoot and manage Red Hat systems.&lt;/p&gt;
+&lt;p&gt;Having a strong understanding of system documentation is essential for success as a Red Hat Certified Systems Administrator. We hope this tutorial has provided you with the necessary knowledge to confidently tackle this objective on the RHCSA exam and effectively manage Red Hat systems in your career.&lt;/p&gt;
+&lt;p&gt;Best of luck on your journey to becoming a Red Hat Certified Systems Administrator!&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>Locate, read, and use system documentation including man, info, and files in /usr/share/doc</title>
+      <link>http://b0x68.github.io/techcontent/locate-read-and-use-system-documentation-including-man-info-and-files-in-usrsharedoc/</link>
+      <pubDate>Thu, 15 Feb 2024 14:54:05 -0500</pubDate>
+      
+      <guid>http://b0x68.github.io/techcontent/locate-read-and-use-system-documentation-including-man-info-and-files-in-usrsharedoc/</guid>
+      <description>Introduction to Locating and Using System Documentation on Red Hat As a Red Hat Certified Systems Administrator, it is essential to have a strong understanding of how to locate, read, and use system documentation. Having this knowledge will not only enhance your ability to effectively manage and troubleshoot Red Hat systems, but it will also aid in your preparations for the Red Hat Certified Systems Administrator Exam.
+In this tutorial, we will be diving into the 200 Objective on the Red Hat Certified Systems Administrator (RHCSA) Exam, which focuses on locating, reading, and using system documentation.</description>
+      <content>&lt;h1 id=&#34;introduction-to-locating-and-using-system-documentation-on-red-hat&#34;&gt;Introduction to Locating and Using System Documentation on Red Hat&lt;/h1&gt;
+&lt;p&gt;As a Red Hat Certified Systems Administrator, it is essential to have a strong understanding of how to locate, read, and use system documentation. Having this knowledge will not only enhance your ability to effectively manage and troubleshoot Red Hat systems, but it will also aid in your preparations for the Red Hat Certified Systems Administrator Exam.&lt;/p&gt;
+&lt;p&gt;In this tutorial, we will be diving into the 200 Objective on the Red Hat Certified Systems Administrator (RHCSA) Exam, which focuses on locating, reading, and using system documentation. We will cover the different types of documentation available, where to find them, and how to effectively utilize them to troubleshoot and manage Red Hat systems.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s get started!&lt;/p&gt;
+&lt;h2 id=&#34;understanding-system-documentation&#34;&gt;Understanding System Documentation&lt;/h2&gt;
+&lt;p&gt;System documentation refers to the collection of resources that provide information, instructions, and guidelines for using and troubleshooting a particular system. For Red Hat systems, this may include manuals, guides, release notes, and other reference materials.&lt;/p&gt;
+&lt;p&gt;There are three main types of system documentation that you will encounter when working with Red Hat systems:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Man Pages: These are short for &amp;ldquo;manual pages&amp;rdquo; and provide detailed descriptions and usage instructions for various commands and utilities on a Red Hat system.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Info Pages: Similar to man pages, info pages provide in-depth information and usage instructions for various commands and utilities. However, they often include more detailed examples and explanations than man pages.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Documentation Files: These are additional files and resources that can be found in the /usr/share/doc directory, providing supplementary information for various packages and commands on the system.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Knowing the different types of system documentation available to you will make it easier to determine which resource to use for specific tasks.&lt;/p&gt;
+&lt;h2 id=&#34;locating-system-documentation&#34;&gt;Locating System Documentation&lt;/h2&gt;
+&lt;p&gt;On Red Hat systems, system documentation is typically located in two main directories: /usr/share/man and /usr/share/info. Here&amp;rsquo;s a quick breakdown of what each directory contains:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;/usr/share/man: This directory contains all the man pages for various commands and utilities on the system.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;/usr/share/info: This directory contains all the info pages for various commands and utilities on the system.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Additionally, as mentioned earlier, you can find supplementary documentation files in the /usr/share/doc directory. Let&amp;rsquo;s take a closer look at how to access these resources.&lt;/p&gt;
+&lt;h3 id=&#34;man-pages&#34;&gt;Man Pages&lt;/h3&gt;
+&lt;p&gt;To view man pages, simply use the &lt;code&gt;man&lt;/code&gt; command followed by the name of the command or utility you want to learn more about. For example, to view the man page for the &lt;code&gt;ls&lt;/code&gt; command, you would enter the following command:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;man ls
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The man page for &lt;code&gt;ls&lt;/code&gt; will then be displayed, providing detailed information on the command&amp;rsquo;s usage, options, and examples.&lt;/p&gt;
+&lt;h3 id=&#34;info-pages&#34;&gt;Info Pages&lt;/h3&gt;
+&lt;p&gt;Using info pages is similar to man pages. You can access info pages using the &lt;code&gt;info&lt;/code&gt; command, followed by the name of the command or utility. For example, to view the info page for the &lt;code&gt;ls&lt;/code&gt; command, you would enter the following command:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;info ls
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The info page for &lt;code&gt;ls&lt;/code&gt; will then be displayed, providing extensive information and examples for the command&amp;rsquo;s usage.&lt;/p&gt;
+&lt;h3 id=&#34;documentation-files&#34;&gt;Documentation Files&lt;/h3&gt;
+&lt;p&gt;To access the supplementary documentation files in the /usr/share/doc directory, you can use the &lt;code&gt;ls&lt;/code&gt; command to list all the files and directories in that location. For example:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;ls /usr/share/doc
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This will print out a list of all the available documentation files and directories. You can then use the &lt;code&gt;cd&lt;/code&gt; command to navigate to a specific directory and use the &lt;code&gt;cat&lt;/code&gt; command to view its content. For example, if you want to read the release notes for the &lt;code&gt;httpd&lt;/code&gt; package, you can use the following commands:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cd /usr/share/doc/httpd
+cat README
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;using-system-documentation&#34;&gt;Using System Documentation&lt;/h2&gt;
+&lt;p&gt;Now that you know how to locate system documentation, let&amp;rsquo;s discuss how to effectively use it to manage and troubleshoot Red Hat systems.&lt;/p&gt;
+&lt;p&gt;Firstly, it&amp;rsquo;s essential to understand that system documentation is not just for beginners. Experienced administrators can also find valuable information and solutions to complex issues by using man pages, info pages, and documentation files.&lt;/p&gt;
+&lt;p&gt;When encountering an issue on your Red Hat system, consider consulting the relevant man or info pages to see if there is a specific command or utility that can help troubleshoot the problem. Additionally, you can also search through the documentation files in the /usr/share/doc directory for any relevant information or solutions.&lt;/p&gt;
+&lt;p&gt;It is also crucial to read through the release notes and documentation for any new packages or updates that you are installing on the system. This will ensure that you are aware of any changes and updates that may affect your system&amp;rsquo;s functionality.&lt;/p&gt;
+&lt;p&gt;Furthermore, it is beneficial to bookmark frequently used man and info pages for quick reference. This will save you time and effort when needing to look up information on commonly used commands.&lt;/p&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;In this tutorial, we discussed the 200 Objective on the Red Hat Certified Systems Administrator Exam, focusing on locating, reading, and using system documentation. We covered the different types of documentation available, where to find them, and how to effectively utilize them to troubleshoot and manage Red Hat systems.&lt;/p&gt;
+&lt;p&gt;Having a strong understanding of system documentation is essential for success as a Red Hat Certified Systems Administrator. We hope this tutorial has provided you with the necessary knowledge to confidently tackle this objective on the RHCSA exam and effectively manage Red Hat systems in your career.&lt;/p&gt;
+&lt;p&gt;Best of luck on your journey to becoming a Red Hat Certified Systems Administrator!&lt;/p&gt;
+</content>
+    </item>
+    
+  </channel>
+</rss>

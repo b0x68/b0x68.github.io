@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Perform basic container management such as running, starting, stopping, and listing running :: b0x68</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Introduction to Container Management on Red Hat: Containers are a lightweight and efficient way to package and run applications. They provide a stable and consistent environment for applications to run, making it easier to deploy and manage them. As a system administrator, it is essential to have a good understanding of container management to be able to effectively manage and troubleshoot applications in a Red Hat environment.
+In this tutorial, we will cover the Red Hat Certified Systems Administrator Exam 200 objective: &amp;ldquo;Perform basic container management such as running, starting, stopping, and listing running&amp;rdquo;." />
+<meta name="keywords" content="RHCSA, Red Hat, System Administrator, Linux, Sysadmin, Tutorial, Exam 200" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="http://b0x68.github.io/rhcsa/perform-basic-container-management-such-as-running-starting-stopping-and-listing-running/" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+
+
+
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="http://b0x68.github.io/styles.css">
+
+
+
+
+
+
+
+  <link rel="shortcut icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+  <link rel="apple-touch-icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Perform basic container management such as running, starting, stopping, and listing running">
+<meta property="og:description" content="Introduction to Container Management on Red Hat: Containers are a lightweight and efficient way to package and run applications. They provide a stable and consistent environment for applications to run, making it easier to deploy and manage them. As a system administrator, it is essential to have a good understanding of container management to be able to effectively manage and troubleshoot applications in a Red Hat environment.
+In this tutorial, we will cover the Red Hat Certified Systems Administrator Exam 200 objective: &amp;ldquo;Perform basic container management such as running, starting, stopping, and listing running&amp;rdquo;." />
+<meta property="og:url" content="http://b0x68.github.io/rhcsa/perform-basic-container-management-such-as-running-starting-stopping-and-listing-running/" />
+<meta property="og:site_name" content="b0x68" />
+
+  
+  
+  <meta property="og:image" content="http://b0x68.github.io">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2024-02-16 11:54:48 -0500 EST" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+<body class="green">
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+  <div class="header__inner">
+    <div class="header__logo" style="margin-top: 10px;margin-left: 0px;margin-right: 0px;margin-bottom: 10px;">
+      <a href="/about">
+  <div class="logo">
+    b0x68
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/rhcsa">RHCSA</a></li>
+        
+      
+        
+          <li><a href="/tech">Tech</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js"></script>
+<div id="search"></div>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#search", showSubResults: true });
+    });
+</script>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        <li><a href="/about" >About</a></li>
+      
+    
+      
+        <li><a href="/rhcsa" >RHCSA</a></li>
+      
+    
+      
+        <li><a href="/tech" >Tech</a></li>
+      
+    
+  </ul>
+</nav>
+
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="http://b0x68.github.io/rhcsa/perform-basic-container-management-such-as-running-starting-stopping-and-listing-running/">Perform basic container management such as running, starting, stopping, and listing running</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2024-02-16[Updated::2024-02-16]</time><span class="post-author">root</span><span class="post-reading-time">5 min read (908 words)</span></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="http://b0x68.github.io/tags/rhcsa/">RHCSA</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/red-hat/">Red Hat</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/system-administrator/">System Administrator</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/linux/">Linux</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/sysadmin/">Sysadmin</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/tutorial/">Tutorial</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/exam-200/">Exam 200</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="heading"><a href="#heading" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<h1 id="introduction-to-container-management-on-red-hat">Introduction to Container Management on Red Hat:<a href="#introduction-to-container-management-on-red-hat" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>Containers are a lightweight and efficient way to package and run applications. They provide a stable and consistent environment for applications to run, making it easier to deploy and manage them. As a system administrator, it is essential to have a good understanding of container management to be able to effectively manage and troubleshoot applications in a Red Hat environment.</p>
+<p>In this tutorial, we will cover the Red Hat Certified Systems Administrator Exam 200 objective: &ldquo;Perform basic container management such as running, starting, stopping, and listing running&rdquo;. We will go through the various commands and techniques required to perform basic container management in Red Hat, providing you with a comprehensive guide to mastering this objective.</p>
+<h1 id="objectives">Objectives:<a href="#objectives" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<ul>
+<li>Understand the core concepts of containers in Red Hat.</li>
+<li>Learn how to run containers on Red Hat.</li>
+<li>Explore how to start and stop containers.</li>
+<li>Understand how to list running and stopped containers.</li>
+<li>Troubleshoot common issues related to container management.</li>
+</ul>
+<h1 id="core-concepts-of-containers-in-red-hat">Core Concepts of Containers in Red Hat:<a href="#core-concepts-of-containers-in-red-hat" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>Before we dive into the specifics of container management, it is essential to have a good understanding of the core concepts of containers in Red Hat.</p>
+<p>Containers are lightweight and isolated environments that run on top of a host operating system. They encapsulate all the libraries and dependencies required for an application to run, providing a consistent runtime environment. This isolation ensures that applications can run on any host system without having to worry about compatibility issues or dependencies.</p>
+<p>In Red Hat, containers are managed through a container engine called &ldquo;podman&rdquo;. Podman can run both rootless and root-owned containers, making it a flexible and secure tool for container management. It also allows for easy creation, deployment, and management of containers using a simple command-line interface.</p>
+<h1 id="running-containers-on-red-hat">Running Containers on Red Hat:<a href="#running-containers-on-red-hat" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>The first step in container management is to run a container on a Red Hat system. To run a container using podman, you can use the following command:</p>
+<pre tabindex="0"><code>$ podman run [options] image [command [args...]]
+</code></pre><p>Let&rsquo;s break down the options in this command:</p>
+<ul>
+<li>The &ldquo;run&rdquo; keyword instructs podman to run a container.</li>
+<li>The [options] parameter specifies any additional configuration options for the container. Some commonly used options include &ndash;detach (to run the container in the background), &ndash;name (to give the container a specific name), and &ndash;publish (to expose ports from the container to the host).</li>
+<li>The &ldquo;image&rdquo; parameter specifies the image that you want to use to run the container. Red Hat provides a plethora of images in its registry, which you can access through the &ldquo;podman search&rdquo; command.</li>
+<li>The [command [args&hellip;]] parameter allows you to specify a command to run within the container. If not specified, the container will run the default command defined in the image&rsquo;s Dockerfile.</li>
+</ul>
+<p>For example, let&rsquo;s run a container using the &ldquo;nginx&rdquo; image from the Red Hat registry and expose port 80 to the host:</p>
+<pre tabindex="0"><code>$ podman run --detach --name webserver -p 80:80 nginx 
+</code></pre><p>This command will pull the latest version of the &ldquo;nginx&rdquo; image, create a container named &ldquo;webserver&rdquo;, and expose container port 80 to host port 80.</p>
+<h1 id="starting-and-stopping-containers">Starting and Stopping Containers:<a href="#starting-and-stopping-containers" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>Once you have a container running, you may need to start or stop it at any given time. To start a stopped container, use the following command:</p>
+<pre tabindex="0"><code>$ podman start &lt;container-name&gt;
+</code></pre><p>Similarly, to stop a running container, use the following command:</p>
+<pre tabindex="0"><code>$ podman stop &lt;container-name&gt;
+</code></pre><p>You can also use the container&rsquo;s ID instead of its name in these commands.</p>
+<h1 id="listing-running-and-stopped-containers">Listing Running and Stopped Containers:<a href="#listing-running-and-stopped-containers" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>To list all the running containers on a Red Hat system, you can use the following command:</p>
+<pre tabindex="0"><code>$ podman ps
+</code></pre><p>This command will display a list of all the running containers, along with their name, ID, and other relevant information.</p>
+<p>To list all the stopped containers on a Red Hat system, use the following command:</p>
+<pre tabindex="0"><code>$ podman ps -a
+</code></pre><p>This command will display a list of both running and stopped containers.</p>
+<h1 id="troubleshooting-common-container-management-issues">Troubleshooting Common Container Management Issues:<a href="#troubleshooting-common-container-management-issues" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>Like any other technology, container management on Red Hat may encounter some common issues that you should be aware of. These issues can range from problems starting or stopping containers to issues with network connectivity.</p>
+<p>One of the most common troubleshooting steps is to check the logs of the container to identify any errors or issues. You can use the following command to view the logs of a container:</p>
+<pre tabindex="0"><code>$ podman logs &lt;container-name&gt;
+</code></pre><p>If you encounter any errors related to port binding or connectivity, you may need to check if the ports are properly exposed and opened. You can use the following commands to check and open ports on a Red Hat system:</p>
+<pre tabindex="0"><code>$ podman port &lt;container-name&gt;
+$ sudo firewall-cmd --add-port=&lt;port-number&gt;/tcp --permanent
+$ sudo firewall-cmd --reload
+</code></pre><p>Additionally, you can also use various debugging techniques such as running containers in interactive mode, executing commands within a container, or inspecting the container&rsquo;s network settings to troubleshoot and resolve any issues.</p>
+<h1 id="conclusion">Conclusion:<a href="#conclusion" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>In this tutorial, we have covered the Red Hat Certified Systems Administrator Exam 200 objective: &ldquo;Perform basic container management such as running, starting, stopping, and listing running&rdquo;. We went through the core concepts of containers in Red Hat, learned how to run and start/stop containers, and explored techniques to troubleshoot common issues related to container management.</p>
+<p>By understanding and mastering container management on Red Hat, you will be well-equipped to deploy and manage applications in a Red Hat environment, making you a valuable asset as a Red Hat Certified Systems Administrator.</p>
+
+      </div></div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2024 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

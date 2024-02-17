@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Use boolean settings to modify system SELinux settings :: b0x68</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Using Boolean Settings to Modify System SELinux Settings SELinux (Security-Enhanced Linux) is a security feature in Red Hat Linux that enhances its security by enforcing policies and access controls. It works by identifying and labeling all system resources and then enforcing rules about the access to those resources, ensuring that only authorized users or processes are allowed. These rules are defined in SELinux policy files and are enforced by the SELinux module." />
+<meta name="keywords" content="RHCSA, Red Hat, System Administrator, Linux, Sysadmin, Tutorial, Exam 200" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="http://b0x68.github.io/rhcsa/use-boolean-settings-to-modify-system-selinux-settings/" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+
+
+
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="http://b0x68.github.io/styles.css">
+
+
+
+
+
+
+
+  <link rel="shortcut icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+  <link rel="apple-touch-icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Use boolean settings to modify system SELinux settings">
+<meta property="og:description" content="Using Boolean Settings to Modify System SELinux Settings SELinux (Security-Enhanced Linux) is a security feature in Red Hat Linux that enhances its security by enforcing policies and access controls. It works by identifying and labeling all system resources and then enforcing rules about the access to those resources, ensuring that only authorized users or processes are allowed. These rules are defined in SELinux policy files and are enforced by the SELinux module." />
+<meta property="og:url" content="http://b0x68.github.io/rhcsa/use-boolean-settings-to-modify-system-selinux-settings/" />
+<meta property="og:site_name" content="b0x68" />
+
+  
+  
+  <meta property="og:image" content="http://b0x68.github.io">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2024-02-16 11:53:42 -0500 EST" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+<body class="green">
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+  <div class="header__inner">
+    <div class="header__logo" style="margin-top: 10px;margin-left: 0px;margin-right: 0px;margin-bottom: 10px;">
+      <a href="/about">
+  <div class="logo">
+    b0x68
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/rhcsa">RHCSA</a></li>
+        
+      
+        
+          <li><a href="/tech">Tech</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js"></script>
+<div id="search"></div>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#search", showSubResults: true });
+    });
+</script>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        <li><a href="/about" >About</a></li>
+      
+    
+      
+        <li><a href="/rhcsa" >RHCSA</a></li>
+      
+    
+      
+        <li><a href="/tech" >Tech</a></li>
+      
+    
+  </ul>
+</nav>
+
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="http://b0x68.github.io/rhcsa/use-boolean-settings-to-modify-system-selinux-settings/">Use boolean settings to modify system SELinux settings</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2024-02-16[Updated::2024-02-16]</time><span class="post-author">root</span><span class="post-reading-time">3 min read (576 words)</span></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="http://b0x68.github.io/tags/rhcsa/">RHCSA</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/red-hat/">Red Hat</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/system-administrator/">System Administrator</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/linux/">Linux</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/sysadmin/">Sysadmin</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/tutorial/">Tutorial</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/exam-200/">Exam 200</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="using-boolean-settings-to-modify-system-selinux-settings">Using Boolean Settings to Modify System SELinux Settings<a href="#using-boolean-settings-to-modify-system-selinux-settings" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>SELinux (Security-Enhanced Linux) is a security feature in Red Hat Linux that enhances its security by enforcing policies and access controls. It works by identifying and labeling all system resources and then enforcing rules about the access to those resources, ensuring that only authorized users or processes are allowed. These rules are defined in SELinux policy files and are enforced by the SELinux module.</p>
+<p>In this tutorial, we will learn how to modify SELinux settings using boolean settings. Boolean settings are a type of SELinux setting that allows us to enable or disable specific features or access controls. This is a useful feature as it makes it easier to customize SELinux policies without having to modify the entire policy file.</p>
+<h2 id="step-1-understand-boolean-settings-in-selinux">Step 1: Understand Boolean Settings in SELinux<a href="#step-1-understand-boolean-settings-in-selinux" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Before we begin modifying SELinux settings using boolean settings, it is important to understand what boolean settings are and how they work.</p>
+<p>Boolean settings in SELinux are binary values that determine whether a specific access control or feature is enabled or disabled. When a boolean setting is set to &ldquo;on&rdquo;, it means the feature or access control is allowed, while setting it to &ldquo;off&rdquo; means it is denied.</p>
+<p>Boolean values can be set at the global level, affecting the entire system, or at the local level, affecting specific processes or domains. By default, boolean values are set to &ldquo;off&rdquo; and must be manually set to &ldquo;on&rdquo; if we want to enable them.</p>
+<h2 id="step-2-checking-selinux-boolean-values">Step 2: Checking SELinux Boolean Values<a href="#step-2-checking-selinux-boolean-values" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>To see the current boolean values in SELinux, we can use the <code>getsebool</code> command. This command displays all defined boolean values along with their status (on or off).</p>
+<pre tabindex="0"><code>getsebool -a
+</code></pre><p>To filter the output and only display boolean values related to SELinux, we can use the <code>grep</code> command:</p>
+<pre tabindex="0"><code>getsebool -a | grep selinux
+</code></pre><h2 id="step-3-setting-selinux-boolean-values">Step 3: Setting SELinux Boolean Values<a href="#step-3-setting-selinux-boolean-values" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>To modify a boolean setting, we can use the <code>setsebool</code> command followed by the boolean value and the desired status (on or off). For example, if we want to enable the boolean value <code>httpd_can_network_connect</code>, we can use the following command:</p>
+<pre tabindex="0"><code>setsebool -P httpd_can_network_connect=on
+</code></pre><p>The <code>-P</code> flag makes the change persistent, meaning it will remain in effect even after a system restart.</p>
+<h2 id="step-4-previewing-selinux-boolean-changes">Step 4: Previewing SELinux Boolean Changes<a href="#step-4-previewing-selinux-boolean-changes" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>If we are unsure of the effects of changing a boolean value, we can use the <code>seinfo</code> command to preview the impact of the change without actually modifying the value. This command displays information about SELinux policies, including boolean values and their related permissions.</p>
+<pre tabindex="0"><code>seinfo -b httpd_can_network_connect
+</code></pre><h2 id="step-5-troubleshooting-selinux-boolean-changes">Step 5: Troubleshooting SELinux Boolean Changes<a href="#step-5-troubleshooting-selinux-boolean-changes" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>If modifying a boolean value causes issues or conflicts in the system, we can use the <code>setsebool -V</code> command to troubleshoot. This command runs in verbose mode and displays more detailed information about the changes and any conflicts that may have occurred.</p>
+<h2 id="step-6-resetting-selinux-boolean-values">Step 6: Resetting SELinux Boolean Values<a href="#step-6-resetting-selinux-boolean-values" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>If needed, we can also reset a boolean setting back to its default value by using the <code>setsebool -R</code> command followed by the boolean value. This will remove any custom settings and revert the value to its default state.</p>
+<h2 id="conclusion">Conclusion<a href="#conclusion" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>In this tutorial, we have learned how to modify SELinux settings using boolean settings. This feature allows us to customize SELinux policies without making extensive changes to the policy file. By understanding how boolean settings work and using the proper commands, we can effectively manage and troubleshoot SELinux permissions and ensure the security of our systems.</p>
+
+      </div></div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2024 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

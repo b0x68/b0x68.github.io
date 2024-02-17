@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Create, delete, and modify local groups and group memberships :: b0x68</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Red Hat Certified Systems Administrator Exam 200 Objective: &amp;ldquo;Create, delete, and modify local groups and group memberships&amp;rdquo; In this tutorial, we will be discussing the objective &amp;ldquo;Create, delete, and modify local groups and group memberships&amp;rdquo; from the Red Hat Certified Systems Administrator Exam 200. This objective focuses on managing local user groups and their memberships on a Red Hat Enterprise Linux system.
+Introduction Local groups are a way to organize and manage users on a system by providing them with a common set of permissions and access to resources." />
+<meta name="keywords" content="RHCSA, Red Hat, System Administrator, Linux, Sysadmin, Tutorial, Exam 200" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="http://b0x68.github.io/rhcsa/create-delete-and-modify-local-groups-and-group-memberships/" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+
+
+
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="http://b0x68.github.io/styles.css">
+
+
+
+
+
+
+
+  <link rel="shortcut icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+  <link rel="apple-touch-icon" href="http://b0x68.github.io/img/theme-colors/green.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Create, delete, and modify local groups and group memberships">
+<meta property="og:description" content="Red Hat Certified Systems Administrator Exam 200 Objective: &amp;ldquo;Create, delete, and modify local groups and group memberships&amp;rdquo; In this tutorial, we will be discussing the objective &amp;ldquo;Create, delete, and modify local groups and group memberships&amp;rdquo; from the Red Hat Certified Systems Administrator Exam 200. This objective focuses on managing local user groups and their memberships on a Red Hat Enterprise Linux system.
+Introduction Local groups are a way to organize and manage users on a system by providing them with a common set of permissions and access to resources." />
+<meta property="og:url" content="http://b0x68.github.io/rhcsa/create-delete-and-modify-local-groups-and-group-memberships/" />
+<meta property="og:site_name" content="b0x68" />
+
+  
+  
+  <meta property="og:image" content="http://b0x68.github.io">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2024-02-16 11:52:20 -0500 EST" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+<body class="green">
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKQ014248H"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-YKQ014248H', { 'anonymize_ip': false });
+}
+</script>
+
+  <div class="header__inner">
+    <div class="header__logo" style="margin-top: 10px;margin-left: 0px;margin-right: 0px;margin-bottom: 10px;">
+      <a href="/about">
+  <div class="logo">
+    b0x68
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/rhcsa">RHCSA</a></li>
+        
+      
+        
+          <li><a href="/tech">Tech</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js"></script>
+<div id="search"></div>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#search", showSubResults: true });
+    });
+</script>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        <li><a href="/about" >About</a></li>
+      
+    
+      
+        <li><a href="/rhcsa" >RHCSA</a></li>
+      
+    
+      
+        <li><a href="/tech" >Tech</a></li>
+      
+    
+  </ul>
+</nav>
+
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="http://b0x68.github.io/rhcsa/create-delete-and-modify-local-groups-and-group-memberships/">Create, delete, and modify local groups and group memberships</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2024-02-16[Updated::2024-02-16]</time><span class="post-author">root</span><span class="post-reading-time">3 min read (608 words)</span></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="http://b0x68.github.io/tags/rhcsa/">RHCSA</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/red-hat/">Red Hat</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/system-administrator/">System Administrator</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/linux/">Linux</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/sysadmin/">Sysadmin</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/tutorial/">Tutorial</a>&nbsp;
+      
+      #<a href="http://b0x68.github.io/tags/exam-200/">Exam 200</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="red-hat-certified-systems-administrator-exam-200-objective-create-delete-and-modify-local-groups-and-group-memberships">Red Hat Certified Systems Administrator Exam 200 Objective: &ldquo;Create, delete, and modify local groups and group memberships&rdquo;<a href="#red-hat-certified-systems-administrator-exam-200-objective-create-delete-and-modify-local-groups-and-group-memberships" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>In this tutorial, we will be discussing the objective &ldquo;Create, delete, and modify local groups and group memberships&rdquo; from the Red Hat Certified Systems Administrator Exam 200. This objective focuses on managing local user groups and their memberships on a Red Hat Enterprise Linux system.</p>
+<h2 id="introduction">Introduction<a href="#introduction" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Local groups are a way to organize and manage users on a system by providing them with a common set of permissions and access to resources. Red Hat Enterprise Linux provides a robust set of tools for creating, deleting, and modifying local groups, making it easy to manage users and their access levels.</p>
+<h2 id="prerequisites">Prerequisites<a href="#prerequisites" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>In order to follow along with this tutorial, you will need the following:</p>
+<ul>
+<li>A Red Hat Enterprise Linux system</li>
+<li>A user account with administrative privileges</li>
+<li>Basic knowledge of the Linux command-line interface</li>
+</ul>
+<h2 id="creating-local-groups">Creating Local Groups<a href="#creating-local-groups" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Local groups can be created using the <code>groupadd</code> command. This command takes the following syntax:</p>
+<pre tabindex="0"><code>groupadd [options] group_name
+</code></pre><p>Let&rsquo;s create a group called &ldquo;engineers&rdquo; using the <code>groupadd</code> command:</p>
+<pre tabindex="0"><code>sudo groupadd engineers
+</code></pre><p>This will create a new group with the name &ldquo;engineers&rdquo;. Note that the group name must be unique and cannot already exist on the system.</p>
+<h2 id="adding-users-to-groups">Adding Users to Groups<a href="#adding-users-to-groups" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Now that our group has been created, we can add users to it using the <code>usermod</code> command. This command allows us to modify user accounts, including their group memberships. The syntax for adding a user to a group is as follows:</p>
+<pre tabindex="0"><code>usermod -a -G group_name user_name
+</code></pre><p>The <code>-a</code> flag indicates that the group should be added to the user&rsquo;s existing group memberships, rather than replacing them. Let&rsquo;s add a user named &ldquo;jane&rdquo; to the &ldquo;engineers&rdquo; group:</p>
+<pre tabindex="0"><code>sudo usermod -a -G engineers jane
+</code></pre><p>It is important to note that changes made to a user&rsquo;s group memberships will only take effect when the user logs in again.</p>
+<h2 id="viewing-group-memberships">Viewing Group Memberships<a href="#viewing-group-memberships" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>To view the current members of a group, we can use the <code>members</code> command. This command requires the <code>libuser</code> package to be installed on the system. To install it, use the following command:</p>
+<pre tabindex="0"><code>sudo yum install libuser
+</code></pre><p>Once it is installed, we can use the <code>members</code> command to view the members of a group:</p>
+<pre tabindex="0"><code>members group_name
+</code></pre><p>In our case, to view the members of the &ldquo;engineers&rdquo; group, we would use the following command:</p>
+<pre tabindex="0"><code>members engineers
+</code></pre><h2 id="modifying-group-properties">Modifying Group Properties<a href="#modifying-group-properties" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Using the <code>groupmod</code> command, we can modify the properties of a local group. This command takes the following syntax:</p>
+<pre tabindex="0"><code>groupmod [options] group_name
+</code></pre><p>Some common options that can be used with this command are:</p>
+<ul>
+<li><code>-n</code>: to change the name of the group</li>
+<li><code>-g</code>: to change the group&rsquo;s GID (Group ID number)</li>
+<li><code>-R</code>: to set default shell and home directory for newly created users</li>
+</ul>
+<p>Let&rsquo;s say we want to change the name of our &ldquo;engineers&rdquo; group to &ldquo;developers&rdquo;. We would use the following command:</p>
+<pre tabindex="0"><code>sudo groupmod -n developers engineers
+</code></pre><h2 id="deleting-local-groups">Deleting Local Groups<a href="#deleting-local-groups" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>To delete a local group, we can use the <code>groupdel</code> command. The syntax for this command is simple:</p>
+<pre tabindex="0"><code>groupdel group_name
+</code></pre><p>For example, to delete the &ldquo;developers&rdquo; group, we would use the following command:</p>
+<pre tabindex="0"><code>sudo groupdel developers
+</code></pre><p>Note that this command will also remove the group&rsquo;s associated files and directories, including the group&rsquo;s home directory if it has one.</p>
+<h2 id="conclusion">Conclusion<a href="#conclusion" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>In this tutorial, we have covered the basic commands and options for creating, modifying, and deleting local groups and group memberships on a Red Hat Enterprise Linux system. Understanding how to manage local groups and their memberships is an important skill for any Red Hat Certified Systems Administrator, as it allows for efficient and secure user management on a Linux system.</p>
+
+      </div></div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2024 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>
