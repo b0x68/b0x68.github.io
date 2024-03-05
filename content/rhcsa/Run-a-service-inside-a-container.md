@@ -2,10 +2,10 @@
 title = "Run a service inside a container"
 date = "2024-02-16T11:54:58-05:00"
 author = "root"
-cover = ""
+cover = "inside.png"
 tags = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
 keywords = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
-description = ""
+description = "How to run a service inside a container as part of the Red Hat Certified Systems Administrator Exam."
 showFullContent = false
 readingTime = true
 hideComments = false
