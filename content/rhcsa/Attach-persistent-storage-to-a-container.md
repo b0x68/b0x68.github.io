@@ -2,10 +2,10 @@
 title = "Attach persistent storage to a container"
 date = "2024-02-16T11:55:20-05:00"
 author = "root"
-cover = ""
+cover = "container-storage.png"
 tags = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
 keywords = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
-description = ""
+description = "Attaching persistent storage to a container on a Red Hat Enterprise Linux system."
 showFullContent = false
 readingTime = true
 hideComments = false
