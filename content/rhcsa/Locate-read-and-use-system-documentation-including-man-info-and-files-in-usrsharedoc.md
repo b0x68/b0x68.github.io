@@ -2,10 +2,10 @@
 title = "Locate, read, and use system documentation including man, info, and files in /usr/share/doc"
 date = "2024-02-16T11:45:12-05:00"
 author = "root"
-cover = ""
+cover = "library.png"
 tags = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
 keywords = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
-description = ""
+description = "Accessing syste    m documentation, including man pages, info pages, and files in the /usr/share/doc directory."
 showFullContent = false
 readingTime = true
 hideComments = false
