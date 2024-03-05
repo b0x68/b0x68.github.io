@@ -2,10 +2,10 @@
 title = "Perform basic container management such as running, starting, stopping, and listing running"
 date = "2024-02-16T11:54:48-05:00"
 author = "root"
-cover = ""
+cover = "stoprunwalk.png"
 tags = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
 keywords = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
-description = ""
+description = "Containers are a lightweight and efficient way to package and run applications. They provide a stable and consistent environment for applications to run, making it easier to deploy and manage them. As a system administrator, it is essential to have a good understanding of container management to be able to effectively manage and troubleshoot applications in a Red Hat environment."
 showFullContent = false
 readingTime = true
 hideComments = false
