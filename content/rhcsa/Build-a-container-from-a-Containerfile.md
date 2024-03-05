@@ -2,10 +2,10 @@
 title = "Build a container from a Containerfile"
 date = "2024-02-16T11:54:36-05:00"
 author = "root"
-cover = ""
+cover = "drphil.gif"
 tags = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
 keywords = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
-description = ""
+description = "How to build a container using a Containerfile for the Red Hat Certified Systems Administrator Exam 200 Objective."
 showFullContent = false
 readingTime = true
 hideComments = false
