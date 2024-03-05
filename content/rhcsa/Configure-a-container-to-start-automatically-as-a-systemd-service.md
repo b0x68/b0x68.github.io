@@ -2,7 +2,7 @@
 title = "Configure a container to start automatically as a systemd service"
 date = "2024-02-16T11:55:10-05:00"
 author = "root"
-cover = "auto-start.pnng"
+cover = "start-auto.png"
 tags = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
 keywords = ["RHCSA", "Red Hat", "System Administrator", "Linux", "Sysadmin", "Tutorial", "Exam 200" ]
 description = "How to configure a container to start automatically as a systemd service."
