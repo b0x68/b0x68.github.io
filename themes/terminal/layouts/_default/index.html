@@ -12,12 +12,7 @@
     {{ if .IsHome }}
       {{ $PageContext = .Site }}
     {{ end }}
-
-    <!-- Sort the blog posts by date in descending order -->
-    {{ $sortedPages := sort ($PageContext.RegularPages.ByDate.Reverse) ".Date" }}
-
-    <!-- Paginate the sorted blog posts -->
-    {{ $paginator := .Paginate $sortedPages }}
+    {{ $paginator := .Paginate (where $PageContext.RegularPages "Type" $contentTypeName) }}
 
     {{ range $paginator.Pages }}
       <article class="post on-list">
