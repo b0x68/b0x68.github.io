@@ -9,7 +9,7 @@
 
         <!-- Iterate over page numbers -->
     {{ range .Paginator.Pages }}
-      <a href="{{ .Permalink }}" class="button">
+      <a href="{{ .RelPermalink }}" class="button">
         <span class="button__text">{{ .Paginator.PageNumber }}</span>
       </a>
     {{ end }}
