@@ -8,11 +8,13 @@
     {{ end }}
 
         <!-- Iterate over page numbers -->
+  {{ if .Paginator }}
     {{ range .Paginator.Pages }}
       <a href="{{ .RelPermalink }}" class="button">
         <span class="button__text">{{ .Paginator.PageNumber }}</span>
       </a>
     {{ end }}
+  {{ end }}
     
     {{ if .Paginator.HasNext }}
       <a href="{{ .Paginator.Next.URL }}" class="button next">
