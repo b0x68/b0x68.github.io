@@ -6,6 +6,14 @@
         <span class="button__text">{{ $.Site.Params.newerPosts | default "Newer posts" }}</span>
       </a>
     {{ end }}
+
+        <!-- Iterate over page numbers -->
+    {{ range .Paginator.Pages }}
+      <a href="{{ .Permalink }}" class="button">
+        <span class="button__text">{{ .Paginator.PageNumber }}</span>
+      </a>
+    {{ end }}
+    
     {{ if .Paginator.HasNext }}
       <a href="{{ .Paginator.Next.URL }}" class="button next">
         <span class="button__text">{{ $.Site.Params.olderPosts | default "Older posts" }}</span>
