@@ -2,3 +2,7 @@ baseURL = 'https://b0x68.github.io/'
 languageCode = 'en-us'
 title = 'b0x68'
 theme = 'hugo-book'
+
+[services]
+  [services.googleAnalytics]
+    ID = 'G-7HW1L3K44T'
