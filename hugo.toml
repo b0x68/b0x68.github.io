@@ -5,4 +5,4 @@ theme = 'hugo-book'
 
 [services]
   [services.googleAnalytics]
-    ID = 'G-JZB9YT32PY'
+    id = 'G-JZB9YT32PY'
