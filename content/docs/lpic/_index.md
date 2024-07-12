@@ -4,6 +4,8 @@ weight: 20
 title: "LPIC"
 ---
 
+Before anything beyond this point, we'd like to point out that the actual LPI website should be your first stop in your LPIC journey. They have [superior learning resources](https://learning.lpi.org/en/learning-materials/101-500/) to this site. Use our study guides as supplemental material. Enjoy.
+
 ## Welcome to the Ultimate Guide to Linux Professional Institute Certifications (LPIC)
 
 In the ever-evolving world of IT, staying ahead of the curve is essential. One of the best ways to demonstrate your expertise and commitment to excellence in the Linux ecosystem is through the Linux Professional Institute Certifications (LPIC). These certifications are globally recognized, providing a robust framework for mastering various aspects of Linux system administration and engineering.
