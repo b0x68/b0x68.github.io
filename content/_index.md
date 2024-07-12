@@ -3,7 +3,7 @@ title: Introduction
 type: docs
 ---
 
-![alt](./intro.gif)
+![alt](intro.gif)
 
 My name is Brian and this is my personal website. The content will mostly be my study guides in tutorial format with examples -- Linux tutorials on various exams, 'how to' articles, etc. I can also guarantee there will be completely random and unrelated content.
 
