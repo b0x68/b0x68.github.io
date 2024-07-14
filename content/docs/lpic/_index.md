@@ -5,7 +5,7 @@ title: "LPIC"
 ---
 
 {{< hint "info" >}}
-Before anything beyond this point, we'd like to point out that the actual LPI website should be your first stop in your LPIC journey. They have [superior learning resources](https://learning.lpi.org/en/learning-materials/101-500/) to this site. Use our study guides as supplemental material. Enjoy.
+Before you proceed, we'd like to point out that the actual LPI website should be your first stop in your LPIC journey. They have [superior learning resources](https://learning.lpi.org/en/learning-materials/101-500/) to this site. Use our study guides as supplemental material. Enjoy.
 {{< /hint >}}
 
 ## Welcome to the Ultimate Guide to Linux Professional Institute Certifications (LPIC)
