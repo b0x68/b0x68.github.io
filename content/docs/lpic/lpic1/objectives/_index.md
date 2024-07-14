@@ -16,7 +16,7 @@ title: "Objectives"
 - [102.2 Install a boot manager](102-2)
 - [102.3 Manage shared libraries](102-3)
 - [102.4 Use Debian package management](102-4)
-- [102.5 Use RPM and YUM package management](#1025-use-rpm-and-yum-package-management)
+- [102.5 Use RPM and YUM package management](102-5)
 - [102.6 Linux as a virtualization guest](#1026-linux-as-a-virtualization-guest)
 
 ## Topic 103: GNU and Unix Commands
