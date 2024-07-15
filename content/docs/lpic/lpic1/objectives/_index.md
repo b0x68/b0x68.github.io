@@ -20,7 +20,7 @@ title: "Objectives"
 - [102.6 Linux as a virtualization guest](102-6)
 
 ## Topic 103: GNU and Unix Commands
-- [103.1 Work on the command line](#1031-work-on-the-command-line)
+- [103.1 Work on the command line](103-1)
 - [103.2 Process text streams using filters](#1032-process-text-streams-using-filters)
 - [103.3 Perform basic file management](#1033-perform-basic-file-management)
 - [103.4 Use streams, pipes and redirects](#1034-use-streams-pipes-and-redirects)
