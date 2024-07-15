@@ -17,7 +17,7 @@ title: "Objectives"
 - [102.3 Manage shared libraries](102-3)
 - [102.4 Use Debian package management](102-4)
 - [102.5 Use RPM and YUM package management](102-5)
-- [102.6 Linux as a virtualization guest](#1026-linux-as-a-virtualization-guest)
+- [102.6 Linux as a virtualization guest](102-6)
 
 ## Topic 103: GNU and Unix Commands
 - [103.1 Work on the command line](#1031-work-on-the-command-line)
