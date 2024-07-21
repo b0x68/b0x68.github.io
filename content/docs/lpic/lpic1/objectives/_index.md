@@ -21,11 +21,11 @@ title: "Objectives"
 
 ## Topic 103: GNU and Unix Commands
 - [103.1 Work on the command line](103-1)
-- [103.2 Process text streams using filters](#1032-process-text-streams-using-filters)
-- [103.3 Perform basic file management](#1033-perform-basic-file-management)
-- [103.4 Use streams, pipes and redirects](#1034-use-streams-pipes-and-redirects)
-- [103.5 Create, monitor and kill processes](#1035-create-monitor-and-kill-processes)
-- [103.6 Modify process execution priorities](#1036-modify-process-execution-priorities)
+- [103.2 Process text streams using filters](103-2)
+- [103.3 Perform basic file management](103-3)
+- [103.4 Use streams, pipes and redirects](103-4)
+- [103.5 Create, monitor and kill processes](103-5)
+- [103.6 Modify process execution priorities](103-6)
 - [103.7 Search text files using regular expressions](#1037-search-text-files-using-regular-expressions)
 - [103.8 Basic file editing](#1038-basic-file-editing)
 
