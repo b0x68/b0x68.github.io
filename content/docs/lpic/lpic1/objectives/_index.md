@@ -26,8 +26,8 @@ title: "Objectives"
 - [103.4 Use streams, pipes and redirects](103-4)
 - [103.5 Create, monitor and kill processes](103-5)
 - [103.6 Modify process execution priorities](103-6)
-- [103.7 Search text files using regular expressions](#1037-search-text-files-using-regular-expressions)
-- [103.8 Basic file editing](#1038-basic-file-editing)
+- [103.7 Search text files using regular expressions](103-7)
+- [103.8 Basic file editing](103-8)
 
 ## Topic 104: Devices, Linux Filesystems, Filesystem Hierarchy Standard
 - [104.1 Create partitions and filesystems](#1041-create-partitions-and-filesystems)
