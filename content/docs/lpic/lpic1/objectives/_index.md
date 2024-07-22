@@ -30,12 +30,12 @@ title: "Objectives"
 - [103.8 Basic file editing](103-8)
 
 ## Topic 104: Devices, Linux Filesystems, Filesystem Hierarchy Standard
-- [104.1 Create partitions and filesystems](#1041-create-partitions-and-filesystems)
-- [104.2 Maintain the integrity of filesystems](#1042-maintain-the-integrity-of-filesystems)
-- [104.3 Control mounting and unmounting of filesystems](#1043-control-mounting-and-unmounting-of-filesystems)
-- [104.5 Manage file permissions and ownership](#1045-manage-file-permissions-and-ownership)
-- [104.6 Create and change hard and symbolic links](#1046-create-and-change-hard-and-symbolic-links)
-- [104.7 Find system files and place files in the correct location](#1047-find-system-files-and-place-files-in-the-correct-location)
+- [104.1 Create partitions and filesystems](104-1)
+- [104.2 Maintain the integrity of filesystems](104-2)
+- [104.3 Control mounting and unmounting of filesystems](104-3)
+- [104.5 Manage file permissions and ownership](104-5)
+- [104.6 Create and change hard and symbolic links](104-6)
+- [104.7 Find system files and place files in the correct location](104-7)
 
 # Objectives: Exam 102
 

@@ -1,7 +1,8 @@
 ---
-title: Introduction
+title: "[b0x68](https://b0x68.github.io)"
 type: docs
 ---
+
 
 ![alt](intro.gif)
 
