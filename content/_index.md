@@ -1,5 +1,5 @@
 ---
-title: "[b0x68](https://b0x68.github.io)"
+title: Main
 type: docs
 ---
 
