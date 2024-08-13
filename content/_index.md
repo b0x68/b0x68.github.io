@@ -11,13 +11,12 @@ My name is Brian and this is my personal website. The content will mostly be my 
 * Some notable strengths:
   * Enterprise/RPM based Linux -- RHEL, Springdale, CentOS, Rocky
   * Software:
-    * Languages: bash, Python, Go(lang), Puppet
-    * Git
-    * CAS
-    * OpenDJ, LDAP, Duo
-    * Apache, Passenger, Web frameworks
-    * HPC cluster administration -- SLURM, NVidia, Jobstats
-    * NFS, CIFS
+    * Languages: bash, Python, Puppet
+    * Git, Gitlab, Github
+    * IAM: CAS, OpenDJ Directory Server, LDAP, Duo MFA
+    * Apache, Passenger, Web frameworks: Django
+    * HPC cluster administration -- SLURM, NVidia hardware and software, NHC, Jobstats, Various HPC frameworks, e.g., CUDA,MPI,PyTorch
+    * Storage: Dell Powerscale (Isilon) NFS, CIFS
     * Docker, Apptainer(Singularity)
 * Interests
   * Woodturning
