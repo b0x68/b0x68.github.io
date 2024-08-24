@@ -1,7 +1,7 @@
 ---
 weight: 1
-bookFlatSection: true
-title: "LPIC-3SEC"
+bookCollapseSection: true
+title: "LPIC-3 Security"
 ---
 
 ## TODO

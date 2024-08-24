@@ -1,7 +1,7 @@
 ---
 weight: 1
-bookFlatSection: true
-title: "LPIC-3VIRT"
+bookCollapseSection: true
+title: "LPIC-3 Virtualization and Containerization"
 ---
 
 ## TODO
