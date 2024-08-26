@@ -37,7 +37,6 @@ This command will output:
 
 ```
 Welcome to this tutorial on grep.
-Grep is great for searching text.
 Learn grep and regular expressions.
 ```
 
