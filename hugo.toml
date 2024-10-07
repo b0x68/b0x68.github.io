@@ -2,6 +2,7 @@ baseURL = 'https://b0x68.github.io/'
 languageCode = 'en-us'
 title = 'b0x68'
 theme = 'hugo-book'
+BookMenuBundle = 'content/menu'
 
 [services]
   [services.googleAnalytics]
