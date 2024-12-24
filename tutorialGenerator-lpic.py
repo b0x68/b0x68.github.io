@@ -8,7 +8,7 @@ client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
 exam_objectives_file = 'exam-lpic3virt.txt'
 
 # Output
-output_folder = '/Users/bh19/projects/b0x68.github.io/content/docs/lpic/lpic3-virtual/objectives/'
+output_folder = '~/projects/b0x68.github.io/content/docs/lpic/lpic3-virtual/objectives/'
 
 os.makedirs(output_folder, exist_ok=True)
 
