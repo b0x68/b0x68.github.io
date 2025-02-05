@@ -2,7 +2,7 @@
 title: Main
 type: docs
 ---
-![alt](/static/me.jpg)
+![alt](me.jpg)
 
 # About Me
 I'm Brian. This is my personal website. I do Linux infrastructure stuff for work, so you'll find here mostly that and adjacent topics.
