@@ -7,7 +7,7 @@ type: docs
 # About Me
 I'm Brian. This is my personal website. I do Linux infrastructure stuff for work, so you'll find here mostly that and adjacent topics.
 
-* Some notable strengths and interests:
+* Some notable strengths:
   * Linux -- RHEL, Springdale, CentOS, Fedora
   * Software:
     * Languages:       bash, Python, Puppet, learning C++
