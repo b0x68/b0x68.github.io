@@ -7,9 +7,10 @@ menu:
 title: The Linux Kernel Brief
 weight: 
 ---
-
-#### Check out [kernel.org's](https://docs.kernel.org/) documentation site for a thorough deep dive.
-#### Another excellent resource [https://linux-kernel-labs.github.io/refs/heads/master/lectures/intro.html](https://linux-kernel-labs.github.io/refs/heads/master/lectures/intro.html)
+{{< hint "info" >}}
+- Check out [kernel.org's](https://docs.kernel.org/) documentation site for a thorough deep dive.
+- Another excellent resource [https://linux-kernel-labs.github.io/refs/heads/master/lectures/intro.html](https://linux-kernel-labs.github.io/refs/heads/master/lectures/intro.html)
+{{< /hint >}}
 
 ## **A Brief Introduction to the Linux Kernel**
 
@@ -101,4 +102,6 @@ The Linux kernel also supports **real-time processing** for applications that re
 ### Conclusion
 The Linux kernel is a powerful and versatile core of the Linux operating system, supporting a vast array of hardware architectures, file systems, and networking protocols. Its modular, open-source design allows for endless customization, making it suitable for an incredibly wide range of devices and use cases. Its reliability, performance, and security have made it a cornerstone of modern computing, from mobile devices to enterprise servers and supercomputers.
 
+{{< hint "info" >}}
 [https://www.linuxfoundation.org/legal/the-linux-mark](https://www.linuxfoundation.org/legal/the-linux-mark)
+{{< /hint >}}
