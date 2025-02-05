@@ -3,7 +3,7 @@ date: 2025-01-03
 linktitle: Systemd Crash Course
 title: Systemd Crash Course
 ---
-![alt](me.jpg)
+![alt](/static/data-center-infrastructure.jpeg)
 ### **1. What is systemd?**
 **systemd** is a system and service manager for Linux that replaces the traditional **SysVinit** and **Upstart**. It's designed for faster boot times, better resource management, and centralized configuration.
 
