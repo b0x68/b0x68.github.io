@@ -89,7 +89,7 @@ Site Reliability Engineering (SRE) is a discipline that blends software engineer
 - **Database Performance Tuning** – Optimize and implement backup strategies.
 
 ### Labs and Simulations
-- [Katacoda SRE Scenarios](https://www.katacoda.com/courses/sre)
+- [killer.sh](https://killer.sh/)
 - [AWS Free Tier](https://aws.amazon.com/free/)
 - [Google Cloud Free Tier](https://cloud.google.com/free/)
 - [Linux Academy Hands-on Labs](https://linuxacademy.com/)
