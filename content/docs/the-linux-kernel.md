@@ -1,16 +1,10 @@
 ---
 date: 2024-10-01
-linktitle: The Linux Kernel Brief
-menu:
-  main:
-    parent: tutorials
-title: The Linux Kernel Brief
+linktitle: A Linux Kernel Brief
+title: A Linux Kernel Brief
 weight: 
 ---
-{{< hint "info" >}}
-- Check out [kernel.org's](https://docs.kernel.org/) documentation site for a thorough deep dive.
-- Another excellent resource [https://linux-kernel-labs.github.io/refs/heads/master/lectures/intro.html](https://linux-kernel-labs.github.io/refs/heads/master/lectures/intro.html)
-{{< /hint >}}
+![A picture of a bird's head.](/linux-bird-brain-second-order-thinking.png)
 
 ## **A Brief Introduction to the Linux Kernel**
 
@@ -103,5 +97,10 @@ The Linux kernel also supports **real-time processing** for applications that re
 The Linux kernel is a powerful and versatile core of the Linux operating system, supporting a vast array of hardware architectures, file systems, and networking protocols. Its modular, open-source design allows for endless customization, making it suitable for an incredibly wide range of devices and use cases. Its reliability, performance, and security have made it a cornerstone of modern computing, from mobile devices to enterprise servers and supercomputers.
 
 {{< hint "info" >}}
-[https://www.linuxfoundation.org/legal/the-linux-mark](https://www.linuxfoundation.org/legal/the-linux-mark)
+- Check out [kernel.org's](https://docs.kernel.org/) documentation site for a thorough deep dive.
+- Another excellent resource [https://linux-kernel-labs.github.io/refs/heads/master/lectures/intro.html](https://linux-kernel-labs.github.io/refs/heads/master/lectures/intro.html)
+{{< /hint >}}
+
+{{< hint "info" >}}
+- [https://www.linuxfoundation.org/legal/the-linux-mark](https://www.linuxfoundation.org/legal/the-linux-mark)
 {{< /hint >}}
