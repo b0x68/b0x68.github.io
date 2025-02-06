@@ -2,7 +2,6 @@
 date: 2024-10-01
 linktitle: A Linux Kernel Brief
 title: A Linux Kernel Brief
-weight: 
 ---
 ![A picture of a bird's head.](/linux-bird-brain-second-order-thinking.png)
 
