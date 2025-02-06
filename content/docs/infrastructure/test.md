@@ -92,7 +92,7 @@ Site Reliability Engineering (SRE) is a discipline that blends software engineer
 - [killer.sh](https://killer.sh/)
 - [AWS Free Tier](https://aws.amazon.com/free/)
 - [Google Cloud Free Tier](https://cloud.google.com/free/)
-- [Linux Academy Hands-on Labs](https://linuxacademy.com/)
+- [Red Hat Labs](https://www.redhat.com/en/interactive-labs/enterprise-linux)
 
 ## Certifications
 - **Google Professional Cloud DevOps Engineer**
