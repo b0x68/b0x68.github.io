@@ -1,5 +1,6 @@
 # Automate RHCSA Security Tasks Using Ansible on RHEL
 
+![picture sketch of a guy fending off a boar](/linux-defense-selinux.png)
 ## Introduction
 
 Security automation is a critical aspect of managing enterprise environments effectively, ensuring consistent application of security policies across a wide range of systems. In this tutorial, we will explore how to automate various RHCSA security tasks using Ansible, specifically focusing on Red Hat Enterprise Linux (RHEL) systems. This approach not only enhances security but also reduces the possibility of human error and saves time for system administrators.

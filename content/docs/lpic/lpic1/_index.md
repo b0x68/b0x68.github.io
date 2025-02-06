@@ -3,7 +3,7 @@ weight: 1
 bookCollapseSection: true
 title: "LPIC-1"
 ---
-
+![cat sketch](/cat-linux.jpg)
 # Introduction
 
 ## Mastering the LPIC-1: A Comprehensive Study Guide

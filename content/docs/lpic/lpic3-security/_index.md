@@ -3,6 +3,7 @@ weight: 1
 bookCollapseSection: true
 title: "LPIC-3 Security"
 ---
+![picture sketch of a guy fending off a boar](/linux-defense-selinux.png)
 
 # Introduction to LPIC-3 Security Certification
 
@@ -37,6 +38,8 @@ The **LPIC-3 Security** certification is designed to validate the skills needed 
 - **Languages Available Online via OnVUE**: English, Japanese
 
 ## Who Should Pursue This Certification?
+
+![a stately looking primate holding a staff](/linux-chaos-monkey-software.png)
 
 The LPIC-3 Security certification is ideal for:
 

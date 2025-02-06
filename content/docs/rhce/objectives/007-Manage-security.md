@@ -2,6 +2,7 @@
 
 Managing security is a crucial aspect of system administration, particularly when working with Red Hat Enterprise Linux (RHEL). This tutorial aims to provide a comprehensive guide on how to manage security, which is a key objective for the Red Hat Certified System Administrator (RHCSA) exam.
 
+![a young lad fending off a deer](/linux-defense-selinux.png)
 ## Introduction
 
 Security management in RHEL involves a variety of tasks, from configuring firewalls and enforcing user policies to managing SELinux contexts and ensuring that the system is free from vulnerabilities. This tutorial will cover these aspects in detail, providing practical examples to help you prepare for the RHCSA exam.
