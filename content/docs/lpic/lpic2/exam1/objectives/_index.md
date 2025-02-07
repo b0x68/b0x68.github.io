@@ -3,6 +3,7 @@ bookCollapseSection: true
 weight: 2
 title: "Objectives"
 ---
+![a nice drawing of a ranch with mountains in the background](/linux-rancher-landscape-storage-security.png)
 
 # Objectives: Exam 201
 

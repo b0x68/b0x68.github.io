@@ -1,7 +1,7 @@
 ---
 bookCollapseSection: true
 title: "Google Cloud Platform"
-weight: 5
+weight: 7
 ---
 
 {{< hint "info" >}}

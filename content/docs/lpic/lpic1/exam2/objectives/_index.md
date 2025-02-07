@@ -3,7 +3,7 @@ bookCollapseSection: true
 weight: 2
 title: "Objectives"
 ---
-
+![some standing sheep](/linux-stability-automation-daily-tasks.png)
 # Objectives: Exam 102
 
 ## Topic 105: Shells and Shell Scripting

@@ -8,23 +8,25 @@ title: "Site Reliability Engineer (SRE) Roadmap Guide"
 Welcome to the Site Reliability Engineer (SRE) Roadmap Guide. This comprehensive guide outlines a structured path for aspiring Site Reliability Engineers, covering essential concepts, skills, tools, and best practices to excel in the SRE role.
 
 ## Table of Contents
-- [Introduction](#introduction)
-- [What is SRE?](#what-is-sre)
-- [Core Principles of SRE](#core-principles-of-sre)
-- [Skills and Competencies](#skills-and-competencies)
-  - [Technical Skills](#technical-skills)
-  - [Soft Skills](#soft-skills)
-- [Learning Resources](#learning-resources)
-  - [Books](#books)
-  - [Online Courses](#online-courses)
-  - [Websites and Blogs](#websites-and-blogs)
-- [Hands-on Practice](#hands-on-practice)
-  - [Projects](#projects)
-  - [Labs and Simulations](#labs-and-simulations)
-- [Certifications](#certifications)
-- [Community and Networking](#community-and-networking)
-- [Career Path](#career-path)
-- [Conclusion](#conclusion)
+- [Site Reliability Engineer (SRE) Roadmap Guide](#site-reliability-engineer-sre-roadmap-guide)
+  - [Introduction](#introduction)
+  - [Table of Contents](#table-of-contents)
+  - [What is SRE?](#what-is-sre)
+  - [Core Principles of SRE](#core-principles-of-sre)
+  - [Skills and Competencies](#skills-and-competencies)
+    - [Technical Skills](#technical-skills)
+    - [Soft Skills](#soft-skills)
+  - [Learning Resources](#learning-resources)
+    - [Books](#books)
+    - [Online Courses](#online-courses)
+    - [Websites and Blogs](#websites-and-blogs)
+  - [Hands-on Practice](#hands-on-practice)
+    - [Projects](#projects)
+    - [Labs and Simulations](#labs-and-simulations)
+  - [Certifications](#certifications)
+  - [Community and Networking](#community-and-networking)
+  - [Career Path](#career-path)
+  - [Conclusion](#conclusion)
 
 ## What is SRE?
 Site Reliability Engineering (SRE) is a discipline that blends software engineering and operations to create scalable and highly reliable software systems. Originally pioneered by Google, SRE is now widely adopted across various industries to improve service reliability and operational efficiency.
@@ -80,7 +82,7 @@ Site Reliability Engineering (SRE) is a discipline that blends software engineer
 - [Stack Overflow Blog](https://stackoverflow.blog/)
 
 ## Hands-on Practice
-
+![a man loving his work on a computer](/intro.gif)
 ### Projects
 - **Monitoring Dashboard** – Build with Prometheus and Grafana.
 - **CI/CD Pipeline** – Automate deployments with Jenkins or GitLab CI.

@@ -1,6 +1,6 @@
 ---
-bookCollapseSection: true
-weight: 4
+bookCollapseSection: false
+weight: 3
 title: "Infrastructure"
 ---
 

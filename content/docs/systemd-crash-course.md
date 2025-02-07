@@ -1,5 +1,6 @@
 ---
 date: 2025-01-03
+weight: 2
 linktitle: Systemd Crash Course
 title: Systemd Crash Course
 ---
