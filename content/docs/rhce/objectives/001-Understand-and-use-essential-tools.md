@@ -1,5 +1,5 @@
 # Tech Tutorial: Essential Tools for the Red Hat Certified System Administrator (RHCSA)
-
+![a monkey looking hella confused](/linux-imposter-syndrome-monkey.png)
 ## Introduction
 
 In this tutorial, we will cover the essential tools that a Red Hat Certified System Administrator (RHCSA) needs to master in order to effectively manage Red Hat Enterprise Linux (RHEL) systems. We'll focus on command-line tools and utilities that are crucial for system administration tasks such as file manipulation, text processing, and system monitoring.
