@@ -4,7 +4,7 @@ type: docs
 ---
 ![A Picture of myself.](/meMedium.jpeg)
 
-# README
+# `$ whoami`
 I'm Brian. This is my personal website. I do Linux infrastructure stuff for work, so you'll find here mostly that and adjacent topics.
 
 ## SYNOPSIS
