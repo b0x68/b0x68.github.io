@@ -29,7 +29,7 @@ I'm Brian. This is my personal website. I do Linux infrastructure stuff for work
       - Docker, Apptainer(Singularity), Kubernetes
 
   ### PERSONAL INTERESTS
-  * Home labbing
+  * Home lab'ing
   * Woodturning, Woodworking
   * Hydroponic gardening
   * Motorsports
