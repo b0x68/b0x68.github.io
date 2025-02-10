@@ -1,7 +1,7 @@
 ---
 weight: 2
 bookCollapseSection: true
-title: "LPIC-3 High Availability and Storage Clusters"
+title: "- LPIC-3 High Availability and Storage Clusters"
 ---
 
 # Introduction to LPIC-3 High Availability and Storage Clusters Certification

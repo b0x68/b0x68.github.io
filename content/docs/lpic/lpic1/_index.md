@@ -1,7 +1,7 @@
 ---
 weight: 1
 bookCollapseSection: false
-title: "LPIC-1"
+title: "- LPIC-1"
 ---
 ![cat sketch](/cat-linux.jpg)
 # Introduction

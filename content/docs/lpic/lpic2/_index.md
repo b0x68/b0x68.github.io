@@ -1,7 +1,7 @@
 ---
 weight: 1
 bookCollapseSection: false
-title: "LPIC-2"
+title: "- LPIC-2"
 ---
 ![a deer carefully treading downward](/linux-troubleshooting-carefully-debugging-steps.png)
 ## Mastering the LPIC-2 Exam: Comprehensive Study Guide with Real-World Examples

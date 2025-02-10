@@ -4,7 +4,7 @@ weight: 2.1
 linktitle: Linux Filesystem Overview
 title: Linux Filesystem Overview
 ---
-
+![a conifer twig](/linux-development-git-branch.png)
 # The Linux Filesystem: A Comprehensive Guide
 
 The Linux filesystem is a structured hierarchy that organizes files and directories in a predictable way. Understanding its layout, structure, and key components is crucial for system administrators, developers, and power users.

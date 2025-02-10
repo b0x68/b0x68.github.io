@@ -1,7 +1,7 @@
 ---
 weight: 1
 bookCollapseSection: true
-title: "LPIC-3 Mixed Environments"
+title: "- LPIC-3 Mixed Environments"
 ---
 
 ## Achieving LPIC-3 Mixed Environments Certification: Your Path to Mastery in Enterprise-Level Linux Administration

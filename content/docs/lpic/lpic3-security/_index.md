@@ -1,7 +1,7 @@
 ---
 weight: 1
 bookCollapseSection: true
-title: "LPIC-3 Security"
+title: "- LPIC-3 Security"
 ---
 ![picture sketch of a guy fending off a boar](/linux-defense-selinux.png)
 
