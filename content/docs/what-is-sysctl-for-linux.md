@@ -4,12 +4,12 @@ weight: 1.7
 linktitle: What is sysctl for Linux?
 title: What is sysctl for Linux?
 ---
+![an otter eating a fish](/linux-find-the-fish.png)
+# A `sysctl` Tutorial: Learning Kernel Parameter Management in Linux
 
-# Comprehensive sysctl Tutorial: Mastering Kernel Parameter Management in Linux
+Linux’s `sysctl` utility lets you view and modify kernel parameters at runtime. These parameters control key aspects of system behavior—ranging from networking and memory management to security and file system limits. Because improper tuning can affect system stability or security, it’s critical to understand both the syntax and the underlying structure of these settings.
 
-Linux’s **sysctl** utility lets you view and modify kernel parameters at runtime. These parameters control key aspects of system behavior—ranging from networking and memory management to security and file system limits. Because improper tuning can affect system stability or security, it’s critical to understand both the syntax and the underlying structure of these settings.
-
-In this tutorial, we’ll cover:
+In this tutorial, we'll cover:
 
 1. [Understanding Kernel Parameters and sysctl](#understanding-kernel-parameters-and-sysctl)
 2. [Basic sysctl Usage](#basic-sysctl-usage)
@@ -38,6 +38,39 @@ The [sysctl(8) man page](https://man7.org/linux/man-pages/man8/sysctl.8.html) ex
 ---
 
 ## Basic sysctl Usage
+
+```bash
+sysctl
+
+Usage:
+ sysctl [options] [variable[=value] ...]
+
+Options:
+  -a, --all            display all variables
+  -A                   alias of -a
+  -X                   alias of -a
+      --deprecated     include deprecated parameters to listing
+      --dry-run        Print the key and values but do not write
+  -b, --binary         print value without new line
+  -e, --ignore         ignore unknown variables errors
+  -N, --names          print variable names without values
+  -n, --values         print only values of the given variable(s)
+  -p, --load[=<file>]  read values from file
+  -f                   alias of -p
+      --system         read values from all system directories
+  -r, --pattern <expression>
+                       select setting that match expression
+  -q, --quiet          do not echo variable set
+  -w, --write          enable writing a value to variable
+  -o                   does nothing
+  -x                   does nothing
+  -d                   alias of -h
+
+ -h, --help     display this help and exit
+ -V, --version  output version information and exit
+
+For more details see sysctl(8).
+```
 
 ### 1. Viewing Kernel Parameters
 
