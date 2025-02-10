@@ -31,7 +31,7 @@ h5 {
 
 a {
   text-decoration: none;
-  color: var(--color-link);
+  color: #f4976c; //var(--color-link);
 }
 
 img {
@@ -116,7 +116,7 @@ ul.pagination {
   }
 
   a.active {
-    color: var(--color-link);
+    color: #f4976c; //var(--color-link);
   }
 
   input.toggle + label + ul {
