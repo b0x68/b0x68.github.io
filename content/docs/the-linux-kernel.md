@@ -33,7 +33,7 @@ System calls are the main interface between user space and kernel space. When an
 - `read()`: Reads data from a file or device.
 - `write()`: Writes data to a file or device.
 - `fork()`: Creates a new process.
-- `exec()`: Executes a new program.
+- `execve()`: Executes a new program.
 
 ### 4. **Kernel Modules**
 Kernel modules allow for the dynamic loading and unloading of features into the kernel. These modules can be device drivers, file systems, or any other functionality that extends the kernel without needing a full reboot.
