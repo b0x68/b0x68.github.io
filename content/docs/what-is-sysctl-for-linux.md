@@ -1,6 +1,6 @@
 ---
 date: 2025-02-10
-weight: 1.7
+weight: 2
 linktitle: What is sysctl for Linux?
 title: What is sysctl for Linux?
 ---
