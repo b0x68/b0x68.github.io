@@ -12,3 +12,9 @@ BookMenuBundle = 'content/menu'
   # (Optional, default light) Sets color theme: light, dark or auto.
   # Theme 'auto' switches between dark and light modes based on browser/os preferences
   BookTheme = 'dark'
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      # Required to render raw HTML in markdown (e.g. iframe shortcode)
+      unsafe = true
