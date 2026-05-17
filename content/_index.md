@@ -5,20 +5,20 @@ type: docs
 ![A Picture of myself.](/meMedium.jpeg)
 
 # `$ whoami`
-I'm Brian. This is my personal website. I do Linux infrastructure stuff for work, so you'll find here mostly that and adjacent topics.
+I'm Brian. This is my personal website. I design, implement, manage and maintain Linux infrastructure, so you'll find here mostly that and adjacent topics.
 
 ## SYNOPSIS
   - Linux
     - RHEL, Ubuntu
   - Software
     - Languages
-      - bash, Python, Puppet, learning C++
-    - Tools
+      - bash, Python, Puppet, Ansible, Terraform, Perl, learning Go
+    - Tool
       - `strace`, `tcpdump`, `vim`, `git`, `ps`, `lsof`, `awk`, `sed`, `grep`, etc.
     - Version Control
       - Git, Gitlab, Github
     - Identity and Access Management
-      - CAS, OpenDJ, LDAP, Duo MFA, Active Directory
+      - CAS, OpenDJ, LDAP, Duo MFA, Keycloak
     - Web
       - Apache, Passenger, Web frameworks: Django, PHP
     - Clusters
