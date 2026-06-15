@@ -100,7 +100,7 @@ sudo reboot
 ```bash
 sudo apt update
 sudo apt install -y \
-    qemu-kvm \
+    qemu-system-x86 \
     qemu-utils \
     libvirt-daemon-system \
     libvirt-clients \
