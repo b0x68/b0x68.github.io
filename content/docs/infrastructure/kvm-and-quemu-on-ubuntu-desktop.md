@@ -116,7 +116,7 @@ sudo apt install -y \
 
 | Package | Purpose |
 |---|---|
-| `qemu-kvm` | KVM-accelerated QEMU hypervisor |
+| `qemu-system-x86` | KVM-accelerated QEMU hypervisor |
 | `qemu-utils` | Tools like `qemu-img` for disk management |
 | `libvirt-daemon-system` | libvirt daemon (manages VMs via API) |
 | `libvirt-clients` | `virsh` CLI and other client tools |
